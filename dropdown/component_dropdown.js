@@ -1,9 +1,10 @@
-// https://ddjs.org v5.12.0 Copyright 2019 Ren-Wen Zhange
+// 0.0.0 Copyright 2019 Ren-Wen Zhange
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
         typeof define === 'function' && define.amd ? define(['exports'], factory) :
             (global = global || self, factory(global.dd = global.dd || {}));
 }(this, function (exports) {
+    var version ="0.0.0";
     function clickOpenSelection(e) {
         e.stopPropagation();
         let el = e.target.classList;
