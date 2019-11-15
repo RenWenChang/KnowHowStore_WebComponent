@@ -24,14 +24,6 @@
         text-align: center;
     }
 
-    p {
-        font-size: 1.2em;
-        font-weight: normal;
-        line-height: 1.35em;
-        color: #343434;
-        margin-bottom: 12px;
-    }
-
     /* page container */
     #wrap {
         display: flex;
@@ -65,7 +57,9 @@
         transition: all 0.15s linear;
     }
 
-    .dropdown>span {
+    #wrap>.dropdown>span {
+        display: block;
+        /*display block 增加pointer-events兼容性*/
         pointer-events: none;
     }
 
@@ -115,7 +109,8 @@
         font-size: 0.9em;
     }
 
-    .dropdown ul li a {
+    .dropdown ul li a,
+    .dropdown ul li div {
         text-decoration: none;
         display: block;
         color: #447dd3;
@@ -123,7 +118,8 @@
         /* pointer-events: none; */
     }
 
-    .dropdown ul li a:hover {
+    .dropdown ul li a:hover,
+    .dropdown ul li div:hover {
         color: #6fa0e9;
         background: #e7f0f7;
     }
@@ -137,7 +133,7 @@
             <ul class="">
                 <li class="dd_option"><a href="https://www.google.com.tw/webhp?hl=zh-TW&lr=lang_zh-T&gws_rd=ssl">My
                         Profile</a></li>
-                <li class="dd_option"><a href="#">Friend Requests</a></li>
+                <li class="dd_option"><a>Friend Requests</a></li>
                 <li class="dd_option"><a href="#">Account Settings</a></li>
                 <li class="dd_option"><a href="#">Support</a></li>
                 <li class="dd_option"><a href="#">Log Out</a></li>
@@ -160,19 +156,7 @@
 <script>
     let all_dd = document.querySelectorAll(".dropdown");
     let option = document.querySelectorAll(".dd_option");
-    let closeAllOption = () => {
-        let open = document.querySelectorAll(".open");
-        let ul = document.querySelectorAll(".ul");
-        if (open.length !== 0 && ul.length !== 0) {
-            Array.from(all_dd).forEach((item, i) => {
-                item.classList.remove("open");
-            })
-            Array.from(ul).forEach((item, i) => {
-                item.classList.remove("ul")
-            })
-        }
-    }
-    let switcher = function (e) {
+    let clickOpenSelection = function (e) {//open selection
         // e.preventDefault();
         e.stopPropagation();
         let el = e.target.classList;
@@ -187,26 +171,53 @@
         }
     }
 
-    let clickOption = function (e) {
+    let clickChooseOption = function (e) {
         // e.preventDefault();
         e.stopPropagation();
-        e.path[3].firstElementChild.textContent = e.target.textContent;
-        let el = e.target.classList;
+        // e.path[3].firstElementChild.textContent = e.target.textContent;//user setting
         e.target.offsetParent.classList.remove("ul");
         e.target.offsetParent.offsetParent.classList.remove("open");
     }
 
+    //原生環境調用本函式
+    let dropdownEventsMount = () => {
+        if (all_dd.length !== 0) {//開選單
+            Array.from(all_dd).forEach((item, i) => {
+                item.addEventListener("click", clickOpenSelection)
+
+            })
+        }
+        if (option.length !== 0) {//點選項
+            Array.from(option).forEach((item, i) => {
+                item.addEventListener("click", clickChooseOption);
+            })
+        }
+    }
+
+    let closeAllOption = () => {
+        let open = document.querySelectorAll(".open");
+        let ul = document.querySelectorAll(".ul");
+        if (open.length !== 0 && ul.length !== 0) {
+            Array.from(all_dd).forEach((item, i) => {
+                item.classList.remove("open");
+            })
+            Array.from(ul).forEach((item, i) => {
+                item.classList.remove("ul")
+            })
+        }
+    }
+    let beExcludeElements_EventsMount = (a) => {
+        document.addEventListener("click", (e) => {
+            a.forEach((fn) => {
+                fn();
+            })
+        })
+    }
 
 
-    document.addEventListener("click", (e) => {
-        closeAllOption();
-    })
-    if (all_dd.length !== 0) {
-        Array.from(all_dd).forEach((item, i) => { item.addEventListener("click", switcher) })
-    }
-    if (option.length !== 0) {
-        Array.from(option).forEach((item, i) => { item.addEventListener("click", clickOption); })
-    }
+    // 使用方式
+    beExcludeElements_EventsMount([closeAllOption]);//先掛載排除事件
+    dropdownEventsMount();//再依序掛載目標事件
 
 </script>
 
