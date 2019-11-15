@@ -5,39 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="./component_dropdown.js"></script>
     <title>Document</title>
+    <script src="./component_dropdown.js"></script>
+    <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
 </head>
+
 <body>
-    <div id="wrap">
-        <h1>Menu</h1>
-        <div class="dropdown ddmenu">
-            <span>User Settings</span>
-            <ul class="">
-                <li class="dd_option"><a href="https://www.google.com.tw/webhp?hl=zh-TW&lr=lang_zh-T&gws_rd=ssl">My
-                        Profile</a></li>
-                <li class="dd_option"><a>Friend Requests</a></li>
-                <li class="dd_option"><a href="#">Account Settings</a></li>
-                <li class="dd_option"><a href="#">Support</a></li>
-                <li class="dd_option"><a href="#">Log Out</a></li>
-            </ul>
-
-        </div>
-        <div class="dropdown ddmenu">
-            <span>User Settings</span>
-            <ul class="">
-                <li class="dd_option"><a href="#">My Profile</a></li>
-                <li class="dd_option"><a href="#">Friend Requests</a></li>
-                <li class="dd_option"><a href="#">Account Settings</a></li>
-                <li class="dd_option"><a href="#">Support</a></li>
-                <li class="dd_option"><a href="#">Log Out</a></li>
-            </ul>
-
-        </div>
+    <div id="app">
+        <dropdown>
+            <dropdown />
     </div>
 </body>
 <script>
-    dd.beExcludeElements_EventsMount([dd.closeAllOption],true);//先掛載排除事件
+    Vue.component('dropdown', {
+        data: function () {
+            return {
+                list: [
+                    { id: '1234567888', name: 'My Profile' },
+                    { id: '123456789', name: 'Friend Requests' },
+                    { id: '234567890', name: 'Account Settings' },
+                    { id: '345678901', name: 'Support' },
+                    { id: '345678901', name: 'Log Out' }
+                ]
+            };
+        },
+        methods: {
+            clickOpenSelection: function (e) {
+                dd.clickOpenSelection(e)
+            },
+            clickChooseOption: function (e) {
+                dd.clickChooseOption(e)
+            }
+        },
+        mounted: async function () {
+            dd.beExcludeElements_EventsMount([dd.closeAllOption], false);
+        },
+        // 元件的 HTML
+        template: `
+        <div id="wrap">
+            <h1>Menu</h1>
+            <div class="dropdown ddmenu" @click="clickOpenSelection($event)">
+                <span>User Settings</span>
+                <ul class="">
+                    <li class="dd_option" 
+                     v-for="(item, key, index) in list"
+                     @click="clickChooseOption($event)">
+                        <a href="#">{{item.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown ddmenu" @click="clickOpenSelection($event)">
+                <span>User Settings</span>
+                <ul class="">
+                    <li class="dd_option" 
+                     v-for="(item, key, index) in list"
+                     @click="clickChooseOption($event)">
+                        <a href="#">{{item.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>`
+    });
+
+    const vm = new Vue({
+        el: '#app'
+    });
 </script>
 <style>
     body {
@@ -156,4 +188,5 @@
         background: #e7f0f7;
     }
 </style>
+
 </html>
