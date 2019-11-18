@@ -1,0 +1,20 @@
+slider優化
+打通xml
+
+基富通 切版
+
+製作carousel
+製作日曆
+製作button
+製作table
+製作輸入框
+製作動畫
+製作瀑布式特效模板
+製作scrollfix元件(fixtop fixbottom等等)
+製作navbar元件(fixtop fixbottom等等)
+製作navbar漢堡選單
+製作關閉按鈕(動畫)
+製作彈窗
+製作模糊搜索
+製作tabs
+製作progress
