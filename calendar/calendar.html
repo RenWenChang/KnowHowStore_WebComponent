@@ -98,11 +98,9 @@
 
 <body>
     <div class="wrapper-dropdownMaybe">
-        <span>btna</span>
         <div class="calendar"></div>
     </div>
     <div class="wrapper-dropdownMaybe">
-        <span>btnb</span>
         <div class="calendar"></div>
     </div>
 
@@ -141,31 +139,34 @@
 
 
     function refreshDate(dom, index) {
-        let thisYear = new Date().getFullYear();
-        let thisMonth = new Date().getMonth();
-        let thisDay = new Date().getDate();
-        let month_leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        let month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        let month_name = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
-        let week_name = [ "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN"];
+        var thisYear = new Date().getFullYear();
+        var thisMonth = new Date().getMonth();
+        var thisDay = new Date().getDate();
+        var month_leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        var month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        var month_name = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
+        var week_name = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
-        let calendar = document.querySelectorAll(".calendar")[index];
+        var calendar = document.querySelectorAll(".calendar")[index];
         calendar.innerHTML = "";
 
         /////////////////////////////*生成架構和按鈕 *///////////////////////////////////////
 
-        let title = document.createElement("div");
+        var title = document.createElement("div");
         title.classList.add("title");
-        let h1 = document.createElement("h1");
-        h1.classList.add("calendar-title", "green");
+        var h1 = document.createElement("h1");
+        h1.classList.add("calendar-title");
+        h1.classList.add("green");
         h1.textContent = thisYear;
-        let h2 = document.createElement("h2");
-        h2.classList.add("calendar-year", "green", "small");
+        var h2 = document.createElement("h2");
+        h2.classList.add("calendar-year");
+        h2.classList.add("green");
+        h2.classList.add("small");
         h2.textContent = month_name[thisMonth];
-        let ap = document.createElement("a");
+        var ap = document.createElement("a");
         ap.classList.add("prev");
         ap.textContent = "prev";
-        let an = document.createElement("a");
+        var an = document.createElement("a");
         an.classList.add("next");
         an.textContent = "next";
         title.appendChild(h1);
@@ -177,21 +178,25 @@
 
         /////////////////////////////*生成 cells 容器*///////////////////////////////////////
 
-        let bodyCalendar = document.createElement("div");
+        var bodyCalendar = document.createElement("div");
         bodyCalendar.classList.add("body-calendar");
 
-        let weekList = document.createElement("div");
-        weekList.classList.add("lightgrey", "body-list", "weekList");
-        let weeks = document.createElement("ul");
+        var weekList = document.createElement("div");
+        weekList.classList.add("lightgrey");
+        weekList.classList.add("body-list");
+        weekList.classList.add("weekList");
+        var weeks = document.createElement("ul");
         weeks.classList.add("weeks");
-        for (let i = 0; i < week_name.length; i++) {
-            let week = document.createElement("li");
+        for (var i = 0; i < week_name.length; i++) {
+            var week = document.createElement("li");
             week.textContent = week_name[i];
             weeks.appendChild(week);
         }
-        let daysList = document.createElement("div");
-        daysList.classList.add("darkgrey", "body-list", "daysList");
-        let days = document.createElement("ul");
+        var daysList = document.createElement("div");
+        daysList.classList.add("darkgrey");
+        daysList.classList.add("body-list");
+        daysList.classList.add("daysList");
+        var days = document.createElement("ul");
         days.classList.add("days");
 
         daysList.appendChild(days);
@@ -204,66 +209,73 @@
         /////////////////////////////*生成日曆 cells*///////////////////////////////////////
         function newAllCells() {
             calendar.querySelector(".days").innerHTML = "";
-            let dayUL = dom.querySelector(".days");
-            let prev = dom.querySelector(".prev");
-            let next = dom.querySelector(".next");
-            let ctitle = dom.querySelector(".calendar-title");
-            let cyear = dom.querySelector(".calendar-year");
+            var dayUL = dom.querySelector(".days");
+            var prev = dom.querySelector(".prev");
+            var next = dom.querySelector(".next");
+            var ctitle = dom.querySelector(".calendar-title");
+            var cyear = dom.querySelector(".calendar-year");
 
 
             function dayStart(month, year) {
-                let tmpDate = new Date(year, month, 1);
+                var tmpDate = new Date(year, month, 1);
                 return (tmpDate.getDay());
             }
             function thisday(month, year, date) {
-                let tmpDate = new Date(year, month, date + 1);
+                var tmpDate = new Date(year, month, date + 1);
                 return tmpDate;
             }
             //閏年計算 套用一個月幾天
             function daysMonth(month, year) {
-                let tmp = year % 4;
+                var tmp = year % 4;
                 if (tmp == 0) {
                     return (month_leapYear[month]);
                 } else {
                     return (month_normal[month]);
                 }
             }
-            let totalDay = daysMonth(thisMonth, thisYear); //該月總天數
-            let beforeFirstDayEmpty = dayStart(thisMonth, thisYear); //該月第一天禮拜幾?算出前面補多少格
+            var totalDay = daysMonth(thisMonth, thisYear); //該月總天數
+            var beforeFirstDayEmpty = dayStart(thisMonth, thisYear); //該月第一天禮拜幾?算出前面補多少格
 
             function newEmptyLi() {
-                let li = document.createElement("li");
+                var li = document.createElement("li");
                 li.classList.add("cell");
                 li.setAttribute("data-item", "");
                 dayUL.appendChild(li);
             }
             function newBeforeTodayLi(d) {
-                let li = document.createElement("li");
-                li.classList.add("cell", "thisM", "darkgrey");
+                var li = document.createElement("li");
+                li.classList.add("cell");
+                li.classList.add("thisM");
+                li.classList.add("darkgrey");
                 li.setAttribute("data-item", "");
                 li.textContent = d;
                 dayUL.appendChild(li);
             }
             function newAfterTodayLi(d) {
-                let li = document.createElement("li");
-                li.classList.add("cell", "thisM", "white");
+                var li = document.createElement("li");
+                li.classList.add("cell");
+                li.classList.add("thisM");
+                li.classList.add("white");
                 li.setAttribute("data-item", "");
                 li.textContent = d;
                 dayUL.appendChild(li);
             }
             function newTodayLi(d) {
-                let li = document.createElement("li");
-                li.classList.add("cell", "thisM", "white", "selectDay");
+                var li = document.createElement("li");
+                li.classList.add("cell");
+                li.classList.add("thisM");
+                li.classList.add("white");
+                li.classList.add("selectDay");
                 li.setAttribute("data-item", "");
                 li.textContent = d;
                 dayUL.appendChild(li);
             }
 
 
-            for (let i = 1; i < beforeFirstDayEmpty; i++) {
+            for (var i = 1; i < beforeFirstDayEmpty; i++) {
                 newEmptyLi();
             }
-            for (let i = 1; i <= totalDay; i++) {
+            for (var i = 1; i <= totalDay; i++) {
                 //先看傳入天 是否為今天
                 if ((i < thisDay && thisYear === new Date().getFullYear() && thisMonth === new Date().getMonth()) ||
                     thisYear < new Date().getFullYear() ||
@@ -275,46 +287,44 @@
                     newAfterTodayLi(i); //今日之後樣式
                 }
             }
-            let cell = dom.querySelectorAll(".cell");
-            let thisM = dom.querySelectorAll(".thisM");
-            let cellUnit = cell.length;
+            var cell = dom.querySelectorAll(".cell");
+            var thisM = dom.querySelectorAll(".thisM");
+            var cellUnit = cell.length;
             if (cellUnit < 35) {
-                for (let i = 0; i < (35 - cellUnit); i++) {
+                for (var i = 0; i < (35 - cellUnit); i++) {
                     newEmptyLi();
                 }
             } else if (cellUnit > 35 && cellUnit < 42) {
-                for (let i = 0; i < (42 - cellUnit); i++) {
+                for (var i = 0; i < (42 - cellUnit); i++) {
                     newEmptyLi();
                 }
             } else if (cellUnit > 42 && cellUnit < 49) {
-                for (let i = 0; i < (49 - cellUnit); i++) {
+                for (var i = 0; i < (49 - cellUnit); i++) {
                     newEmptyLi();
                 }
             } else if (cellUnit > 49 && cellUnit < 56) {
-                for (let i = 0; i < (56 - cellUnit); i++) {
+                for (var i = 0; i < (56 - cellUnit); i++) {
                     newEmptyLi();
                 }
             }
-            thisM.forEach((item, i) => {
-                item.dataset.item = thisday(thisMonth, thisYear, i);
-                item.onclick = function (e) {
+            for (var i = 0; i < thisM.length; i++) {
+                thisM[i].dataset.item = thisday(thisMonth, thisYear, i);
+                thisM[i].onclick = function (e) {
                     e.preventDefault();
-                    let cellsInfo = new Date(
+                    var cellsInfo = new Date(
                         Date.parse(
-                            item.dataset.item
+                            e.target.dataset.item
                         )
                     );
                     alert(cellsInfo);
                 }
-            });
-
-
+            }
         }
         newAllCells();
 
 
-        let p = dom.querySelector(".prev");
-        let n = dom.querySelector(".next");
+        var p = dom.querySelector(".prev");
+        var n = dom.querySelector(".next");
 
         p.onclick = function (e) {
             e.preventDefault();
@@ -346,22 +356,12 @@
 
 
 
+for (let i = 0; i < document.querySelectorAll(".wrapper-dropdownMaybe").length; i++) {
+    var calendar =document.querySelectorAll(".wrapper-dropdownMaybe")[i];
+    refreshDate(calendar, i,"ssdsef","ddddd");
+}
 
-    document.querySelectorAll(".wrapper-dropdownMaybe").forEach((item, index) => {
-        item.onclick = (e) => {
-            e.preventDefault();
-            let wrapperDropdownMaybe = e.target.parentNode.classList.contains("wrapper-dropdownMaybe");
-            let calendar = e.target.nextElementSibling;
-            if (wrapperDropdownMaybe) {
-                let hasCell = calendar.getElementsByClassName("cell").length;
-                if (hasCell === 0) {
-                    refreshDate(calendar, index);
-                } else {
-                    calendar.innerHTML = "";
-                }
-            }
-        }
-    })
+
 </script>
 
 </html>
