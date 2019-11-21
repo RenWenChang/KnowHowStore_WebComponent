@@ -4,10 +4,10 @@
         typeof define === 'function' && define.amd ? define(['exports'], factory) :
             (global = global || self, factory(global.dd = global.dd || {}));
 }(this, function (exports) {
-    var version ="0.0.0";
+    var version = "0.0.0";
     function clickOpenSelection(e) {
         e.stopPropagation();
-        let el = e.target.classList;
+        var el = e.target.classList;
         if (el.contains("open")) {
             e.target.lastElementChild.classList.remove("ul");
             el.remove("open");
@@ -21,7 +21,7 @@
     function clickChooseOption(e) {
         // e.preventDefault();
         e.stopPropagation();
-        // e.path[3].firstElementChild.textContent = e.target.textContent;//user setting
+        e.target.parentNode.parentNode.parentNode.querySelector(".replace").textContent = e.target.textContent;//user setting
         e.target.offsetParent.classList.remove("ul");
         e.target.offsetParent.offsetParent.classList.remove("open");
     }
@@ -31,12 +31,14 @@
         let open = document.querySelectorAll(".open");
         let ul = document.querySelectorAll(".ul");
         if (open.length !== 0 && ul.length !== 0) {
-            Array.from(all_dd).forEach((item, i) => {
-                item.classList.remove("open");
-            })
-            Array.from(ul).forEach((item, i) => {
-                item.classList.remove("ul")
-            })
+            for (let index = 0; index < all_dd.length; index++) {
+                all_dd[index].classList.remove("open");;
+
+            }
+            for (let index = 0; index < ul.length; index++) {
+                ul[index].classList.remove("ul");;
+
+            }
         }
     }
 
@@ -45,15 +47,14 @@
         var all_dd = document.querySelectorAll(".dropdown");
         var option = document.querySelectorAll(".dd_option");
         if (all_dd.length !== 0) {//開選單
-            Array.from(all_dd).forEach((item, i) => {
-                item.addEventListener("click", clickOpenSelection)
-
-            })
+            for (let index = 0; index < all_dd.length; index++) {
+                all_dd[index].addEventListener("click", clickOpenSelection)
+            }
         }
         if (option.length !== 0) {//點選項
-            Array.from(option).forEach((item, i) => {
-                item.addEventListener("click", clickChooseOption);
-            })
+            for (let index = 0; index < option.length; index++) {
+                option[index].addEventListener("click", clickChooseOption)
+            }
         }
     }
 
@@ -63,10 +64,10 @@
             dropdownEventsMount();
         }
 
-        document.addEventListener("click", (e) => {
-            a.forEach((fn) => {
-                fn();
-            })
+        document.addEventListener("click",function(e){
+            for (let index = 0; index < a.length; index++) {
+                a[index]();
+            }
         })
     }
 

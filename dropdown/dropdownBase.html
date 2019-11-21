@@ -9,10 +9,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="wrap">
-        <h1>Menu</h1>
         <div class="dropdown ddmenu">
-            <span>User Settings</span>
+            <span class="dd-btn replace">User Settings</span>
             <ul class="">
                 <li class="dd_option"><a href="https://www.google.com.tw/webhp?hl=zh-TW&lr=lang_zh-T&gws_rd=ssl">My
                         Profile</a></li>
@@ -21,57 +19,17 @@
                 <li class="dd_option"><a href="#">Support</a></li>
                 <li class="dd_option"><a href="#">Log Out</a></li>
             </ul>
-
         </div>
-        <div class="dropdown ddmenu">
-            <span>User Settings</span>
-            <ul class="">
-                <li class="dd_option"><a href="#">My Profile</a></li>
-                <li class="dd_option"><a href="#">Friend Requests</a></li>
-                <li class="dd_option"><a href="#">Account Settings</a></li>
-                <li class="dd_option"><a href="#">Support</a></li>
-                <li class="dd_option"><a href="#">Log Out</a></li>
-            </ul>
-
-        </div>
-    </div>
 </body>
 <script>
     dd.beExcludeElements_EventsMount([dd.closeAllOption],true);//先掛載排除事件
 </script>
 <style>
-    body {
-        font-family: 'Oldenburg', 'Trebuchet MS', Arial, sans-serif;
-    }
-
-    h1 {
-        width: 100%;
-        display: block;
-        font-size: 2.75em;
-        line-height: 2.35em;
-        color: #7291a5;
-        margin-bottom: 12px;
-        font-weight: normal;
-        text-shadow: 0px 1px 1px #fff;
-        text-align: center;
-    }
-
-    /* page container */
-    #wrap {
-        display: flex;
-        width: 850px;
-        margin: 0 auto;
-        padding-top: 35px;
-        flex-wrap: wrap;
-    }
-
-
     /* user menu settings */
     .dropdown {
         display: block;
         padding: 13px 16px;
         width: 266px;
-        margin: 0 auto;
         position: relative;
         cursor: pointer;
         border-left: 4px solid #739cda;
@@ -89,7 +47,7 @@
         transition: all 0.15s linear;
     }
 
-    #wrap>.dropdown>span {
+    .dropdown>.dd-btn {
         display: block;
         /*display block 增加pointer-events兼容性*/
         pointer-events: none;

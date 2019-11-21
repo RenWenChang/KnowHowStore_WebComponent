@@ -12,8 +12,7 @@
 
 <body>
     <div id="app">
-        <dropdown>
-            <dropdown />
+        <dropdown><dropdown />
     </div>
 </body>
 <script>
@@ -43,19 +42,8 @@
         // 元件的 HTML
         template: `
         <div id="wrap">
-            <h1>Menu</h1>
             <div class="dropdown ddmenu" @click="clickOpenSelection($event)">
-                <span>User Settings</span>
-                <ul class="">
-                    <li class="dd_option" 
-                     v-for="(item, key, index) in list"
-                     @click="clickChooseOption($event)">
-                        <a href="#">{{item.name}}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="dropdown ddmenu" @click="clickOpenSelection($event)">
-                <span>User Settings</span>
+                <span class="dd-btn replace">User Settings</span>
                 <ul class="">
                     <li class="dd_option" 
                      v-for="(item, key, index) in list"
@@ -72,30 +60,6 @@
     });
 </script>
 <style>
-    body {
-        font-family: 'Oldenburg', 'Trebuchet MS', Arial, sans-serif;
-    }
-
-    h1 {
-        width: 100%;
-        display: block;
-        font-size: 2.75em;
-        line-height: 2.35em;
-        color: #7291a5;
-        margin-bottom: 12px;
-        font-weight: normal;
-        text-shadow: 0px 1px 1px #fff;
-        text-align: center;
-    }
-
-    /* page container */
-    #wrap {
-        display: flex;
-        width: 850px;
-        margin: 0 auto;
-        padding-top: 35px;
-        flex-wrap: wrap;
-    }
 
 
     /* user menu settings */
@@ -103,7 +67,6 @@
         display: block;
         padding: 13px 16px;
         width: 266px;
-        margin: 0 auto;
         position: relative;
         cursor: pointer;
         border-left: 4px solid #739cda;
@@ -121,7 +84,7 @@
         transition: all 0.15s linear;
     }
 
-    #wrap>.dropdown>span {
+    .dropdown>span {
         display: block;
         /*display block 增加pointer-events兼容性*/
         pointer-events: none;
