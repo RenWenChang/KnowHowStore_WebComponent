@@ -1,0 +1,1706 @@
+@*CSS Reset*@
+<style>
+    /* http://meyerweb.com/eric/tools/css/reset/
+       v2.0 | 20110126
+       License: none (public domain)
+    */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+
+    body {
+        line-height: 1;
+    }
+
+    ol, ul {
+        list-style: none;
+    }
+
+    blockquote, q {
+        quotes: none;
+    }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+</style>
+
+@*基礎 兩大區塊*@
+<style>
+    .Main-box {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        background-color: yellow;
+        width: 100%;
+    }
+
+    .Main-left-box {
+        background-color: #363940;
+        width: 320px;
+    }
+
+    .Main-right-box {
+        background-color: #6a6d73;
+        width: calc(100% - 320px);
+    }
+</style>
+
+@*右邊Header屬性*@
+<style>
+    /*右邊Header區塊*/
+    .Right-Header-box {
+        height: 56px;
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.18);
+        background-color: #363940;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .Right-Header-box-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .Right-Header-box-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .Right-Header-Text {
+        height: 24px;
+        font-family: NotoSansCJKtc;
+        font-size: 18px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .Header-icon {
+        border: 0;
+        padding: 0;
+        width: 33px;
+        height: 27px;
+        background-repeat: no-repeat;
+        background-size: 33px 27px;
+        background-color: transparent;
+        outline: none;
+        display: inline-block;
+    }
+
+    .HeaderUser {
+        background-image: url('../../image/user.svg');
+    }
+
+    .Header-menu-icon {
+        width: 30px;
+        height: 5px;
+        border-top: 5px solid #ffffff;
+        border-bottom: 5px solid #ffffff;
+        background-color: #ffffff;
+        padding: 5px 0;
+        background-clip: content-box;
+    }
+</style>
+
+@*右邊Body屬性*@
+<style>
+    /*右邊Body*/
+    .Right-Body-box {
+        display: flex;
+        padding: 24px;
+        flex-wrap: wrap;
+        min-height: 900px;
+    }
+
+    .Right-Body-box-basic {
+        border-radius: 4px;
+        box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.15);
+        background-color: #f6f6f6;
+        min-height: calc(100% - 48px - 72px - 56px);
+        margin-right: 16px;
+    }
+
+    .Right-Body-box-1 {
+        width: 28%;
+        order: 1;
+    }
+
+    .Right-Body-box-2 {
+        width: 42%;
+        order: 2;
+    }
+
+    .Right-Body-box-3 {
+        width: 26%;
+        margin-right: 16px;
+        order: 3;
+    }
+
+    .Right-Body-box-4 {
+        height: 46%;
+        border-radius: 4px;
+        box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.15);
+        background-color: #fcfbfc;
+        margin-bottom: 20px;
+    }
+
+    .Right-Body-box-5 {
+        height: 52%;
+        border-radius: 4px;
+        box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.15);
+        background-color: #fcfbfc;
+    }
+</style>
+
+@*字體設定*@
+<style>
+    .Font-16-blue {
+        font-size: 16px;
+        color: #2f3bf5;
+        font-family: NotoSansCJKtc;
+    }
+</style>
+
+@*選單組件*@
+<style>
+    .Box-Header-style-1 {
+        justify-content: space-between;
+        display: flex;
+        padding-bottom: 24px;
+    }
+
+    .Label-Box {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 724px;
+    }
+
+    .Label-style-1 {
+        height: 40px;
+        border-radius: 4px;
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.06);
+        background-color: #ffffff;
+        line-height: 40px;
+        justify-content: space-between;
+        display: flex;
+        padding: 0 8px 0px 16px;
+        margin-bottom: 8px;
+    }
+
+    .Label-style-1-1 {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .Label-style-1-2 {
+        margin: 8px;
+        width: 32px;
+        height: 24px;
+        border-radius: 8.5px;
+        background-color: rgba(65, 64, 66, 0.1);
+        line-height: 24px;
+        font-size: 13px;
+        color: #414042;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .Label-Box::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .Label-Box::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px none;
+        border-radius: 10px;
+    }
+
+    .Label-Box::-webkit-scrollbar-thumb {
+        background: black;
+        border-radius: 10px;
+    }
+
+        .Label-Box::-webkit-scrollbar-thumb:hover {
+            background: rgb(54, 56, 58);
+        }
+
+    .Label-style-2 {
+        border-radius: 4px;
+        box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.04);
+        background-color: #ffffff;
+        padding: 16px;
+        margin-bottom: 28px;
+    }
+
+    .Label-style-2-1 {
+        justify-content: space-between;
+        display: flex;
+    }
+
+    .Label-style-2-1-Number {
+        font-family: Muli;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 24px;
+        text-align: center;
+        color: #24a854;
+        width: 28px;
+        height: 24px;
+        border-radius: 8.5px;
+        background-color: #e5f5e7;
+        display: inline-block;
+    }
+
+    .Label-style-2-1-HeaderText-1 {
+        font-size: 14px;
+        color: #414042;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .Label-style-2-1-HeaderText-2 {
+        font-size: 13px;
+        color: #24a854;
+        display: inline-block;
+    }
+
+    .Label-style-2-1-HeaderText-3::before {
+        color: #24a854;
+        content: "︿";
+    }
+
+    .Label-style-2-1-HeaderText-4::before {
+        color: #1f2532;
+        content: "﹀";
+    }
+
+    hr.Hr-style-1 {
+        border: 0;
+        height: 1px;
+        background: #ffffff;
+        background-image: linear-gradient(to right, #ecedef, #ecedef, #ecedef );
+        margin: 14px 0;
+    }
+
+    .Label-style-2-2 {
+        justify-content: space-between;
+        display: flex;
+        padding-bottom: 28px;
+    }
+
+    .Label-style-2-2-HeaderText-1 {
+        font-size: 14px;
+        color: #24a854;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .Label-style-2-2-HeaderText-2 {
+        font-size: 14px;
+        color: #0043ff;
+        display: inline-block;
+        text-decoration: underline;
+    }
+
+    .Label-style-2-2-Body {
+        color: #414042;
+        padding-bottom: 28px;
+    }
+
+    .Label-style-2-2-Footer-1 {
+        color: #414042;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .Label-style-2-2-Footer-2 {
+        color: #363940;
+        font-size: 14px;
+    }
+
+    .Label-style-2-2-Footer-3 {
+        color: #414042;
+        font-size: 13px;
+    }
+</style>
+
+@*右邊Footer屬性*@
+<style>
+    /*右邊FOOTER*/
+    .Right-Footer-box {
+        background-color: #363940;
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.18);
+        align-items: center;
+        height: 72px;
+    }
+
+    .Right-Footer-Text1 {
+        font-family: NotoSansCJKtc;
+        font-size: 16px;
+        color: #ffffff;
+        height: 16px;
+        line-height: 16px;
+        padding: 1.3% 0 5px 2.3%;
+        display: flex;
+    }
+
+    .Right-Footer-Text2 {
+        opacity: 0.5;
+        font-family: Muli;
+        font-size: 14px;
+        color: #ffffff;
+        height: 16px;
+        line-height: 16px;
+        padding-left: 2.3%;
+        display: flex;
+    }
+</style>
+
+@*單一Style*@
+<style>
+    .padding-right-20 {
+        padding-right: 20px;
+    }
+
+    .padding-type-1 {
+        padding: 24px;
+    }
+
+    .display-inline-block {
+        display: inline-block;
+    }
+
+    .display-flex {
+        display: flex;
+    }
+
+    .padding-bt-1 {
+        padding-bottom: 14px;
+    }
+
+    .padding-right-Type-1 {
+        padding-right: 24px;
+    }
+</style>
+
+@*MENU*@
+<style>
+    .Left-Menu-Title {
+        font-family: NotoSansCJKtc;
+        font-size: 20px;
+        color: #ffffff;
+        padding-bottom: 24px;
+    }
+
+    .Left-Menu-Radio-box {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 48px;
+    }
+
+    .Left-Menu-Radio-box-style-1 {
+        width: 88px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: #0a0c10;
+        line-height: 40px;
+        text-align: center;
+        color: #1dd476;
+    }
+
+    .Left-Menu-Radio-box-style-2 {
+        width: 88px;
+        height: 40px;
+        border-radius: 20px;
+        color: white;
+        line-height: 40px;
+        text-align: center;
+    }
+
+    .Left-Menu-input {
+        border: 1px;
+        border-bottom-style: solid;
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+        background-color: transparent;
+        outline: none;
+        color: white;
+        width: 246px;
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+</style>
+
+@*MenuStyle*@
+<style>
+    #menu ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        width: 100%; /* Width of Menu Items */
+        border-bottom: 1px solid rgba(236, 237, 239, .5);
+    }
+
+    #menu li {
+        border-radius: 4px;
+    }
+
+    #menu ul li {
+        position: relative;
+    }
+
+    #menu li ul {
+        position: absolute;
+        left: calc(100% - 5px); /* Set 1px less than menu width */
+        top: 0;
+        display: none;
+    }
+    /* Styles for Menu Items */
+    #menu ul li {
+        display: block;
+        background: #fff; /* IE6 Bug */
+        padding: 5px;
+        border-top: 1px solid rgba(236, 237, 239, .5);
+        border-bottom: 1px solid rgba(236, 237, 239, .5);
+        border-bottom: 0;
+        background-color: #363940;
+        height: 48px;
+        border-radius: 4px;
+    }
+
+    .libox {
+        text-decoration: none;
+        color: #ffffff;
+        background: #fff; /* IE6 Bug */
+        font-size: 14px;
+        height: 24px;
+        background-color: transparent;
+        line-height: 48px;
+        padding-left: 16px;
+    }
+
+    /* End */
+    #menu ul :hover {
+        color: #ffffff;
+        background: #2f3bf5;
+        border-radius: 4px;
+    }
+
+    /* Hover Styles */
+    #menu li ul li span {
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    /* Sub Menu Styles */
+    #menu li:hover ul, li.over ul {
+        display: block;
+        border-left: 1px solid #ecedef;
+    }
+
+    #menu ul li:hover ul {
+        /* 觸動第一層時，顯示第二層 */
+        visibility: visible;
+    }
+
+        #menu ul li:hover ul li ul {
+            /* 顯示第二層時，隱藏第三層，避免同時彈出 */
+            visibility: hidden;
+        }
+
+    #menu ul li ul li:hover ul {
+        /* 觸動第二層時，顯示第三層 */
+        visibility: visible;
+    }
+
+        #menu ul li ul li:hover ul li ul {
+            /* 顯示第三層時，隱藏第四層，避免同時彈出 */
+            visibility: hidden;
+        }
+
+    #menu ul li ul li ul li:hover ul {
+        /* 觸動第三層時，顯示第四層 */
+        visibility: visible;
+    }
+</style>
+
+@*MenuJs*@
+<style>
+    .display-None {
+        display: none;
+    }
+
+    .display-Block {
+        display: block;
+    }
+
+    .width-0 {
+        width: 0px;
+    }
+
+    .width-100 {
+        width: 100%;
+    }
+</style>
+
+@*OPTION*@
+<style>
+    .select-editable select {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        outline: none;
+        color: #000000;
+        font-size: 14px;
+        border-bottom: 1px solid #000000;
+    }
+</style>
+
+@*滑動按鈕*@
+<style>
+    .Switch-Header-Text {
+        font-size: 14px;
+        color: #363940;
+        font-weight: bold;
+        padding-right: 14px;
+    }
+
+    .onoffswitch {
+        position: relative;
+        width: 40px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .onoffswitch-checkbox {
+        display: none;
+    }
+
+    .onoffswitch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .onoffswitch-inner {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+    }
+
+        .onoffswitch-inner:before, .onoffswitch-inner:after {
+            display: block;
+            float: left;
+            width: 50%;
+            height: 14px;
+            padding: 0;
+            line-height: 14px;
+            font-size: 14px;
+            color: white;
+            font-family: Trebuchet, Arial, sans-serif;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .onoffswitch-inner:before {
+            content: "";
+            padding-left: 10px;
+            background-color: #E5FFE9;
+        }
+
+        .onoffswitch-inner:after {
+            content: "";
+            padding-right: 10px;
+            background-color: #b3b3b3;
+            text-align: right;
+        }
+
+    .onoffswitch-switch {
+        display: block;
+        width: 25px;
+        margin: -5.5px;
+        background: #FFFFFF;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 22px;
+        border: solid 1px rgba(151, 151, 151, 0.1);
+        border-radius: 20px;
+        transition: all 0.3s ease-in 0s;
+        box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+        margin-left: 0;
+    }
+
+    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+        right: 0px;
+        background-color: #00E85D;
+    }
+</style>
+
+@*Kendo月歷*@
+<style>
+    .custom {
+        color: red;
+    }
+
+    .wrapper {
+        margin: 20px auto;
+    }
+
+    .k-widget.k-calendar {
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+    }
+</style>
+
+
+<style>
+    @media only screen and (max-width: 1440px) {
+        .Main-left-box {
+            background-color: #363940;
+            position: absolute;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .Main-right-box {
+            background-color: #6a6d73;
+            width: calc(100%);
+        }
+    }
+
+    @media only screen and (max-width: 769px) {
+        .Main-left-box {
+            background-color: #363940;
+            position: absolute;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .Main-right-box {
+            background-color: #6a6d73;
+            width: calc(100%);
+        }
+
+        .Right-Body-box-1 {
+            order: 3;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .Right-Body-box-2 {
+            order: 2;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .Right-Body-box-3 {
+            order: 1;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+
+@*維護頁面*@
+<style>
+    /*右邊Body*/
+    .Right-Body-box-Style-Mt {
+        flex-wrap: wrap;
+        min-height: 900px;
+    }
+
+    .Mt-Header-Title {
+        padding: 24px;
+        color: white;
+        font-weight: bold;
+        padding-bottom: 14px;
+    }
+</style>
+
+@*頁籤樣式*@
+<style>
+    #tabs-nav {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    div.tabs-menu {
+        display: inline-block;
+        background-color: #1f2532;
+        font-size: 16px;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+        min-width: 100px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        cursor: pointer;
+    }
+
+        div.tabs-menu.tabs-menu-active {
+            background-color: #fcfbfc;
+            color: #2f3bf5;
+            min-width: 100px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+        }
+
+    .tabs-container {
+        border: solid 1px #1b91ab;
+        margin-top: -1px;
+        background-color: #fff;
+        overflow: hidden;
+        padding: 14px;
+    }
+
+    .tabs-panel {
+        display: none;
+        min-height: calc(900px - 54px);
+        overflow: auto;
+        padding: 10px;
+        position: relative;
+    }
+
+    .Mt-Text-Box-Style-1 {
+        display: block;
+        padding-right: 24px;
+        padding-top: 14px;
+    }
+
+        .Mt-Text-Box-Style-1 input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+    .Mt-Text-Box-Style-Status {
+        position: absolute;
+        top: 14px;
+        right: 0
+    }
+
+
+    .Mt-Inner-Tab-Style-1 {
+        height: 40px;
+        border-radius: 20px;
+        background-color: #d0d0d0;
+        line-height: 40px;
+        text-align: center;
+        color: #414042;
+        padding: 0 10px;
+        font-weight: bold;
+        margin-right: 14px;
+        cursor: pointer;
+    }
+
+    .Mt-Inner-Tab-Style-1-Active {
+        border: solid 1px #00b85a;
+        background-color: #e6fff2;
+        color: #00b85a;
+    }
+
+    .Mt-Inner-tabs-panel {
+        display: none;
+        min-height: calc(900px - 54px);
+        overflow: auto;
+        padding: 10px;
+        position: relative;
+    }
+
+    .Mt-Inner-tabs-panel-Box-Style-wrap {
+        display: flex;
+        padding-bottom: 14px;
+        flex-wrap: wrap;
+    }
+</style>
+
+@*Text 日曆 CheckBox等寬度*@
+<style>
+    .Mt-Width-S {
+        width: 175px;
+    }
+
+    .Mt-Width-M {
+        width: 375px;
+    }
+
+    .Mt-Label-Style-Black {
+        font-weight: bold;
+        color: #414042;
+        font-size: 14px;
+    }
+
+    .Mt-Label-Style-Blue {
+        font-weight: bold;
+        color: #2f3bf5;
+        font-size: 14px;
+    }
+
+    .Mt-Option-Style-1 {
+        padding: 7px 0;
+    }
+
+    .Mt-DataPicker-Box-Style {
+        padding-right: 24px;
+        padding-top: 14px;
+    }
+</style>
+
+@*RadioBt 方形*@
+<style>
+
+    .Mt-Radio-Box-Style-1 {
+        padding-right: 14px;
+        padding-top: 14px;
+    }
+    /* RADIOBT的大小 要配合勾勾調整*/
+    .Mt-Radio-BT {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        /*隱藏預設的CHECKBOX   */
+        .Mt-Radio-BT input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+    /* RadioBT的樣式 不含勾勾 */
+    .Mt-Radio-checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 16px;
+        width: 16px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        border: solid 1px #d0d0d0;
+    }
+
+    /*滑鼠滑過去 為被勾選的顏色調整 */
+    .Mt-Radio-BT:hover input ~ .Mt-Radio-checkmark {
+        background-color: #ccc;
+    }
+
+    /* 打勾後的背景顏色調整 */
+    .Mt-Radio-BT input:checked ~ .Mt-Radio-checkmark {
+        background-color: #79eaa6;
+        border: solid 1px #79eaa6;
+    }
+
+    /* 打溝後的內文 */
+    .Mt-Radio-checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the Mt-Radio-checkmark when checked */
+    .Mt-Radio-BT input:checked ~ .Mt-Radio-checkmark:after {
+        display: block;
+    }
+
+    /* 勾勾的樣式調整 */
+    .Mt-Radio-BT .Mt-Radio-checkmark:after {
+        left: 5px;
+        top: -1px;
+        width: 5px;
+        height: 11px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+</style>
+
+@*RadioBt 圓形*@
+<style>
+    /* RADIOBT的大小 要配合勾勾調整*/
+    .Mt-Circle-Circlemark {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        font-size: 16px;
+        color: #414042;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        margin-top: 9px;
+    }
+
+        /* 隱藏預設 */
+        .Mt-Circle-Circlemark input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    /* Create a custom radio button */
+    .Circlemark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 16px;
+        width: 16px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        border: 1px solid #d0d0d0;
+    }
+
+    /* 華屬滑過的背景顏色 */
+    .Mt-Circle-Circlemark:hover input ~ .Circlemark {
+        background-color: #ccc;
+    }
+
+    /* 被點選後的背景顏色 */
+    .Mt-Circle-Circlemark input:checked ~ .Circlemark {
+        background-color: #ffffff;
+        border: 1px solid #d0d0d0;
+    }
+
+    /* 內文歸成空白 */
+    .Circlemark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .Mt-Circle-Circlemark input:checked ~ .Circlemark:after {
+        display: block;
+    }
+
+    /* 按鈕樣式 (點擊後內部的顯示) */
+    .Mt-Circle-Circlemark .Circlemark:after {
+        top: 5px;
+        left: 5px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: black;
+    }
+
+    .Mt-Circle-Circlemark-Label-Style-1 {
+        padding-left: 25px;
+        padding-right: 15px;
+    }
+
+    .Mt-Circle-Circlemark-Box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>
+
+<style>
+    .Mt-To-First {
+        width: 32px;
+        height: 32px;
+        border: solid 1px #363940;
+        background-color: #fcfbfc;
+        position: relative;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-right: 24px;
+        margin-top: 2px;
+    }
+
+    .Mt-To-First-1 {
+        position: absolute;
+        left: 8px;
+        top: 12px;
+        width: 7px;
+        height: 7px;
+        border: solid #363940;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+
+    .Mt-To-First-2 {
+        position: absolute;
+        left: 17px;
+        top: 12px;
+        width: 7px;
+        height: 7px;
+        border: solid #363940;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+
+    .Mt-To-End {
+        width: 32px;
+        height: 32px;
+        border: solid 1px #363940;
+        background-color: #fcfbfc;
+        position: relative;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-right: 24px;
+        margin-top: 2px;
+    }
+
+    .Mt-To-End-1 {
+        position: absolute;
+        left: 7px;
+        top: 12px;
+        width: 7px;
+        height: 7px;
+        border: solid #363940;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .Mt-To-End-2 {
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        width: 7px;
+        height: 7px;
+        border: solid #363940;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .Mt-Bt-Box {
+        width: 112px;
+        height: 40px;
+        color: #363940;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 20px;
+        border: solid 1px #414042;
+        line-height: 40px;
+        cursor: pointer;
+        margin-right: 24px;
+    }
+
+    .Mt-Bt-Box-Green {
+        background-color: #00b85a;
+        color: #ffffff;
+        border: none;
+    }
+
+    .Mt-Bt-Box-Red {
+        background-color: #d54a5b;
+        color: #ffffff;
+        border: none;
+    }
+</style>
+
+<div class="Main-box">
+    @*左半邊區塊*@
+    <div id="LeftBox" class="Main-left-box">
+        <div style="padding:16px">
+            <div class="Left-Menu-Title" onclick="MenuClose()">系統名稱</div>
+            <div class="Left-Menu-Radio-box">
+                <div class="Left-Menu-Radio-box-style-1">功能清單</div>
+                <div class="Left-Menu-Radio-box-style-2">我的最愛</div>
+                <div class="Left-Menu-Radio-box-style-2">流程精靈</div>
+            </div>
+            <div>
+                <input type="text" class="Left-Menu-input" placeholder="請依功能名稱或功能代號搜尋"><span class="Left-Menu-input">搜尋</span>
+            </div>
+        </div>
+        <div>
+            @*MENU部份*@
+            <div>
+                <div id="menu">
+                    <ul>
+                        <li>
+                            <span class="libox">功能分類大項目</span>
+                            <ul>
+                                <li><span class="libox">功能類別1</span></li>
+                                <li><span class="libox">功能類別2</span></li>
+                                <li><span class="libox">功能類別3</span></li>
+                                <li><span class="libox">功能類別4</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="libox">Maintain:複合資料新增</span>
+                            <ul>
+                                <li><span class="libox">功能類別1</span></li>
+                                <li><span class="libox">功能類別2</span></li>
+                                <li><span class="libox">功能類別3</span></li>
+                                <li><span class="libox">功能類別4</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="libox">Meats</span>
+                            <ul>
+                                <li>
+                                    <span class="libox">White Meat</span>
+                                    <ul>
+                                        <li><span class="libox">Chicken</span></li>
+                                        <li><span class="libox">Duck</span></li>
+                                        <li><span class="libox">Fish</span></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="libox">Red Meat</span>
+                                    <ul>
+                                        <li><span class="libox">eee</span></li>
+                                        <li><span class="libox">eee</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @*右半邊區塊*@
+    <div id="RightBox" class="Main-right-box">
+        @*導覽*@
+        <div class="Right-Header-box">
+            <div class="Right-Header-box-left">
+                <div id="MenuIcon" onclick="MenuOpen()"></div> <div class="padding-right-20"></div><span class="Right-Header-Text">Systemweb Technology</span>
+            </div>
+            <div class="Right-Header-box-right">
+                <div class="Right-Header-Text padding-right-20">2019/12/13  00:00:00</div>
+                <div class="Header-icon HeaderUser"></div>
+            </div>
+        </div>
+        @*內文*@
+        <div class="Right-Body-box-Style-Mt">
+            <div class="Mt-Header-Title">☆Maintain: 覆核畫面</div>
+            <button onclick="AddNewTab()" style="background:red;color:white;">臨時按鈕</button>
+
+            <div>
+                <div id="tabs-nav">
+                    <div href="#tab0" class="tabs-menu tabs-menu-active" style="margin-left: 22px;"  onclick="TabSwich(this)">新增</div>
+                    <div href="#tab1" class="tabs-menu"  onclick="TabSwich(this)">查詢</div>
+                    <div href="#tab2" class="tabs-menu"  onclick="TabSwich(this)">資料修改</div>
+
+                </div>
+
+                <div id="tabs-nav-contents" class="tabs-container">
+                    @*預設的標籤要設定為Display Block*@
+                    <div id="tab0" class="tabs-panel" style="display:block;">
+
+                        <div class="Mt-Text-Box-Style-Status">
+                            <div>資料狀態: 待覆核</div>
+                        </div>
+
+                        <div class="display-flex padding-bt-1">
+                            <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                <div class="Mt-Label-Style-Black">我是標籤</div>
+                                <input type="text" placeholder="這是要輸入東西的位置">
+                            </div>
+
+                            <div class="Mt-Text-Box-Style-1 Mt-Width-M">
+                                <div class="Mt-Label-Style-Black">我是標籤</div>
+                                <input type="text" placeholder="這是要輸入東西的位置" value="我是基金全稱基金全稱基金全稱基金全稱....">
+                            </div>
+
+                            <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                <div class="Mt-Label-Style-Black">我是標籤</div>
+                                <input type="text" placeholder="我是基金簡稱">
+                            </div>
+                        </div>
+
+                        @*內部頁籤部份*@
+                        <div id="tabs-Inner" class="display-flex">
+                            <div class="Mt-Inner-Tab-Style-1 Mt-Inner-Tab-Style-1-Active" Name="#tab-Inner-1">基本資料</div>
+                            <div class="Mt-Inner-Tab-Style-1" Name="#tab-Inner-2">申購</div>
+                            <div class="Mt-Inner-Tab-Style-1" Name="#tab-Inner-3">贖回交易相關</div>
+                        </div>
+
+                        <div id="tab-Inner-1" class="Mt-Inner-tabs-panel" style="display:flex; flex-direction: column;justify-content:space-between">
+                            <div class="Mt-Inner-tabs-panel-Box-Style-wrap">
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Blue">我是標籤</div>
+                                    <div class="padding-bt-1"></div>
+                                    <span class="select-editable">
+                                        <select value="Placeholder" class="Mt-Option-Style-1 Mt-Width-S">
+                                            <option value="Placeholder">Placeholder</option>
+                                            <option value="Placeholder">Placeholder</option>
+                                            <option value="Placeholder">Placeholder</option>
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Blue">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="內容內容內容">
+                                </div>
+
+                                <div class="Mt-DataPicker-Box-Style">
+                                    <div class="Mt-Label-Style-Blue" style="padding-bottom:9px;">募集起始日</div>
+                                    <div id="vueapp" class="vue-app">
+                                        <kendo-datepicker :min="minDate"
+                                                          :max="maxDate"
+                                                          :value="currentDate"
+                                                          style="width: 175px;height:34px"
+                                                          :format="'yyyy/MM/dd'"></kendo-datepicker>
+                                    </div>
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="內容內容內容">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Blue">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="內容內容內容">
+                                </div>
+
+                                <div class="Mt-DataPicker-Box-Style">
+                                    <div class="Mt-Label-Style-Black" style="padding-bottom:9px;">成立日</div>
+                                    <div id="vueapp2" class="vue-app">
+                                        <kendo-datepicker :min="minDate"
+                                                          :max="maxDate"
+                                                          :value="currentDate"
+                                                          style="width: 175px;height:34px"
+                                                          :format="'yyyy/MM/dd'"></kendo-datepicker>
+                                    </div>
+                                </div>
+
+                                <div class="Mt-DataPicker-Box-Style">
+                                    <div class="Mt-Label-Style-Blue" style="padding-bottom:9px;">開始買回日</div>
+                                    <div id="vueapp3" class="vue-app">
+                                        <kendo-datepicker :min="minDate"
+                                                          :max="maxDate"
+                                                          :value="currentDate"
+                                                          style="width: 175px;height:34px"
+                                                          :format="'yyyy/MM/dd'"></kendo-datepicker>
+                                    </div>
+                                </div>
+
+                                <div class="Mt-Radio-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Blue padding-bt-1">我是標籤</div>
+                                    <div class="display-flex" style="justify-content:space-between">
+                                        <label class="Mt-Radio-BT">
+                                            公募
+                                            <input type="radio" checked="checked" name="radio">
+                                            <span class="Mt-Radio-checkmark"></span>
+                                        </label>
+                                        <label class="Mt-Radio-BT">
+                                            私募
+                                            <input type="radio" name="radio">
+                                            <span class="Mt-Radio-checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">投資區域</div>
+                                    <div class="padding-bt-1"></div>
+                                    <span class="select-editable">
+                                        <select value="Placeholder" class="Mt-Option-Style-1 Mt-Width-S">
+                                            <option value="Placeholder">Placeholder</option>
+                                            <option value="Placeholder">Placeholder</option>
+                                            <option value="Placeholder">Placeholder</option>
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">基金風險等級</div>
+                                    <div class="padding-bt-1"></div>
+                                    <span class="select-editable">
+                                        <select value="Placeholder" class="Mt-Option-Style-1 Mt-Width-S">
+                                            <option value="Placeholder">Placeholder</option>
+                                            <option value="Placeholder">Placeholder</option>
+                                            <option value="Placeholder">Placeholder</option>
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="ABCDEFGHI">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="000,000,000">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-M">
+                                    <div class="Mt-Label-Style-Black padding-bt-1">我是標籤</div>
+                                    <div class="Mt-Circle-Circlemark-Box">
+                                        <label class="Mt-Circle-Circlemark">
+                                            <span class="Mt-Circle-Circlemark-Label-Style-1">保本型</span>
+                                            <input type="checkbox" checked="checked">
+                                            <span class="Circlemark"></span>
+                                        </label>
+                                        <label class="Mt-Circle-Circlemark">
+                                            <span class="Mt-Circle-Circlemark-Label-Style-1">組合型</span>
+                                            <input type="checkbox">
+                                            <span class="Circlemark"></span>
+                                        </label>
+                                        <label class="Mt-Circle-Circlemark">
+                                            <span class="Mt-Circle-Circlemark-Label-Style-1">傘型</span>
+                                            <input type="checkbox">
+                                            <span class="Circlemark"></span>
+                                        </label>
+                                        <label class="Mt-Circle-Circlemark">
+                                            <span class="Mt-Circle-Circlemark-Label-Style-1">高收益債券</span>
+                                            <input type="checkbox">
+                                            <span class="Circlemark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-M">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="ABCDEFGHI">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="000,000,000">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-M">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="data data data data">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-M">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-M">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="data data data data">
+                                </div>
+
+                                <div class="Mt-Text-Box-Style-1 Mt-Width-S">
+                                    <div class="Mt-Label-Style-Black">我是標籤</div>
+                                    <input type="text" placeholder="內容內容內容" value="data data data data">
+                                </div>
+
+                            </div>
+
+                            <div class="Label-style-2-1">
+
+                                <div class="display-flex">
+                                    <div class="Mt-To-First">
+                                        <span class="Mt-To-First-1"></span>
+                                        <span class="Mt-To-First-2"></span>
+                                    </div>
+
+                                    <div class="Mt-Bt-Box">
+                                        上一筆
+                                    </div>
+
+                                    <div class="Mt-Bt-Box">
+                                        下一筆
+                                    </div>
+
+                                    <div class="Mt-To-End">
+                                        <span class="Mt-To-End-1"></span>
+                                        <span class="Mt-To-End-2"></span>
+                                    </div>
+                                </div>
+
+                                <div class="display-flex">
+
+                                    <div class="Mt-Bt-Box Mt-Bt-Box-Green">
+                                        儲存
+                                    </div>
+                                    <div class="Mt-Bt-Box Mt-Bt-Box-Green">
+                                        儲存送簽
+                                    </div>
+                                    <div class="Mt-Bt-Box Mt-Bt-Box-Red">
+                                        刪除
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div id="tab-Inner-2" class="Mt-Inner-tabs-panel">
+                            <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                        </div>
+
+                        <div id="tab-Inner-3" class="Mt-Inner-tabs-panel">
+                            44444
+                        </div>
+
+                    </div>
+
+                    <div id="tab1" class="tabs-panel">
+                        <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                        <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                        <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                        <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                        <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                        <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                        <div>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br>sss<br></div>
+                    </div>
+
+                    <div id="tab2" class="tabs-panel">
+                        3
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        @*頁尾*@
+        <div class="Right-Footer-box">
+            <div class="Right-Footer-Text1">博暉科技</div>
+            <div class="Right-Footer-Text2">2019 © Designed by Systemweb Technology   All rights reserved.</div>
+        </div>
+    </div>
+</div>
+
+@*<script id="week-template" type="text/x-kendo-template">
+        # if (data.value > 5){#
+            <a class="custom">#= data.value #</a>
+            #}
+            else{#
+            <a>#= data.value #</a>
+            #}
+        #
+    </script>*@
+
+<script>
+    function MenuClose() {
+        var menu = document.getElementById("menu");
+        menu.classList.add("display-None");
+        var menu = document.getElementById("LeftBox");
+        menu.classList.add("width-0");
+        var menu = document.getElementById("RightBox");
+        menu.classList.add("width-100");
+        var menu = document.getElementById("MenuIcon");
+        menu.classList.add("Header-menu-icon");
+
+        var menu = document.getElementById("LeftBox");
+        menu.classList.add("display-None");
+    }
+    function MenuOpen() {
+        var menu = document.getElementById("menu");
+        menu.classList.remove("display-None");
+        var menu = document.getElementById("LeftBox");
+        menu.classList.remove("width-0");
+        var menu = document.getElementById("RightBox");
+        menu.classList.remove("width-100");
+        var menu = document.getElementById("MenuIcon");
+        menu.classList.remove("Header-menu-icon");
+
+        var menu = document.getElementById("LeftBox");
+        menu.classList.remove("display-None");
+
+
+    }
+
+    function LabelControll(e) {
+        var Check = $(e).context.outerHTML.indexOf("Label-style-2-1-HeaderText-3");
+        if (Check > 0) {
+            $(e).parent().next().addClass("display-None");
+            $(e).parent().next().removeClass("display-Block");
+            $(e).addClass("Label-style-2-1-HeaderText-4");
+            $(e).removeClass("Label-style-2-1-HeaderText-3");
+        }
+        else {
+            $(e).parent().next().addClass("display-Block");
+            $(e).parent().next().removeClass("display-None");
+            $(e).addClass("Label-style-2-1-HeaderText-3");
+            $(e).removeClass("Label-style-2-1-HeaderText-4");
+        }
+    }
+
+    function LabelOpenDefalut() {
+        var check = $("#myonoffswitch").prop("checked");
+        var Selected = document.querySelectorAll(".ToFindContent");
+        if (check) {
+            for (var i = 0; i < Selected.length; i++) {
+                Selected[i].classList.add("display-Block");
+                Selected[i].classList.remove("display-None");
+            }
+        }
+        else {
+            for (var i = 0; i < Selected.length; i++) {
+                Selected[i].classList.add("display-None");
+                Selected[i].classList.remove("display-Block");
+            }
+        }
+    }
+
+    new Vue({
+        el: '#vueapp',
+        data: {
+            minDate: new Date(2017, 9, 1),
+            maxDate: new Date(2018, 10, 30),
+            currentDate: new Date(2018, 8, 10)
+        }
+    })
+    new Vue({
+        el: '#vueapp2',
+        data: {
+            minDate: new Date(2017, 9, 1),
+            maxDate: new Date(2018, 10, 30),
+            currentDate: new Date(2018, 8, 10)
+        }
+    })
+    new Vue({
+        el: '#vueapp3',
+        data: {
+            minDate: new Date(2017, 9, 1),
+            maxDate: new Date(2018, 10, 30),
+            currentDate: new Date(2018, 8, 10)
+        }
+    })
+</script>
+<script>
+
+    $(function () {
+        $("#tabs-Inner div").click(function () {
+            $("#tabs-Inner div").removeClass("Mt-Inner-Tab-Style-1-Active");
+            $(this).addClass("Mt-Inner-Tab-Style-1-Active");
+            $(".Mt-Inner-tabs-panel").hide();
+            var tab_id = $(this).attr("Name");
+            $(tab_id).fadeIn();
+            return false;
+        });
+    });
+
+    function TabSwich(e) {
+
+        for (var i = 1; i < e.parentElement.childNodes.length; i++) {
+            if (e.parentElement.childNodes[i].classList != undefined) {
+                e.parentElement.childNodes[i].classList.remove("tabs-menu-active")
+            }
+        }
+        e.classList.add("tabs-menu-active");
+        $(".tabs-panel").hide();
+        var tab_id = $(e).attr("href");
+        $(tab_id).fadeIn();
+
+    }
+
+    function AddNewTab() {
+
+        //內文
+        var items = document.getElementById('tabs-nav-contents');
+        var ID = "#tab" + items.children.length; 
+        var newElement1 = document.createElement('div');
+        newElement1.className = 'tabs-panel';
+        newElement1.style = 'display: none';
+        newElement1.setAttribute('id', 'tab' + items.children.length);
+        var newText1 = document.createTextNode('sss');
+        newElement1.appendChild(newText1);
+
+        var contenet = document.getElementById('tabs-nav-contents');
+
+        contenet.innerHTML += newElement1.outerHTML;
+
+        //頁籤
+        var newElement = document.createElement('div');
+        var newText = document.createTextNode('資料維護');
+        newElement.setAttribute('href', ID);
+        newElement.className = 'tabs-menu';
+        newElement.appendChild(newText);
+        newElement.setAttribute('onclick', 'TabSwich(this)');
+
+        var div = document.getElementById('tabs-nav');
+
+        div.innerHTML += newElement.outerHTML;
+
+
+    }
+</script>
+
