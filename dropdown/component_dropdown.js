@@ -59,23 +59,28 @@
     }
 
 
-    function beExcludeElements_EventsMount(a, eventsNeedMount) {
+    function beExcludeElements_EventsMount(eventsNeedMount) {
         if (typeof eventsNeedMount === "boolean" && eventsNeedMount) {
             dropdownEventsMount();
         }
-
-        document.addEventListener("click", function (e) {
-            for (let index = 0; index < a.length; index++) {
-                a[index]();
-            }
-        })
+        document.addEventListener("click", closeAllOption)
     }
-    function removeDocumentEvent(a) {
-        document.removeEventListener("click", function (e) {
-            for (let index = 0; index < a.length; index++) {
-                a[index]();
+    function removeDocumentEvent() {
+        document.removeEventListener("click", closeAllOption);
+    }
+    function removeDropdownEvents() {
+        var all_dd = document.querySelectorAll(".dropdown");
+        var option = document.querySelectorAll(".dd_option");
+        if (all_dd.length !== 0) {//開選單
+            for (let index = 0; index < all_dd.length; index++) {
+                all_dd[index].removeEventListener("click", clickOpenSelection)
             }
-        });
+        }
+        if (option.length !== 0) {//點選項
+            for (let index = 0; index < option.length; index++) {
+                option[index].removeEventListener("click", clickChooseOption)
+            }
+        }
     }
     exports.clickOpenSelection = clickOpenSelection;
     exports.clickChooseOption = clickChooseOption;
@@ -83,6 +88,7 @@
     exports.dropdownEventsMount = dropdownEventsMount;
     exports.beExcludeElements_EventsMount = beExcludeElements_EventsMount;
     exports.removeDocumentEvent = removeDocumentEvent;
+    exports.removeDropdownEvents = removeDropdownEvents;
     Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
