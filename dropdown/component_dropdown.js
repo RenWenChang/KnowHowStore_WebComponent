@@ -59,10 +59,7 @@
     }
 
 
-    function beExcludeElements_EventsMount(eventsNeedMount) {
-        if (typeof eventsNeedMount === "boolean" && eventsNeedMount) {
-            dropdownEventsMount();
-        }
+    function beExcludeElements_EventsMount() {
         document.addEventListener("click", closeAllOption)
     }
     function removeDocumentEvent() {
