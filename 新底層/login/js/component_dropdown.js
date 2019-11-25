@@ -70,19 +70,12 @@
             }
         })
     }
-    function removeDocumentEvent(a) {
-        document.removeEventListener("click", function (e) {
-            for (let index = 0; index < a.length; index++) {
-                a[index]();
-            }
-        });
-    }
+
     exports.clickOpenSelection = clickOpenSelection;
     exports.clickChooseOption = clickChooseOption;
     exports.closeAllOption = closeAllOption;
     exports.dropdownEventsMount = dropdownEventsMount;
     exports.beExcludeElements_EventsMount = beExcludeElements_EventsMount;
-    exports.removeDocumentEvent = removeDocumentEvent;
     Object.defineProperty(exports, '__esModule', { value: true });
 
 }));

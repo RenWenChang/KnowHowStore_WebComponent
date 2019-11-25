@@ -1,0 +1,100 @@
+nav {
+  width: 320px;
+  background-color: #1f2532;
+  transition: width ease 0.3s;
+  overflow: hidden;
+}
+#navMenuTitle {
+  width: 320px;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  cursor: pointer;
+}
+#navMenuSearchbar {
+  width: 320px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+#navMenuSearchbar .inputWrap {
+  display: flex;
+  width: 320px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputWrap input {
+  outline: none;
+  border: none;
+  height: 100%;
+  background-color: transparent;
+  width: calc(100% - 38px);
+  border-bottom: 1px solid rgb(236, 237, 239, 0.15);
+  color: #ffffff;
+}
+#navTab {
+  width: 320px;
+  padding: 25px;
+}
+#navTab ul {
+  display: flex;
+  justify-content: space-between;
+}
+#navTab ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 89px;
+  word-break: break-all;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+#navTab ul > .active {
+  font-family: NotoSansCJKtc;
+  font-size: 16px;
+
+  color: #1dd476;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #0a0c10;
+}
+
+#menuSwithcer {
+  margin-right: 10px;
+  fill: #ffffff;
+  cursor: pointer;
+}
+#headerDate {
+  margin-right: 10px;
+}
+#menuGroups {
+  width: 100%;
+  min-height: 900px;
+  padding: 20px 0px;
+}
+
+#menuGroups li {
+  width: 100%;
+  padding: 10px 25px;
+  border-bottom: 1px solid rgb(236, 237, 239, 0.15);
+  cursor: pointer;
+}
+#menuGroups ul:first-child {
+  border-bottom: 1px solid rgb(236, 237, 239, 0.15);
+}
+#icon-RighLeft {
+  width: 16px;
+  height: 16px;
+}
+#magnifier {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}

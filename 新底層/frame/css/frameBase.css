@@ -1,0 +1,34 @@
+/******************************************************* frame Layout ******************************************************/
+body {
+    background-color: #1f2532;
+  }
+  #frame {
+    width: 100%;
+    background-color: #1f2532;
+    display: flex;
+    justify-content: flex-start;
+    font-family: NotoSansCJKtc;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: 1px;
+    color: #ffffff;
+  }
+  
+  
+  svg {
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
+  }
+  
+  #frameRight {
+    position: relative;
+    width: calc(100% - 320px);
+    background-color: #1f2532;
+    padding-bottom: 70px;
+    transition: width ease 0.3s;
+  }
+  
