@@ -16,12 +16,18 @@
 
     body {
         display: flex;
+        flex-wrap: wrap;
         font-family: "Dosis", Helvetica, Arial, sans-serif;
         background: #ecf0f1;
         color: #34495e;
         padding-top: 40px;
         text-shadow: white 1px 1px 1px;
         padding: 0;
+    }
+
+    .wrap {
+        width: 100%;
+        height: 300px;
     }
 
     .value {
@@ -88,26 +94,35 @@
 </style>
 
 <body>
-
-    <div class="slider-wrap">
-        <div class="sliderBar" data-max="80" data-min="0">
-            <span class="thumb" style="left:0;"></span>
-            <div class="slider-block"></div>
+    <div class="wrap">
+        <div class="slider-wrap">
+            <div class="sliderBar" data-max="80" data-min="0">
+                <span class="thumb" style="left:0;"></span>
+                <div class="slider-block"></div>
+            </div>
+            <div class="value">0</div>
         </div>
-        <div class="value">0</div>
+    </div>
+    <div class="wrap">
+        <div class="slider-wrap">
+            <div class="sliderBar" data-max="80" data-min="0">
+                <span class="thumb" style="left:0;"></span>
+                <div class="slider-block"></div>
+            </div>
+            <div class="value">0</div>
+        </div>
     </div>
 
 </body>
 <script>
 
-    let drawSlider = () => {
-        let dataLimit = 80;//限制大小
+    let drawSlider = (sliderWrap) => {
+        let dataLimit = 100;//限制大小
         let r = 15;
-        let sliderWrap = document.querySelector('.slider-wrap');
-        let thumb = document.querySelector('.thumb');
-        let sliderBar = document.querySelector('.sliderBar');
-        let sliderBlock = document.querySelector('.slider-block');
-        let value = document.querySelector('.value');
+        let thumb = sliderWrap.querySelector('.thumb');
+        let sliderBar = sliderWrap.querySelector('.sliderBar');
+        let sliderBlock = sliderWrap.querySelector('.slider-block');
+        let value = sliderWrap.querySelector('.value');
         let sliderRange = sliderWrap.offsetWidth * dataLimit / 100;
         let blockWidth = sliderWrap.offsetWidth * (100 - dataLimit) / 100;
         let minPoint = sliderBar.offsetLeft;
@@ -214,8 +229,18 @@
         /* 使用*/
         Drag(thumb, document);
     }
-    window.onresize = drawSlider;
-    drawSlider();
+
+
+
+    let initSlider =()=>{
+        let sliderWrap = document.querySelectorAll('.slider-wrap');
+        for (let i = 0; i < sliderWrap.length; i++) {
+            let dom = sliderWrap[i]
+            drawSlider(dom);
+        }
+    }
+    window.onresize = initSlider;
+    initSlider();
 
 
 
