@@ -28,11 +28,11 @@
 </style>
 
 <body>
-        父级之外
+        父級之外
         <div class="m-father" id="j-father">
           <div class="m-rect" id="j-rect"></div>
         </div>
-        父级之外
+        父級之外
 </body>
 <script>
    function Drag(dom, parentDom) {
@@ -65,7 +65,7 @@
     }
   }
 
-  /* 阻止冒泡&阻止默认行为*/
+  /* 阻止冒泡&阻止默認行為*/
   function _returnFalse(e) {
     if (e && e.stopPropagation) {
       e.stopPropagation();
@@ -76,7 +76,7 @@
     }
   }
 
-  /* 拖拽开始*/
+  /* 拖拽開始*/
   function actBegin(e) {
     e = e || window.event;
 
@@ -88,7 +88,7 @@
 
     _addHandler(parentDom, "mousemove", actMove);
 
-    _returnFalse(e); //阻止冒泡、阻止默认行为
+    _returnFalse(e); //阻止冒泡、阻止默認行為
   }
 
   /* 拖拽移动*/
@@ -109,20 +109,20 @@
       finalY = 0;
     }
 
-    /* 具体移动（使用left、top）*/
+    /* 具體移动（使用left、top）*/
     //requestAnimationFrame(function () {
     dom.style.left = finalX + "px";
     dom.style.top = finalY + "px";
     //});
 
-    _returnFalse(e); //阻止冒泡、阻止默认行为
+    _returnFalse(e); //阻止冒泡、阻止默認行為
   }
 
   /* 拖拽取消*/
   function cancel(e) {
     _removeHandler(parentDom, "mousemove", actMove);
 
-    _returnFalse(e); //阻止冒泡、阻止默认行为
+    _returnFalse(e); //阻止冒泡、阻止默認行為
   }
 
   /* 绑定事件*/
@@ -138,7 +138,7 @@
   };
 }
 
-/* 使用测试*/
+/* 使用測試*/
 var dom = document.getElementById("j-rect");
 var action = new Drag(dom, dom.offsetParent);
 
