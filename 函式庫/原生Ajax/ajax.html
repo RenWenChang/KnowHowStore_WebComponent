@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+function  ajax(opt) {
+    opt = opt || {};
+    opt.method = opt.method.toUpperCase() || "POST";
+    opt.url = opt.url || "";
+    opt.async = opt.async || true;
+    opt.data = JSON.stringify(opt.data) || null;
+    opt.success = opt.success || function () { };
+    let postData = opt.data;
+    let xmlHttp = null;
+    if (XMLHttpRequest) {
+        xmlHttp = new window.XMLHttpRequest();
+    }
+    else {
+        xmlHttp = new window.ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlHttp.withCredentials = false; // 攜帶跨域cookie
+    
+
+    if (opt.method.toUpperCase() === "POST") {
+        xmlHttp.open(opt.method, opt.url, opt.async);
+        xmlHttp.setRequestHeader("Content-Type", "application/json");
+        xmlHttp.send(postData);
+
+    }
+    else if (opt.method.toUpperCase() === "GET") {
+        xmlHttp.open(opt.method, opt.url + "?" + postData, opt.async);
+        xmlHttp.send(null);
+    }
+    xmlHttp.onreadystatechange =async function () {
+        if (await xmlHttp.readyState === 4 && await xmlHttp.status === 200) {
+             opt.success(xmlHttp.responseText);
+        }else if(await xmlHttp.status !== 200){
+            opt.error(xmlHttp.responseText);
+        }
+        return await xmlHttp.responseText
+    };
+    
+
+}
+export { ajax };
+</script>
