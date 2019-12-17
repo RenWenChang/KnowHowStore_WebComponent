@@ -1,0 +1,65 @@
+export default {
+    'zh-Hant': {
+        ClientID: '用戶ID',
+        ClientCName: '用戶名稱',
+        ClientEName: '用戶英文名稱',
+        EmailAddress: '用戶信箱',
+        IdentityNO: '用戶密碼',
+        TEL: '用戶電話',
+        DataEditType: '資訊編輯類型',
+        Save: '儲存',
+        Edit: '修改',
+        TabMaintain: '資料維護',
+        TabAdd: '新增',
+        Query: '查詢',
+        Css_ElemetBeforeContent:'請先輸入調驗查詢',
+        // buttonEVA
+        buttonEVA_Entry: '儲存送簽',
+        buttonEVA_Entry_Verify: '驗證',
+        buttonEVA_Entry_Approve: '通過',
+        //filter
+        condition_1: '條件1',
+        condition_2: '條件2',
+        condition_3: '條件3',
+        // ButtonWFP
+        ButtonWFP_Query: '查詢',
+        ButtonWFP_AdvancedFilter: '進階篩選',
+        ButtonWFP_Clear: '清除',
+        ButtonWFP_Delete: '刪除',
+        confirmText:'您確認要刪除這筆資料嗎 ?',
+        confirm:'確認',
+        cancel:'取消',
+
+    },
+    'en-US': {
+        ClientID: 'ClientID',
+        ClientCName: 'ClientCName',
+        ClientEName: 'ClientEName',
+        EmailAddress: 'EmailAddress',
+        IdentityNO: 'IdentityNO',
+        TEL: 'TEL',
+        DataEditType: 'DataEditType',
+        Save: 'Save',
+        Edit: 'Edit',
+        TabMaintain: 'MaintainData',
+        TabAdd: 'Add',
+        Query: 'Query',
+        Css_ElemetBeforeContent:'Please fill query conditions',
+        // buttonEVA
+        buttonEVA_Entry: 'save and submit',
+        buttonEVA_Entry_Verify: 'Verify',
+        buttonEVA_Entry_Approve: 'Approve',
+        //filter
+        condition_1: 'condition_1',
+        condition_2: 'condition_2',
+        condition_3: 'condition_3',
+        // ButtonWFP
+        ButtonWFP_Query: 'Query',
+        ButtonWFP_AdvancedFilter: 'AdvancedFilter',
+        ButtonWFP_Clear: 'Clear',
+        ButtonWFP_Delete: 'Delete',
+        confirmText:'Are you sure to delete this Data ?',
+        confirm:'Confirm',
+        cancel:'Cancel',
+    }
+}

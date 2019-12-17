@@ -1,0 +1,37 @@
+{
+    "Datas": [
+        {
+            "ClientID": "000308",
+            "ClientCName": "cs, liao  ",
+            "ClientEName": "cs, liao  ",
+            "IdentityNO": "A123456789",
+            "TEL": "289       ",
+            "EmailAddress": "abc@def   ",
+            "DataEditType": 0,
+            "DataFlag": null
+        },
+        {
+            "ClientID": "csliao",
+            "ClientCName": "cs        ",
+            "ClientEName": "cs        ",
+            "IdentityNO": "A123456789",
+            "TEL": "289       ",
+            "EmailAddress": "abc@def   ",
+            "DataEditType": 0,
+            "DataFlag": null
+        },
+        {
+            "ClientID": "string",
+            "ClientCName": "sg        ",
+            "ClientEName": "sng       ",
+            "IdentityNO": "string    ",
+            "TEL": "string    ",
+            "EmailAddress": "string    ",
+            "DataEditType": 0,
+            "DataFlag": null
+        }
+    ],
+    "Message": "",
+    "MessageType": "04",
+    "ResultCode": "01"
+}

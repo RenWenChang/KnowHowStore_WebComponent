@@ -1,0 +1,23 @@
+.inputText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: bold;
+
+  .inputText__name {
+    color: #414042;
+  }
+  .inputText__name--required {
+    color: #2f3bf5;
+  }
+  .inputText__input {
+    margin-top: 4px;
+    border-radius: 4px;
+    border: solid 1px #d0d0d0;
+    height: 40px;
+    width: 100%;
+  }
+  .inputText__input--disable {
+    color: #d0d0d0;
+  }
+}
