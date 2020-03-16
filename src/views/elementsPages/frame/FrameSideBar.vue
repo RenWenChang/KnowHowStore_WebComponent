@@ -1,5 +1,5 @@
 <template>
-    <div>side</div>
+    <aside >side</aside>
 </template>
 <script>
 
@@ -20,6 +20,6 @@ export default {
     
 }
 </script>
-<style>
+<style lang="scss" scoped>
 
 </style>
