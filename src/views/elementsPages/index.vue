@@ -38,18 +38,18 @@ $asideWidth:290px;
 .sideBar {
     width: $asideWidth;
     height: 100%;
-    background-color: #d8d8d8;
+    background-color: #f1f1f1;
     color: rgb(0, 0, 0);
     -webkit-transform: translateX(0);
     transform: translateX(0);
     -webkit-transition: all 0.3s ease-in-out;
     -webkit-transition: 0.3s;
     transition: 0.3s;
-    overflow: auto;
     position: fixed;
     top: 0;
     left: 0;
 }
+
 .sideBar_closed {
     width: 0;
 }
@@ -60,7 +60,7 @@ $asideWidth:290px;
     width: 100%;
     height: 100%;
     margin-left: $asideWidth;
-    background-color: #000758;
+    background-color: #ffffff;
     color: #ccc;
 }
 .contents_closed {
