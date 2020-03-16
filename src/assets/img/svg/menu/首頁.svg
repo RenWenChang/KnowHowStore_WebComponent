@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="22px" viewBox="0 0 24 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Interface-Essential / Home / house-2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="新建投組" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="選單-登入後-360Android" transform="translate(-79.000000, -201.000000)" stroke="#FFFFFF" stroke-width="1.8">
+            <g id="Interface-Essential-/-Home-/-house-2" transform="translate(80.000000, 202.000000)">
+                <g id="Group">
+                    <g id="house-2">
+                        <path d="M0.165166667,10.5090833 L9.86225,0.803777778 C10.1523503,0.515397243 10.5451656,0.354129075 10.9542129,0.35547003 C11.3632602,0.356827784 11.7550031,0.520684034 12.0431944,0.810972222 L21.7485,10.5090833" id="Shape"></path>
+                        <polyline id="Shape" points="18.6651667 7.42780556 18.6651667 19.7590833 3.2485 19.7590833 3.2485 7.42266667"></polyline>
+                        <path d="M14.0401667,19.7590833 L14.0401667,15.1340833 C14.0401667,13.4312054 12.6597113,12.05075 10.9568333,12.05075 C9.25395535,12.05075 7.8735,13.4312054 7.8735,15.1340833 L7.8735,19.7590833" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

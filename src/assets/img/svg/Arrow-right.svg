@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="87px" viewBox="0 0 24 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Path 9</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M129.061273,93 C131.529897,100.073293 135.245789,107.18831 143.287638,115.612617 C148.157929,120.714532 153.32757,128.172186 152.983738,136.231104 C152.682994,143.280067 147.78645,150.24314 143.287638,154.513807 C133.645438,163.667028 130.889857,170.330959 129.061273,179.33449 C129.061273,179.33449 128.923409,93.0183882 129.061273,93 Z" id="path-1"></path>
+        <filter x="-45.8%" y="-12.7%" width="191.7%" height="125.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="-12" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.341176471   0 0 0 0 0.239215686  0 0 0 0.0484320367 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="WFE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Android拷貝-Copy" transform="translate(-129.000000, -93.000000)">
+            <g id="Path-9" transform="translate(141.000000, 136.167245) scale(-1, 1) translate(-141.000000, -136.167245) ">
+                <use fill="#31A043" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

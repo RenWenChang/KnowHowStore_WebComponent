@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Interface-Essential / Dashboard / pie-line-graph</title>
+    <desc>Created with Sketch.</desc>
+    <g id="新建投組" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="選單-登入後-360Android" transform="translate(-80.000000, -336.000000)" stroke="#FFFFFF" stroke-width="1.8">
+            <g id="Interface-Essential-/-Dashboard-/-pie-line-graph" transform="translate(81.000000, 337.000000)">
+                <g id="Group">
+                    <g id="pie-line-graph">
+                        <path d="M6.87166667,16.25 L10.18,12.9416667 C10.2972217,12.8243698 10.4562536,12.7584668 10.6220833,12.7584668 C10.787913,12.7584668 10.9469449,12.8243698 11.0641667,12.9416667 L12.68,14.5575 C12.7972217,14.6747969 12.9562536,14.7406999 13.1220833,14.7406999 C13.287913,14.7406999 13.4469449,14.6747969 13.5641667,14.5575 L16.8716667,11.25" id="Shape"></path>
+                        <rect id="Rectangle-path" x="0.621666667" y="0.625" width="18.75" height="18.75" rx="1.5"></rect>
+                        <circle id="Oval" cx="6.87166667" cy="6.875" r="3.75"></circle>
+                        <polyline id="Shape" points="6.87166667 3.125 6.87166667 6.875 9.52333333 9.52666667"></polyline>
+                        <line x1="13.7466667" y1="4.375" x2="16.2466667" y2="4.375" id="Shape"></line>
+                        <line x1="13.7466667" y1="6.875" x2="16.2466667" y2="6.875" id="Shape"></line>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

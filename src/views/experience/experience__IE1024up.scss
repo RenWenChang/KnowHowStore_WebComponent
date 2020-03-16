@@ -1,0 +1,1041 @@
+.ie_1024 {
+  .banner {
+    display: none;
+  }
+  .d-none {
+    display: none;
+  }
+  .w-100 {
+    width: 100%;
+  }
+  .tabBar {
+    display: flex;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.19px;
+    text-align: center;
+    color: #a1adb9;
+  
+    li {
+      padding: 8px 0;
+      border-bottom: 2px solid #ccc;
+      background-color: #ffffff;
+      cursor: pointer;
+      width: 40%;
+    }
+    .tabAct {
+      border-bottom: 2px solid #c1cd00;
+      background-color: #ffffff;
+      color: #a4ad00;
+      width: 60%;
+    }
+    .tabDisable {
+      background-color: #eeeeee;
+      width: 60%;
+    }
+  }
+  
+  .character {
+    display: none;
+  }
+  .experience {
+    background-color: #ffffff;
+    .chartTitle {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #333333;
+      margin-bottom: 10px;
+    }
+    .chartTitle__target {
+      color: #31a043;
+      margin-right: 14px;
+    }
+    .chartTitle__stackTtile {
+      display: none;
+    }
+    // @media screen and (min-width: 1024px) {
+      .chartTitle__stackTtile {
+        display: inline-block;
+      }
+    // }
+    .featureSection {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 0px;
+      .headInfo {
+        margin-bottom: 15px;
+      }
+    }
+  
+    ///////////////////////////////*spreadsheet*///////////////////////////////
+    .experience__spreadsheet {
+      background-color: #ffffff;
+      width: 100%;
+      padding: 10px;
+      order: 1;
+    }
+    .experience__spreadsheet .chartSubtTitle {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #808080;
+    }
+    .experience__spreadsheet .chart {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      margin-bottom: 15px;
+    }
+    ///////////////////////////////*amount*///////////////////////////////
+    .experience__amount {
+      position: relative;
+      background-color: #ffffff;
+      width: 100%;
+      order: 2;
+    }
+  
+    .experience__amount .cal {
+      position: relative;
+  
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      background-color: #e7ffeb;
+  
+      #wealthsolverCal,
+      #prejectionCal,
+      #savingSolverCal {
+        .switchbar {
+          position: absolute;
+          top: -27px;
+          left: 0;
+          width: 100%;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: transparent;
+          cursor: pointer;
+          span {
+            width: 40px;
+            height: 5px;
+            border-radius: 2.5px;
+            background-color: #d7d7da;
+            opacity: 1;
+          }
+          // display: none;
+        }
+        // order: 2;
+      }
+      .calcValueTitle {
+        display: block;
+        color: #00573d;
+        font-size: 14px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.29px;
+      }
+      .tab {
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 30px;
+  
+        button {
+          background-color: #ffffff;
+          border: none;
+          width: 40%;
+          height: 45px;
+          font-size: 16px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #a1adb9;
+          height: 45px;
+          cursor: pointer;
+          outline: none;
+          border-radius: 5px 5px 0 0;
+        }
+  
+        .active {
+          font-size: 16px;
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #ffffff;
+          width: 60%;
+          height: 45px;
+          border-radius: 5px;
+          background-color: #31a043;
+        }
+      }
+      .titleWrap {
+        width: 100%;
+        border-radius: 5px;
+        border: solid 1px rgba(220, 230, 240, 0);
+        background-color: transparent;
+        padding: 0px 8px 0px 8px;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .tabMobileHide,
+      .tabMobileHide * {
+        pointer-events: none;
+        opacity: 0;
+        z-index: 0;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border: 0px;
+        height: 1px;
+      }
+  
+      .inputWrap__chargeDateWrap {
+        width: 100%;
+        border-radius: 5px;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        margin-right: 15px;
+      }
+      .inputWrap {
+        width: 100%;
+        height: 53px;
+        border-radius: 5px;
+        border: solid 1px #eeeeee;
+        background-color: #ffffff;
+        margin-bottom: 30px;
+        padding: 18px 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        max-height: 1000px;
+        overflow: none;
+        transition-property: max-height height padding margin;
+        transition: 0.3s ease;
+        .inputWrap:nth-child(1) {
+          width: calc(100% + 16px);
+          margin: 0 -8px;
+          z-index: 42;
+        }
+        input {
+          outline: none;
+          border: none;
+        }
+  
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+        .inputWrap__text {
+          font-size: 14px;
+          font-weight: 600;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: 0.29px;
+          color: #808080;
+        }
+        .inputWrap__value {
+          width: 120px;
+          font-size: 14px;
+          font-weight: 600;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: 0.29px;
+          text-align: center;
+          color: #353a41;
+        }
+        .inputWrap__value::-ms-clear {
+          display: none;
+        }
+        .inputWrap__button {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          line-height: 24px;
+          text-align: center;
+        }
+        .inputWrap__investYearGruop {
+          display: inline-flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+        .errMsg {
+          display: block;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          color: #ff0000;
+          font-size: 12px;
+        }
+        .startWidraw__mark {
+          display: inline-block;
+          width: 20px;
+          text-align: center;
+        }
+        .startWidraw__color {
+          color: #0278ae;
+        }
+      }
+  
+      .tabMobileHide,
+      .tabMobileHide * {
+        pointer-events: none;
+        opacity: 0;
+        z-index: 0;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border: 0px;
+        height: 1px;
+      }
+      .inputWrap__disable {
+        width: 100%;
+        height: 53px;
+        border-radius: 5px;
+        border: solid 1px transparent;
+        background-color: #dff6f0;
+        .inputWrap__value {
+          font-size: 18px;
+          font-weight: 600;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: 0.38px;
+          text-align: center;
+          color: #00c591;
+        }
+        .inputWrap__text {
+          font-size: 14px;
+          font-weight: 600;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: 0.38px;
+          text-align: center;
+          color: #00c591;
+        }
+      }
+      .close___calInput {
+        overflow: hidden;
+        max-height: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        border: none;
+        transition-property: max-height height padding margin;
+        transition: 0.3s ease;
+        background-color: transparent;
+        border-color: transparent;
+      }
+      .inputWrap:hover {
+        border: solid 1px #00c591;
+      }
+      .inputWrap:hover > .inputWrap {
+        border: solid 1px #00c591;
+      }
+      .spread {
+        // display: none;
+        display: block;
+        width: 100%;
+        border: solid 1px #daf7f0;
+        background-color: #daf7f0;
+        margin-bottom: 15px;
+      }
+    }
+  
+    ///////////////////////////////*risk*///////////////////////////////
+    .experience__risk {
+      order: 3;
+      background-color: #ffffff;
+      width: 100%;
+      position: relative;
+    }
+    .experience__risk .doCal {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 0 7px 0 rgba(126, 151, 168, 0.24), 0 2px 20px 0 rgba(26, 26, 26, 0.3);
+      background-color: #f5a900;
+      border-radius: 30px;
+      color: #ffffff;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: normal;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px;
+      word-wrap: break-word;
+      border: none;
+      outline: none;
+      bottom: 70px;
+      right: 13px;
+      cursor: pointer;
+      z-index: 42;
+    }
+    .experience__risk .Notifybubble {
+      pointer-events: none;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 53px;
+      object-fit: contain;
+      border-radius: 0px;
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+      background-color: #f5a900;
+      text-align: center;
+      z-index: 42;
+      transition-property: height bottom;
+      transition: 0.3s ease;
+      .arrow {
+        border-width: 0px;
+      }
+  
+      .arrowInt {
+        border-width: 0px;
+      }
+  
+      span {
+        line-height: 53px;
+        font-size: 12px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        color: #ffffff;
+      }
+    }
+    .experience__risk .Notifybubble__Hide {
+      bottom: -53px;
+      transition-property: height bottom;
+      transition: 0.3s ease;
+    }
+    .experience__risk .specialTreatment__z-index {
+      z-index: 40;
+    }
+    .experience__risk .doCal__disable {
+      background-color: #eeeeee;
+      color: #a1adb9;
+      cursor: auto;
+    }
+    ///////////////////////////////*type*///////////////////////////////
+    .experience__type {
+      order: 1;
+      background-color: #ffffff;
+      width: 100%;
+      border-radius: 10px;
+      padding: 0px;
+      border: solid 13px transparent;
+    }
+    .tabMobileHide,
+    .tabMobileHide * {
+      pointer-events: none;
+      opacity: 0;
+      z-index: 0;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      border: 0px;
+      height: 1px;
+    }
+    .experience__type .chart {
+      width: 100%;
+      height: 200px;
+      min-height: 270px;
+    }
+    ///////////////////////////////*performance*///////////////////////////////
+    .experience__performance {
+      order: 1;
+      background-color: #ffffff;
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      max-height: 1000px;
+      transition: 0.3s ease max-height;
+      overflow: hidden;
+    }
+    .tabMobileHide,
+    .tabMobileHide * {
+      pointer-events: none;
+      opacity: 0;
+      z-index: 0;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      border: 0px;
+      height: 1px;
+    }
+    .experience__performance .chart {
+      width: 100%;
+      height: 350px;
+      margin-bottom: 30px;
+    }
+    .experience__performanceClose {
+      overflow: hidden;
+      transition: 0.3s ease max-height;
+      max-height: 81px;
+    }
+    ///////////////////////////////*save*///////////////////////////////
+    .experience__save {
+      width: 100%;
+      padding: 22px 13px;
+      order: 5;
+      .saveOrRedo__btn {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      button:nth-child(1) {
+        outline: none;
+        position: relative;
+        width: 100%;
+        height: 53px;
+        border-radius: 10px;
+        // background-color: #f5ffec;
+        // color: #31a043;
+        background-color: #31a043;
+        color: #ffffff;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        margin-bottom: 30px;
+        cursor: pointer;
+      }
+      button:nth-child(1)::after {
+        content: "透過LINE或email傳送試算結果給您";
+        outline: none;
+        position: absolute;
+        text-align: left;
+        width: 200%;
+        top: 60px;
+        left: 0;
+        color: #ff0000;
+        font-size: 14px;
+      }
+      .disable:nth-child(1) {
+        background-color: #eeeeee;
+        color: #808080;
+      }
+      button:nth-child(2) {
+        outline: none;
+        width: 100%;
+        height: 53px;
+        border-radius: 10px;
+        font-size: 16px;
+        // background-color: #ffffff;
+        // color: #808080;
+        background-color: #f5ffec;
+        color: #31a043;
+        border: none;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        cursor: pointer;
+      }
+      button:nth-child(2):hover {
+        font-size: 16px;
+        background-color: #f5ffec;
+        color: #31a043;
+        border: none;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        cursor: pointer;
+      }
+      .errMsg {
+        display: block;
+        color: #ff0000;
+        font-size: 12px;
+      }
+    }
+  
+    .slider {
+      width: 100%;
+  
+      border-radius: 0 0 5px 5px;
+      background-color: #ffffff;
+      border: #ffffff 1px solid;
+      .title {
+        display: inline-block;
+        margin-bottom: 36px;
+        font-size: 16px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #333333;
+      }
+    }
+  
+    .slider:hover {
+      border: solid 1px #00c591;
+    }
+    .sliderChargeDay {
+      padding: 30px 10px 10px 10px;
+      height: 86px;
+      margin-bottom: 15px;
+    }
+    .sliderRiskWave {
+      // order: 1;
+      margin-bottom: 15px;
+      .wrap {
+        border: 10px solid #fffbe5;
+        padding: 15px 10px 40px 10px;
+        border-radius: 5px;
+      }
+      border-radius: 5px;
+      border: none;
+    }
+    .tabMobileHide,
+    .tabMobileHide * {
+      pointer-events: none;
+      opacity: 0;
+      z-index: 0;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      border: 0px;
+      height: 1px;
+    }
+  }
+  
+  // @media screen and (min-width: 768px) {
+    .experience {
+      .experience__spreadsheet .chart {
+        height: 400px;
+      }
+      .experience__amount {
+        .cal {
+          flex-wrap: wrap;
+          flex-direction: row;
+          justify-content: space-between;
+  
+          #wealthsolverCal {
+            // order: 1;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            .inputWrap__wrap {
+              width: 49%;
+            }
+            .inputWrap__disable {
+              width: 100%;
+            }
+          }
+          #prejectionCal {
+            // order: 1;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            .inputWrap__wrap {
+              width: 49%;
+            }
+            .inputWrap__disable {
+              width: 49%;
+            }
+          }
+  
+          #savingSolverCal {
+            // order: 1;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            .inputWrap__wrap {
+              width: 49%;
+            }
+            .inputWrap__wrap {
+              width: 49%;
+            }
+            .inputWrap__disable {
+              width: 49%;
+            }
+          }
+        }
+      }
+      ///////////////////////////////*save pad*///////////////////////////////
+      .experience__save {
+        button {
+          outline: none;
+        }
+        button:nth-child(1) {
+          width: 190px;
+          margin-right: 15px;
+        }
+        button:nth-child(2) {
+          width: 190px;
+        }
+      }
+    }
+  // }
+  
+  // @media screen and (min-width: 1024px) {
+    .banner {
+      display: block;
+      width: 100%;
+      height: 500px;
+      background-color: #3cb54b;
+      background-image: url("../../assets/img/svg/banner/topBg.jpg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .character {
+      display: block;
+      position: absolute;
+      background-color: transparent;
+      top: 145px;
+      left: 15%;
+      z-index: 5;
+      img {
+        width: 130px;
+        height: 170px;
+      }
+    }
+    .experience {
+      .tabBar {
+        display: none;
+      }
+      .featureSection {
+        max-height: unset;
+        position: relative;
+        padding: 35px 10px 40px 10px;
+        max-width: 1366px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        margin: 0 auto;
+        margin-top: -220px;
+        z-index: 10;
+  
+        .mation {
+          width: 100%;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+  
+          span {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #808080;
+          }
+        }
+        .headTitle {
+          position: relative;
+          width: 100%;
+          padding: 0 40px 10px 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          div:nth-child(1) {
+            width: 100px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: 2px;
+            text-align: center;
+            color: #808080;
+            // color: #31a043;
+            padding-right: 10px;
+            padding-left: 10px;
+            cursor: pointer;
+          }
+          div:nth-child(2) {
+            width: 100%;
+            font-size: 21px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: 2px;
+            text-align: center;
+            color: #31a043;
+          }
+          // @media screen and (min-width: 1084px) {
+            div:nth-child(2) {
+              font-size: 24px;
+            }
+          // }
+        }
+      }
+      .chartTitle__group {
+        margin-bottom: 28px;
+      }
+  
+      ///////////////////////////////*pc spreadsheet*///////////////////////////////
+  
+      .experience__spreadsheet {
+        width: calc(70% - 15px);
+        padding: 21px 18px;
+        border-radius: 10px;
+        border: solid 10px #e7ffeb;
+        margin-bottom: 26px;
+        .chart {
+          height: 460px;
+        }
+      }
+      ///////////////////////////////*pc amount*///////////////////////////////
+      .experience__amount {
+        order: 2;
+        width: 30%;
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 26px;
+        .cal {
+          display: block;
+          position: relative;
+          padding: 10px;
+          height: calc(100% - 70px);
+  
+          .spread {
+            display: block;
+            width: 100%;
+            border: solid 1px #daf7f0;
+            background-color: #daf7f0;
+            margin-bottom: 15px;
+          }
+          #prejectionCal,
+          #wealthsolverCal,
+          #savingSolverCal {
+            display: block;
+            width: 100%;
+            .switchbar {
+              display: none;
+            }
+            .inputWrap__wrap {
+              width: 100%;
+            }
+            .inputWrap__disable {
+              width: 100%;
+            }
+          }
+        }
+        .cal::after {
+          content: "";
+          position: absolute;
+          margin: auto;
+          left: 0;
+          right: 0;
+          bottom: -20px;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 20px 30px 0 30px;
+          border-color: #e7ffeb transparent transparent transparent;
+        }
+      }
+      .sliderRiskWave {
+        margin-bottom: none;
+      }
+      ///////////////////////////////*pc risk*///////////////////////////////
+      .experience__risk .doCal {
+        width: 100%;
+        position: static;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 5px;
+        padding: 0;
+        box-shadow: none;
+      }
+      .experience__risk .Notifybubble {
+        position: absolute;
+        top: -65px;
+        left: 25px;
+        width: calc(100% - 25px);
+        height: 53px;
+        object-fit: contain;
+        border-radius: 2px;
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+        background-color: #ffffff;
+        text-align: center;
+        z-index: 20;
+        .arrow {
+          width: 0px;
+          height: 0px;
+          border-width: 12px;
+          border-style: solid;
+          border-color: rgba(0, 0, 0, 0.2) transparent transparent transparent;
+          position: absolute;
+          top: 52px;
+          left: 20px;
+        }
+  
+        .arrowInt {
+          width: 0px;
+          height: 0px;
+          border-width: 12px;
+          border-style: solid;
+          border-color: #ffffff transparent transparent transparent;
+          position: absolute;
+          top: 51px;
+          left: 20px;
+        }
+  
+        span {
+          line-height: 53px;
+          font-size: 12px;
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          letter-spacing: normal;
+          color: #ed8200;
+        }
+      }
+      .experience__risk .Notifybubble__Hide {
+        height: 0;
+        top: -100px;
+        opacity: 0;
+        transition-property: height opacity;
+        transition: 0.3s ease;
+        overflow: hidden;
+      }
+      ///////////////////////////////*pc type*///////////////////////////////
+      .experience__type {
+        order: 3;
+        padding: 21px 18px;
+        border: solid 10px #fffbe5;
+        margin-bottom: 26px;
+        .chart {
+          height: 300px;
+        }
+      }
+      .tabMobileHide,
+      .tabMobileHide * {
+        pointer-events: none;
+        opacity: 0;
+        z-index: 0;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border: 0px;
+        height: 1px;
+      }
+  
+      ///////////////////////////////*pc performance*///////////////////////////////
+      .experience__performance {
+        padding: 21px 18px;
+        border: solid 10px #fffbe5;
+        order: 4;
+        transition: 0.3s ease max-height;
+        overflow: hidden;
+        max-height: 1000px;
+        .chart {
+          width: 100%;
+          height: 450px;
+        }
+      }
+      .tabMobileHide,
+      .tabMobileHide * {
+        pointer-events: none;
+        opacity: 0;
+        z-index: 0;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border: 0px;
+        height: 1px;
+      }
+      .experience__performanceClose {
+        overflow: hidden;
+        transition: 0.3s ease max-height;
+        max-height: 81px;
+      }
+  
+      ///////////////////////////////*pc performance*///////////////////////////////
+    }
+  // }
+  
+  // @media screen and (min-width: 1024px) {
+    .experience {
+      .experience__amount {
+        margin-left: 15px;
+        .cal {
+          padding: 21px 24px;
+        }
+      }
+    }
+  // }
+  
+  // @media screen and (min-width: 1920px) {
+    .experience {
+      .featureSection {
+        padding: 35px 65px;
+        max-width: 1750px;
+      }
+    }
+  // }
+  
+}

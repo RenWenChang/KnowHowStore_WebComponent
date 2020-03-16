@@ -1,0 +1,106 @@
+.inputWrap {
+  .arrow {
+    width: 0px;
+    height: 0px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #c1cd00 transparent;
+    position: absolute;
+    top: -15px;
+    right: 20px;
+  }
+
+  .arrowInt {
+    width: 0px;
+    height: 0px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+    position: absolute;
+    top: -13px;
+    right: 20px;
+  }
+
+  .options input[type="radio"] {
+    display: none;
+  }
+
+  .options {
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+    transition: max-height 0.2s;
+    max-height: 300px;
+    box-shadow: 0 1px 5px 0 #353c4a33;
+    background-color: #ffffff;
+    border: 1px solid #c1cd00;
+    border-radius: 6px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    margin-left: 0px;
+    z-index: 30;
+    overflow: visible;
+    transition-property: max-height background-color color;
+    transition: 0.3s ease;
+  }
+  .options__closed {
+    background-color: transparent;
+    max-height: 0px;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    color: transparent;
+    transition-property: max-height background-color color;
+    transition: 0.3s ease;
+  }
+  .optionContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .options .option {
+    padding: 4px;
+    width: 14%;
+    cursor: pointer;
+  }
+
+  .options .option > span {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .options .option > input ~ span:hover {
+    opacity: 0.7;
+    border-radius: 50%;
+    background-color: #f5f7f9;
+  }
+
+  .options .option input[type="radio"]:checked ~ span {
+    background-color: #c1cd00;
+    color: #ffffff;
+    border-radius: 50%;
+  }
+
+  @media (min-width: 768px) {
+    .options .option > span {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .options .option {
+      padding: 0;
+    }
+  }
+  @media (min-width: 1440px) {
+    .options .option {
+      padding: 8.4px;
+    }
+  }
+}

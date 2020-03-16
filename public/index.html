@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no, target-densitydpi=device-dpi,shrink-to-fit=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta http-equiv="cache-control" content="public" max-age="365.00:00:00" />
+  <meta name="google" content="notranslate">
+  <link rel="icon" href="<%= BASE_URL %>firstbank.ico">
+  <title>firstbank</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap" rel="stylesheet">
+</head>
+<script>
+  function showVersion() {
+    console.log("FCB_UAT_20200313_1.0.9");
+  }
+  showVersion();
+</script>
+<script src="<%= BASE_URL %>env.js"></script>
+<script>
+  if (top.frames.length != 0) { alert('Client Cross Frame Scripting Attack') }
+  window.onload = function () {
+    document.addEventListener('touchstart', function (event) {
+      if (event.touches.length > 1) {
+        event.preventDefault();
+      }
+    });
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      var now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+    document.addEventListener('gesturestart', function (event) {
+      event.preventDefault();
+    });
+  }
+  function platform() {
+    var u = navigator.userAgent;
+    return {
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+      iPhone: u.indexOf('iPhone') > -1,
+      iPad: u.indexOf('iPad') > -1,
+      windows: u.indexOf('Windows NT') > -1,
+      mac: u.indexOf('Mac')
+    };
+
+  }
+</script>
+
+<body class="notranslate">
+  <noscript>
+    <strong>We're sorry but firstbank doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+</html>

@@ -1,0 +1,29 @@
+@keyframes arrowDrop {
+    0% {
+        top: -400%;
+    }
+    60% {
+        top: -43%;
+    }
+    100% {
+        top: -43%;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(-50%) translateX(0px) translateY(0px) rotateZ(-0deg);
+    }
+    25% {
+        transform: translateX(-50%) translateX(20px) translateY(-20px) rotateZ(-20deg);
+    }
+    50% {
+        transform: translateX(-50%) translateX(0px) translateY(0px) rotateZ(-0deg);
+    }
+    75% {
+        transform: translateX(-50%) translateX(-20px) translateY(-20px) rotateZ(20deg);
+    }
+    100% {
+        transform: translateX(-50%) translateX(0px) translateY(0px) rotateZ(-0deg);
+    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="58px" viewBox="0 0 46 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>Interface-Essential / Time / hourglass-1</title>
+    <desc>Created with Sketch.</desc>
+    <g id="landing-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="LandingPage-1-PC" transform="translate(-1539.000000, -1894.000000)" stroke-width="3.5">
+            <g id="Group-10" transform="translate(1418.000000, 1826.000000)">
+                <g id="Group-6" transform="translate(74.000000, 69.000000)">
+                    <g id="Interface-Essential-/-Time-/-hourglass-1" transform="translate(49.000000, 0.000000)">
+                        <g id="Group">
+                            <g id="hourglass-1">
+                                <path d="M6.095,12.1472 C7.485,19.8488 12.37,25.124 21,27.8 C29.63,25.124 34.515,19.8488 35.905,12.1472 C36.0718811,11.105572 35.7549366,10.0460529 35.0377766,9.24814381 C34.3206165,8.45023472 33.2752703,7.99407517 32.1775,7.99994299 L9.8225,7.99994299 C8.72472972,7.99407517 7.67938347,8.45023472 6.96222342,9.24814381 C6.24506337,10.0460529 5.92811893,11.105572 6.095,12.1472 Z" id="Shape" stroke="#D2AC5C"></path>
+                                <line x1="0.375" y1="0.8" x2="41.625" y2="0.8" id="Shape" stroke="#31A043"></line>
+                                <path d="M9.8225,47.6000549 C8.7252384,47.6058142 7.68037412,47.1499763 6.96330895,46.3526345 C6.24624378,45.5552926 5.9289285,44.4964526 6.095,43.4552 C7.485,35.7536 12.37,30.4784 21,27.8 C29.63,30.4784 34.515,35.7536 35.905,43.4552 C36.0710715,44.4964526 35.7537562,45.5552926 35.0366911,46.3526345 C34.3196259,47.1499763 33.2747616,47.6058142 32.1775,47.6000549 L9.8225,47.6000549 Z" id="Shape" stroke="#D2AC5C"></path>
+                                <line x1="0.375" y1="54.8" x2="41.625" y2="54.8" id="Shape" stroke="#31A043"></line>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

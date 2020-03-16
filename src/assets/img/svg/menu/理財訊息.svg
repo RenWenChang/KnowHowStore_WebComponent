@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>School-Learning / Library/Reading / read-world</title>
+    <desc>Created with Sketch.</desc>
+    <g id="新建投組" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="選單-登入後-360Android" transform="translate(-80.000000, -291.000000)" stroke="#FFFFFF" stroke-width="1.8">
+            <g id="School-Learning-/-Library/Reading-/-read-world" transform="translate(81.000000, 292.000000)">
+                <g id="Group">
+                    <g id="read-world">
+                        <rect id="Rectangle-path" x="10.625" y="9.37583333" width="8.75" height="10" rx="0.75"></rect>
+                        <line x1="15" y1="11.8758333" x2="16.875" y2="11.8758333" id="Shape"></line>
+                        <line x1="13.125" y1="14.3758333" x2="16.875" y2="14.3758333" id="Shape"></line>
+                        <line x1="13.125" y1="16.8758333" x2="16.875" y2="16.8758333" id="Shape"></line>
+                        <path d="M8.12833333,16.8525 C3.97712004,16.532914 0.739236428,13.1270794 0.629807272,8.96502071 C0.520378116,4.80296205 3.5748191,1.23168913 7.70350356,0.694407463 C11.832188,0.157125797 15.6989075,2.82772136 16.6583333,6.87916667" id="Shape"></path>
+                        <path d="M5.625,16.25 L5.625,12.5 C5.625,12.5 6.46583333,12.1166667 6.68333333,11.6266667 C6.81889367,11.3220092 6.80659826,10.9718973 6.65,10.6775 L5.60083333,8.70666667 C5.36655905,8.26862809 4.86438589,8.04605066 4.3825,8.16666667 L0.6325,9.10166667" id="Shape"></path>
+                        <path d="M4.37499757,1.90333333 L4.37499757,5.19666667 C4.37395026,5.69471943 4.71262146,6.12931882 5.19583333,6.25 L6.77916667,6.79166667 C7.1031679,6.87258689 7.44638173,6.79955301 7.70936485,6.59372598 C7.97234796,6.38789895 8.12570424,6.07228601 8.125,5.73833333 L8.125,4.59833333 L11.595,4.02666667 C12.1171801,3.93951891 12.499892,3.48773565 12.5,2.95833333 L12.5,1.54166667" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
