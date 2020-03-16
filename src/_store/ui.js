@@ -10,6 +10,7 @@ const state = {
     canRegetRaw__isInit:true,
     blockInvestmentInfo:false,
     toScreen:0,
+    sideMenuOpen:true,
 }
 
 const getters = {
@@ -45,6 +46,9 @@ const getters = {
     },
     changeScreenRes: function (state) {
         return state.toScreen
+    },
+    sideMenuOpen: function (state) {
+        return state.sideMenuOpen
     },
 
 }
@@ -83,6 +87,9 @@ const actions = {
     changeScreenAction: (store, stateValue) => {
         store.commit('changeScreen', stateValue)
     },
+    toggleSideMenuOpen: (store, stateValue) => {
+        store.commit('setSideMenuOpen', stateValue)
+    },
 }
 
 const mutations = {
@@ -119,6 +126,9 @@ const mutations = {
     changeScreen: (state, stateValue) => {
         state.toScreen = stateValue;
     },
+    setSideMenuOpen: (state, stateValue) => {
+        state.sideMenuOpen = stateValue;
+    }
 }
 
 export {

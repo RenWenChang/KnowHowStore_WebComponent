@@ -1,17 +1,17 @@
 <template>
     <div id="wrap">
-        <section id="contents">
+        <section class="contents" :class="[sideMenuOpen?'':'contents_closed']">
             <FrameNavBar></FrameNavBar>
             <Main></Main>
         </section>
-        <FrameSideBar id="sideBar"></FrameSideBar>
+        <FrameSideBar class="sideBar" :class="[sideMenuOpen?'':'sideBar_closed']"></FrameSideBar>
     </div>
 </template>
 <script>
 import FrameNavBar from "@/views/elementsPages/frame/FrameNavBar.vue";
 import FrameSideBar from "@/views/elementsPages/frame/FrameSideBar.vue";
 import Main from "@/views/elementsPages/frame/main.vue";
-
+import { mapGetters } from "vuex";
 export default {
     data() {
         return {};
@@ -22,19 +22,24 @@ export default {
         Main
     },
     methods: {},
-    mounted: function() {}
+    mounted: function() {},
+    computed: {
+        ...mapGetters(["sideMenuOpen"])
+    }
 };
 </script>
 <style lang="scss" scoped>
+$asideWidth:290px;
+
 #wrap {
     width: 100%;
     height: 100vh;
 }
-#sideBar {
-    width: 290px;
+.sideBar {
+    width: $asideWidth;
     height: 100%;
-    background-color: #252636;
-    color: #ccc;
+    background-color: #d8d8d8;
+    color: rgb(0, 0, 0);
     -webkit-transform: translateX(0);
     transform: translateX(0);
     -webkit-transition: all 0.3s ease-in-out;
@@ -45,11 +50,20 @@ export default {
     top: 0;
     left: 0;
 }
-#contents {
+.sideBar_closed {
+    width: 0;
+}
+.contents {
+    -webkit-transition: all 0.3s ease-in-out;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
     width: 100%;
     height: 100%;
-    margin-left: 290px;
+    margin-left: $asideWidth;
     background-color: #000758;
     color: #ccc;
+}
+.contents_closed {
+    margin-left: 0;
 }
 </style>
