@@ -1,6 +1,6 @@
 <template>
     <aside>
-        <TreeMenu v-for="(node, index) in TreeMenuLise" :node="node" :key="`${index}`"></TreeMenu>
+        <TreeMenu v-for="(node, index) in TreeMenuLise" :node="node" :index="index" :key="`${index}`"></TreeMenu>
     </aside>
 </template>
 <script>

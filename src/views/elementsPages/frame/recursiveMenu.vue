@@ -1,8 +1,17 @@
 <template>
-    <div class="recursiveCell" >
-        <div class="label">{{node.label}}-第{{node.layer}}層</div>
-        <template v-for="(childNode,index) of node.nodes">
-            <treeMenu :key="index" :node="childNode"></treeMenu>
+    <div
+        class="recursiveCell"
+        :style="{
+            'left':`${node.layer!==1?(290):0}px`,
+            'top':`${node.layer!==1?(-60)*(index):0}px`,
+            'position':`${node.layer===1?'relative':'absolute'}px`,
+            }"
+    >
+        <div class="label" @click="selectThis($event,node)">{{node.label}}-第{{node.layer}}層</div>
+        <template v-if="open">
+            <template v-for="(childNode,index) of node.nodes">
+                <treeMenu :key="index" :node="childNode"></treeMenu>
+            </template>
         </template>
     </div>
 </template>
@@ -10,18 +19,31 @@
 export default {
     name: "TreeMenu",
     data() {
-        return {};
+        return {
+            open: false
+        };
     },
     components: {},
     props: {
         node: {
             type: Object,
             default: () => {
-                return {};
+                return {
+                    layer: 1,
+                    label: ""
+                };
             }
+        },
+        index: {
+            type: Number,
+            default: 1
         }
     },
-    methods: {},
+    methods: {
+        selectThis: function(e, node) {
+            this.open=!this.open;
+        }
+    },
     mounted: function() {}
 };
 </script>
@@ -29,7 +51,8 @@ export default {
 $asideWidth: 290px;
 $asidecellHeight: 60px;
 .recursiveCell {
-
+    position: relative;
+    height: 60px;
 }
 .label {
     width: $asideWidth;
@@ -38,5 +61,4 @@ $asidecellHeight: 60px;
     text-align: center;
     background-color: chartreuse;
 }
-
 </style>
