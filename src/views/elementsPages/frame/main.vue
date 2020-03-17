@@ -1,25 +1,19 @@
 <template>
-    <div>main</div>
+    <div>
+        main
+        <router-view></router-view>
+    </div>
 </template>
 <script>
-
-
 export default {
-    data (){
-        return{
-
-        }
+    data() {
+        return {};
     },
-    methods:{
-        
-    },
+    methods: {},
     mounted: function() {
-
-  },
-
-    
-}
+       
+    }
+};
 </script>
 <style>
-
 </style>

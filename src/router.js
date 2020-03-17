@@ -1,6 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
+
+
+// Fetch routes
+let modules = []
+const requireModule = require.context('./views', true, /\/route.js$/)
+requireModule.keys().forEach(fileName => {
+    const targetModule = requireModule(fileName)
+    modules.push(targetModule.default)
+})
+
+
 Vue.use(Router)
 const router = new Router({
   mode: process.env.NODE_ENV === 'production' ? 'history' : 'history',
@@ -107,14 +119,17 @@ const router = new Router({
         title: "第一銀行e-First智能理財 | Email傳送試算結果"
       }
     },
-    
+
     {
       path: '/elementsLanding',
       name: 'elementsLanding',
       component: () => import(/* webpackChunkName: "elementsLanding" */ './views/elementsPages/index.vue'),
       meta: {
         title: "elements"
-      }
+      },
+      children: [
+        ...modules,
+      ]
     },
 
   ]
@@ -127,8 +142,6 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = true;
 
 
-
-
   if (isLoggedIn) {
     next();
   } else {
@@ -136,4 +149,5 @@ router.beforeEach((to, from, next) => {
   }
 
 });
+router.router=modules;
 export default router

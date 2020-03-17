@@ -1,16 +1,15 @@
 <template>
-    <div
-        class="recursiveCell"
-    >
+    <div class="recursiveCell">
         <div class="label" @click="selectThis($event,node)">{{node.layer}}</div>
         <template v-if="open">
-            <template v-for="(childNode,index) of node.nodes">
+            <template v-for="(childNode,index) of node.children">
                 <treeMenu :key="index" :node="childNode"></treeMenu>
             </template>
         </template>
     </div>
 </template>
 <script>
+
 export default {
     name: "TreeMenu",
     data() {
@@ -36,8 +35,17 @@ export default {
     },
     methods: {
         selectThis: function(e, node) {
-            this.open=!this.open;
-
+            const name =this.$route.name;
+            const hasNode = node.children.length === 0 ? false : true;
+            if (hasNode) {
+                this.open = !this.open;
+            } else {
+                if (name !== node.label) {
+                    this.$router.push({
+                        name: node.label
+                    });
+                }
+            }
         }
     },
     mounted: function() {}
@@ -45,9 +53,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 $asideWidth: 100%;
-$slidebar:20px;
-$background-color:#24282C;
-$elements-color:#DDD;
+$slidebar: 20px;
+$background-color: #24282c;
+$elements-color: #ddd;
 
 $asidecellHeight: 60px;
 .label {
@@ -56,7 +64,7 @@ $asidecellHeight: 60px;
     line-height: $asidecellHeight;
     text-align: center;
     background-color: $background-color;
-    color:$elements-color;
+    color: $elements-color;
     overflow: hidden;
 }
 </style>

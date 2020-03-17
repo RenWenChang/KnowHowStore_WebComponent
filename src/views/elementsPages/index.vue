@@ -65,10 +65,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 $asideWidth: 290px;
+$contentWidth-mobile: calc(100%);
+$contentWidth-pad: calc(100%);
 $contentWidth: calc(100% - 290px);
 $aslidebar: 15px;
 $background-color-aside: #24282c;
-$transition-speed:300ms;
+$transition-speed: 300ms;
+
 #wrap {
     width: 100%;
     height: 100vh;
@@ -95,10 +98,20 @@ $transition-speed:300ms;
     -webkit-transition: all $transition-speed ease-in-out;
     -webkit-transition: $transition-speed;
     transition: $transition-speed;
-    width: $contentWidth;
+    width: $contentWidth-mobile;
     height: 100%;
     background-color: #ffffff;
     color: #ccc;
+}
+@media screen and (min-width: 768px) {
+    .contents {
+        width: $contentWidth-pad;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .contents {
+        width: $contentWidth;
+    }
 }
 .contents_closed {
     width: 100%;

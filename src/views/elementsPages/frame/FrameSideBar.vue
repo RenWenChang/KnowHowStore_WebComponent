@@ -6,8 +6,8 @@
         <div class="searchBox"></div>
         <div class="menu">
             <TreeMenu
-                v-for="(node, index) in TreeMenuLise"
-                :node="node"
+                v-for="(children, index) in TreeMenuLise"
+                :node="children"
                 :index="index"
                 :key="`${index}`"
             ></TreeMenu>
@@ -15,6 +15,7 @@
     </aside>
 </template>
 <script>
+import router from '@/router.js'
 import TreeMenu from "./recursiveMenu.vue";
 export default {
     data() {
@@ -23,34 +24,38 @@ export default {
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: [
+                    children: [
                         {
                             label: "選單1",
                             layer: 2,
-                            nodes: [
+                            children: [
                                 {
-                                    label: "選單1-1",
-                                    layer: 3
+                                    label: "aaa",
+                                    layer: 3,
+                                    children:[]
                                 }
                             ]
                         },
                         {
                             label: "選單2",
                             layer: 2,
-                            nodes: [
+                            children: [
                                 {
-                                    label: "選單2-1",
-                                    layer: 3
+                                    label: "bbb",
+                                    layer: 3,
+                                    children:[]
+                                    
                                 }
                             ]
                         },
                         {
                             label: "選單3",
                             layer: 2,
-                            nodes: [
+                            children: [
                                 {
-                                    label: "選單3-1",
-                                    layer: 3
+                                    label: "ccc",
+                                    layer: 3,
+                                    children:[]
                                 }
                             ]
                         }
@@ -59,93 +64,96 @@ export default {
                 {
                     label: "第二層",
                     layer: 1,
-                    nodes: [
+                    children: [
                         {
                             label: "選單1",
                             layer: 2,
-                            nodes: [
+                            children: [
                                 {
-                                    label: "選單1-1",
-                                    layer: 3
+                                    label: "ddd",
+                                    layer: 3,
+                                    children:[]
                                 }
                             ]
                         },
                         {
                             label: "選單2",
                             layer: 2,
-                            nodes: [
+                            children: [
                                 {
-                                    label: "選單2-1",
-                                    layer: 3
+                                    label: "eee",
+                                    layer: 3,
+                                    children:[]
                                 }
                             ]
                         },
                         {
                             label: "選單3",
                             layer: 2,
-                            nodes: [
+                            children: [
                                 {
-                                    label: "選單3-1",
-                                    layer: 3
+                                    label: "eee",
+                                    layer: 3,
+                                    children:[]
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    label: "第一層",
+                    label: "fff",
                     layer: 1,
-                    nodes: []
+                    children: []
+                },
+                {
+                    label: "ggg",
+                    layer: 1,
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
+                    children: []
                 },
                 {
                     label: "第一層",
                     layer: 1,
-                    nodes: []
-                },
-                {
-                    label: "第一層",
-                    layer: 1,
-                    nodes: []
+                    children: []
                 }
             ]
         };
@@ -154,7 +162,9 @@ export default {
         TreeMenu
     },
     methods: {},
-    mounted: function() {}
+    mounted: function() {
+        console.log(router.router)
+    }
 };
 </script>
 <style lang="scss" scoped>
