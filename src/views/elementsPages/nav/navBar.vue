@@ -31,12 +31,15 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$background-color:#3AB0FF;
+$elements-color:#ffffff;
+$transition-speed:300ms;
 #navBar {
     nav {
         height: 60px;
         width: 100%;
-        background-color: #252636;
-        color: #ccc;
+        background-color: $background-color;
+        color: $elements-color;
         position: relative;
         display: inline-block;
     }
@@ -49,11 +52,11 @@ export default {
         div {
             width: 3rem;
             height: 5px;
-            background-color: #ccc;
+            background-color: $elements-color;
             margin-bottom: 0.4rem;
-            -webkit-transition: all 200ms ease;
-            -moz-transition: all 200ms ease;
-            transition: all 200ms ease;
+            -webkit-transition: all $transition-speed ease;
+            -moz-transition: all $transition-speed ease;
+            transition: all $transition-speed ease;
             position: absolute;
         }
         div:nth-child(1) {
@@ -71,10 +74,10 @@ export default {
             top: 0;
             width: 3rem;
             height: 5px;
-            background-color: #ccc;
-            -webkit-transition: all 200ms ease;
-            -moz-transition: all 200ms ease;
-            transition: all 200ms ease;
+            background-color: $elements-color;
+            -webkit-transition: all $transition-speed ease;
+            -moz-transition: all $transition-speed ease;
+            transition: all $transition-speed ease;
         }
         div:nth-child(3) {
             right: 1rem;
@@ -85,11 +88,11 @@ export default {
         div {
             width: 3rem;
             height: 5px;
-            background-color: #ccc;
+            background-color: $elements-color;
             margin-bottom: 0.3rem;
-            -webkit-transition: all 200ms ease;
-            -moz-transition: all 200ms ease;
-            transition: all 200ms ease;
+            -webkit-transition: all $transition-speed ease;
+            -moz-transition: all $transition-speed ease;
+            transition: all $transition-speed ease;
             position: absolute;
         }
         div:nth-child(1),

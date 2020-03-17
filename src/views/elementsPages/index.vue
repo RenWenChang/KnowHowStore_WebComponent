@@ -1,10 +1,10 @@
 <template>
     <div id="wrap">
+        <FrameSideBar class="sideBar" :class="[sideMenuOpen?'':'sideBar_closed']"></FrameSideBar>
         <section class="contents" :class="[sideMenuOpen?'':'contents_closed']">
             <FrameNavBar></FrameNavBar>
             <Main></Main>
         </section>
-        <FrameSideBar class="sideBar" :class="[sideMenuOpen?'':'sideBar_closed']"></FrameSideBar>
     </div>
 </template>
 <script>
@@ -14,56 +14,93 @@ import Main from "@/views/elementsPages/frame/main.vue";
 import { mapGetters } from "vuex";
 export default {
     data() {
-        return {};
+        return {
+            windowwidth: window.innerWidth
+        };
     },
     components: {
         FrameNavBar,
         FrameSideBar,
         Main
     },
-    methods: {},
-    mounted: function() {},
+    methods: {
+        windowwidth_init: function() {
+            this.$nextTick(() => {
+                setTimeout(() => {
+                    this.windowwidth = window.innerWidth;
+                });
+            });
+        },
+        isMobile: function() {
+            try {
+                document.createEvent("TouchEvent");
+                return true;
+            } catch (e) {
+                return false;
+            }
+        },
+        eventHandleByDevice(add, method) {
+            const vm = this;
+            let eventType = function() {
+                return vm.isMobile() ? "orientationchange" : "resize";
+            };
+            let listenerType = function() {
+                return add
+                    ? window.addEventListener
+                    : window.removeEventListener;
+            };
+            listenerType()(eventType(), method);
+        }
+    },
+    mounted: function() {
+        this.eventHandleByDevice(true, this.windowwidth_init);
+    },
+    destroyed() {
+        this.eventHandleByDevice(false, this.windowwidth_init);
+    },
     computed: {
         ...mapGetters(["sideMenuOpen"])
     }
 };
 </script>
 <style lang="scss" scoped>
-$asideWidth:290px;
-
+$asideWidth: 290px;
+$contentWidth: calc(100% - 290px);
+$aslidebar: 15px;
+$background-color-aside: #24282c;
+$transition-speed:300ms;
 #wrap {
     width: 100%;
     height: 100vh;
+    display: flex;
 }
 .sideBar {
     width: $asideWidth;
     height: 100%;
-    background-color: #f1f1f1;
+    background-color: $background-color-aside;
     color: rgb(0, 0, 0);
     -webkit-transform: translateX(0);
     transform: translateX(0);
-    -webkit-transition: all 0.3s ease-in-out;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    position: fixed;
-    top: 0;
-    left: 0;
+    -webkit-transition: all $transition-speed ease-in-out;
+    -webkit-transition: $transition-speed;
+    transition: $transition-speed;
+    position: relative;
+    overflow: hidden;
 }
 
 .sideBar_closed {
     width: 0;
 }
 .contents {
-    -webkit-transition: all 0.3s ease-in-out;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    width: 100%;
+    -webkit-transition: all $transition-speed ease-in-out;
+    -webkit-transition: $transition-speed;
+    transition: $transition-speed;
+    width: $contentWidth;
     height: 100%;
-    margin-left: $asideWidth;
     background-color: #ffffff;
     color: #ccc;
 }
 .contents_closed {
-    margin-left: 0;
+    width: 100%;
 }
 </style>
