@@ -15,7 +15,7 @@
     </aside>
 </template>
 <script>
-import router from '@/router.js'
+import router from "@/router.js";
 import TreeMenu from "./recursiveMenu.vue";
 export default {
     data() {
@@ -23,39 +23,31 @@ export default {
             TreeMenuLise: [
                 {
                     label: "第一層",
-                    layer: 1,
                     children: [
                         {
                             label: "選單1",
-                            layer: 2,
                             children: [
                                 {
                                     label: "aaa",
-                                    layer: 3,
-                                    children:[]
+                                    children: []
                                 }
                             ]
                         },
                         {
                             label: "選單2",
-                            layer: 2,
                             children: [
                                 {
                                     label: "bbb",
-                                    layer: 3,
-                                    children:[]
-                                    
+                                    children: []
                                 }
                             ]
                         },
                         {
                             label: "選單3",
-                            layer: 2,
                             children: [
                                 {
                                     label: "ccc",
-                                    layer: 3,
-                                    children:[]
+                                    children: []
                                 }
                             ]
                         }
@@ -63,38 +55,33 @@ export default {
                 },
                 {
                     label: "第二層",
-                    layer: 1,
+
                     children: [
                         {
                             label: "選單1",
-                            layer: 2,
                             children: [
                                 {
                                     label: "ddd",
                                     layer: 3,
-                                    children:[]
+                                    children: []
                                 }
                             ]
                         },
                         {
                             label: "選單2",
-                            layer: 2,
                             children: [
                                 {
                                     label: "eee",
-                                    layer: 3,
-                                    children:[]
+                                    children: []
                                 }
                             ]
                         },
                         {
                             label: "選單3",
-                            layer: 2,
                             children: [
                                 {
                                     label: "eee",
-                                    layer: 3,
-                                    children:[]
+                                    children: []
                                 }
                             ]
                         }
@@ -102,57 +89,46 @@ export default {
                 },
                 {
                     label: "fff",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "ggg",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 },
                 {
                     label: "第一層",
-                    layer: 1,
                     children: []
                 }
             ]
@@ -163,7 +139,7 @@ export default {
     },
     methods: {},
     mounted: function() {
-        console.log(router.router)
+        console.log(router.router);
     }
 };
 </script>

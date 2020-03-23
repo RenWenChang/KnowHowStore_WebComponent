@@ -5,11 +5,20 @@ import Router from 'vue-router'
 
 
 // Fetch routes
-let modules = []
-const requireModule = require.context('./views', true, /\/route.js$/)
-requireModule.keys().forEach(fileName => {
-    const targetModule = requireModule(fileName)
-    modules.push(targetModule.default)
+
+let newRouter =[];
+const requireModulefolder = require.context('./views/elementsPages/view', true, /\/$/)
+requireModulefolder.keys().forEach(fileName => {
+  let component =fileName;
+  let name =fileName.substring(0,fileName.length-1);
+  let nameStart=name.lastIndexOf('/');
+  name=name.substring(nameStart+1,fileName.length);
+  let route={};
+  route.name=name;
+  route.path=name;
+  route.component= () => import(/* webpackChunkName: "landingPage" */ `${'./views/elementsPages/view'}/${name}/index.vue`);
+  newRouter.push(route)
+  console.log(component);
 })
 
 
@@ -29,96 +38,6 @@ const router = new Router({
       path: '*',
       redirect: { name: 'elementsLanding' },
     },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      redirect: { name: 'landingPage' },
-      component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard.vue'),
-      children: [
-        {
-          path: 'HomePage',
-          name: 'HomePage',
-          component: () => import(/* webpackChunkName: "landingPage" */ './views/HomePage.vue'),
-        },
-        {
-          path: 'landingPage',
-          name: 'landingPage',
-          component: () => import(/* webpackChunkName: "landingPage" */ './views/landingPage/_index.vue'),
-          meta: {
-            title: "第一銀行e-First智能理財"
-          }
-        },
-        {
-          path: 'experience',
-          name: 'experience',
-          component: () => import(/* webpackChunkName: "experience" */ '@/views/experience/index.vue'),
-          meta: {
-            title: "第一銀行e-First智能理財 | WFE"
-          }
-        },
-        {
-          path: 'FAQ',
-          name: 'FAQ',
-          component: () => import(/* webpackChunkName: "FAQ" */ '@/views/FAQ/_index.vue'),
-          meta: {
-            title: "第一銀行e-First智能理財 | 常見問題"
-          }
-        },
-        {
-          path: 'classroom',
-          name: 'classroom',
-          redirect: { name: 'classroomIndex' },
-          component: () => import(/* webpackChunkName: "classroom" */ '@/views/classroom/_index.vue'),
-          children: [
-            {
-              path: '/',
-              name: 'classroomIndex',
-              component: () => import(/* webpackChunkName: "classroomIndex" */ '@/views/classroom/classroomIndex.vue'),
-              meta: {
-                title: "第一銀行e-First智能理財 | 理財訊息"
-              },
-            },
-            {
-              path: ':id',
-              name: 'classroomPage',
-              component: () => import(/* webpackChunkName: "classroomPage" */ '@/views/classroom/classroomPage.vue'),
-            }
-          ]
-        },
-        {
-          path: 'pressuretest',
-          name: 'pressuretest',
-          component: () => import(/* webpackChunkName: "pressuretest" */ './views/pressuretest.vue'),
-          meta: {
-            title: "第一銀行e-First智能理財 | api 測試"
-          }
-        },
-        {
-          path: 'maintain',
-          name: 'maintain',
-          component: () => import(/* webpackChunkName: "maintain" */ './views/maintain.vue'),
-          meta: {
-            title: "第一銀行e-First智能理財 | 系統維護中"
-          }
-        },
-      ]
-    },
-    {
-      path: '/LINE_Login_Landing',
-      name: 'LINE_Login_Landing',
-      component: () => import(/* webpackChunkName: "LINE_Login_Landing" */ './components/LINE_Login_Landing.vue'),
-      meta: {
-        title: "第一銀行e-First智能理財 | LINE傳送試算結果"
-      }
-    },
-    {
-      path: '/Email_Landing',
-      name: 'Email_Landing',
-      component: () => import(/* webpackChunkName: "Email_Landing" */ './components/Email_Landing.vue'),
-      meta: {
-        title: "第一銀行e-First智能理財 | Email傳送試算結果"
-      }
-    },
 
     {
       path: '/elementsLanding',
@@ -128,7 +47,7 @@ const router = new Router({
         title: "elements"
       },
       children: [
-        ...modules,
+        ...newRouter,
       ]
     },
 
@@ -149,5 +68,5 @@ router.beforeEach((to, from, next) => {
   }
 
 });
-router.router=modules;
+router.router=newRouter;
 export default router

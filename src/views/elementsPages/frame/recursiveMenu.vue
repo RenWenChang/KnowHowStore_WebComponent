@@ -1,6 +1,6 @@
 <template>
     <div class="recursiveCell">
-        <div class="label" @click="selectThis($event,node)">{{node.layer}}</div>
+        <div class="label" @click="selectThis($event,node)">{{node.label}}</div>
         <template v-if="open">
             <template v-for="(childNode,index) of node.children">
                 <treeMenu :key="index" :node="childNode"></treeMenu>
@@ -23,7 +23,6 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    layer: 1,
                     label: ""
                 };
             }
