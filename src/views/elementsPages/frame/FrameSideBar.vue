@@ -6,7 +6,7 @@
         <div class="searchBox"></div>
         <div class="menu">
             <TreeMenu
-                v-for="(children, index) in TreeMenuLise"
+                v-for="(children, index) in TreeMenuLise__FuzzySearch"
                 :node="children"
                 :index="index"
                 :key="`${index}`"
@@ -22,113 +22,13 @@ export default {
         return {
             TreeMenuLise: [
                 {
-                    label: "第一層",
-                    children: [
-                        {
-                            label: "選單1",
-                            children: [
-                                {
-                                    label: "aaa",
-                                    children: []
-                                }
-                            ]
-                        },
-                        {
-                            label: "選單2",
-                            children: [
-                                {
-                                    label: "bbb",
-                                    children: []
-                                }
-                            ]
-                        },
-                        {
-                            label: "選單3",
-                            children: [
-                                {
-                                    label: "ccc",
-                                    children: []
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    label: "第二層",
-
-                    children: [
-                        {
-                            label: "選單1",
-                            children: [
-                                {
-                                    label: "ddd",
-                                    layer: 3,
-                                    children: []
-                                }
-                            ]
-                        },
-                        {
-                            label: "選單2",
-                            children: [
-                                {
-                                    label: "eee",
-                                    children: []
-                                }
-                            ]
-                        },
-                        {
-                            label: "選單3",
-                            children: [
-                                {
-                                    label: "eee",
-                                    children: []
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    label: "fff",
+                    name: "第一層",
                     children: []
-                },
+                }
+            ],
+            TreeMenuLise__FuzzySearch: [
                 {
-                    label: "ggg",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
-                    children: []
-                },
-                {
-                    label: "第一層",
+                    name: "第一層",
                     children: []
                 }
             ]
@@ -139,7 +39,8 @@ export default {
     },
     methods: {},
     mounted: function() {
-        console.log(router.router);
+        this.TreeMenuLise = router.router;
+        this.TreeMenuLise__FuzzySearch = router.router;
     }
 };
 </script>

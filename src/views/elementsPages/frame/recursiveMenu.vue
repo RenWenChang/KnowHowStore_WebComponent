@@ -1,6 +1,6 @@
 <template>
     <div class="recursiveCell">
-        <div class="label" @click="selectThis($event,node)">{{node.label}}</div>
+        <div class="label" @click="selectThis($event,node)">{{node.name}}</div>
         <template v-if="open">
             <template v-for="(childNode,index) of node.children">
                 <treeMenu :key="index" :node="childNode"></treeMenu>
@@ -23,7 +23,7 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    label: ""
+                    name: ""
                 };
             }
         },
@@ -39,15 +39,17 @@ export default {
             if (hasNode) {
                 this.open = !this.open;
             } else {
-                if (name !== node.label) {
+                if (name !== node.name) {
                     this.$router.push({
-                        name: node.label
+                        name: node.name
                     });
                 }
             }
         }
     },
-    mounted: function() {}
+    mounted: function() {
+        
+    }
 };
 </script>
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-    <div>aaa</div>
+        <div>slider2</div>
 </template>
 <script>
 

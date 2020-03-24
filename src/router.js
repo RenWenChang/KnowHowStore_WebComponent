@@ -3,22 +3,43 @@ import Router from 'vue-router'
 
 
 
-
+//使用限制 禁止資料夾名稱重複
 // Fetch routes
 
-let newRouter =[];
+let newRouter = [];
 const requireModulefolder = require.context('./views/elementsPages/view', true, /\/$/)
-requireModulefolder.keys().forEach(fileName => {
-  let component =fileName;
-  let name =fileName.substring(0,fileName.length-1);
-  let nameStart=name.lastIndexOf('/');
-  name=name.substring(nameStart+1,fileName.length);
-  let route={};
-  route.name=name;
-  route.path=name;
-  route.component= () => import(/* webpackChunkName: "landingPage" */ `${'./views/elementsPages/view'}/${name}/index.vue`);
-  newRouter.push(route)
-  console.log(component);
+requireModulefolder.keys().forEach(folderRoute => {
+  let name = folderRoute.substring(0, folderRoute.length - 1);
+  let nameStart = name.lastIndexOf('/');
+  name = name.substring(nameStart + 1, folderRoute.length);
+  let route = {
+    name: name,
+    path: name,
+    component: () => import(/* webpackChunkName: "landingPage" */ `${'./views/elementsPages/view'}/${folderRoute.substring(2, folderRoute.length - 1)}/index.vue`),
+    children: [],
+    rout: `${'./views/elementsPages/view'}/${folderRoute.substring(2, folderRoute.length - 1)}/index.vue`
+  };
+  let parentFolderRoute = folderRoute.substring(0, nameStart);
+  let removeDot = parentFolderRoute.substring(1, folderRoute.length);
+  let parentFolder = removeDot.substring(removeDot.lastIndexOf('/') + 1, folderRoute.length);
+
+  if (parentFolder === '') {
+    newRouter.push(route)
+  } else {
+    let findFolder = function (arr) {
+      if (arr) {
+        let parentIndex = arr.findIndex(x => x.name === parentFolder);
+        if (parentIndex!==(-1)) {
+          arr[parentIndex].children.push(route)
+        }else{
+          for (let i = 0; i < arr.length; i++) {
+            findFolder(arr[i].children)
+          }
+        }
+      } 
+    }
+    findFolder(newRouter)
+  }
 })
 
 
@@ -68,5 +89,5 @@ router.beforeEach((to, from, next) => {
   }
 
 });
-router.router=newRouter;
+router.router = newRouter;
 export default router
