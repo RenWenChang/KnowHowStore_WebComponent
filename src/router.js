@@ -37,6 +37,7 @@ const router = new Router({
 
   ]
 })
+
 router.beforeEach((to, from, next) => {
   //設定每頁的 title (by meta title attribute)        
   if (to.meta.title) {
