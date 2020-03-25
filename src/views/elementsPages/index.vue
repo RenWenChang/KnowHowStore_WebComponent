@@ -89,10 +89,16 @@ $transition-speed: 300ms;
     transition: $transition-speed;
     position: relative;
     overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    border-radius: 0;
 }
 
 .sideBar_closed {
     width: 0;
+    border-radius:100% 0 0 100% ;
 }
 .contents {
     -webkit-transition: all $transition-speed ease-in-out;
@@ -111,6 +117,13 @@ $transition-speed: 300ms;
 @media screen and (min-width: 1024px) {
     .contents {
         width: $contentWidth;
+    }
+    .sideBar {
+        position: relative;
+    }
+    .sideBar_closed {
+        width: 0;
+        border-radius: 0;
     }
 }
 .contents_closed {

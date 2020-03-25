@@ -5,6 +5,9 @@
             <div></div>
             <div></div>
         </div>
+        <div class="trademark">
+            <span>UI Elements</span>
+        </div>
     </nav>
 </template>
 <script>
@@ -31,10 +34,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$background-color:#3AB0FF;
-$elements-color:#ffffff;
-$transition-speed:300ms;
+$background-color: #3ab0ff;
+$elements-color: #ffffff;
+$transition-speed: 300ms;
+$asideWidth: 290px;
+
 #navBar {
+    background-color: $background-color;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    position: relative;
+    height: 60px;
+    flex-direction: row-reverse;
     nav {
         height: 60px;
         width: 100%;
@@ -48,7 +60,6 @@ $transition-speed:300ms;
         position: relative;
         display: inline-block;
         width: 5rem;
-        height: 100%;
         div {
             width: 3rem;
             height: 5px;
@@ -105,6 +116,25 @@ $transition-speed:300ms;
         }
         div:nth-child(2):after {
             transform: rotate(90deg);
+        }
+    }
+
+    .trademark {
+        height: 60px;
+        line-height: 60px;
+        width: $asideWidth;
+        color: $elements-color;
+        font-size: 26px;
+        font-weight: 600;
+        padding-left: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #navBar {
+        flex-direction: row;
+        .trademark {
+            display: none;
         }
     }
 }
