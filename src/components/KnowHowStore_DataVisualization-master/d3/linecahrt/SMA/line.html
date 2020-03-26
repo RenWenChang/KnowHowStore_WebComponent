@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>linetest</title>
+    <script src="./d3.js"></script>
+    <script type="text/javascript" src="./data.js"></script>
+    <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <style>
+        #ChartContainer {
+            width: 100%;
+        }
+
+        svg {
+            position: relative;
+        }
+
+        .zoom {
+            cursor: pointer;
+            fill: none;
+            pointer-events: all;
+        }
+
+        .brush .extent {
+            stroke: #FFF;
+        }
+
+        .area {
+            fill: #79eaa6;
+            stroke-width: 1px;
+            /* 超出範圍隱藏 */
+            clip-path: url(#clip);
+            /* stroke: #1CB057; */
+            opacity: 0.3;
+        }
+
+        .line {
+            fill: transparent;
+            stroke-width: 1px;
+            /* 超出範圍隱藏 */
+            clip-path: url(#clip);
+            stroke: #1CB057;
+            opacity: 0.7;
+        }
+
+        .point {
+            fill: #fff;
+            stroke: #1CB057;
+            stroke-width: 1px;
+            z-index: 1;
+            /* 超出範圍隱藏 */
+            clip-path: url(#clip);
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #BBB;
+            opacity: 0.3;
+        }
+
+        .brush .extent {
+            stroke: #fff;
+            fill-opacity: .125;
+            position: relative;
+        }
+
+        .brush_handle {
+            stroke: #000;
+            stroke-width: 1;
+            opacity: 0.5;
+        }
+
+        .tooltip {
+            position: absolute;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+        }
+
+        .tooltip .desText {
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 10px 10px 10px;
+        }
+
+        .focusLine {
+            stroke: #000;
+            stroke-width: 1;
+            opacity: 0.5;
+            position: absolute;
+        }
+
+        .hcircle {
+            fill: white;
+            pointer-events: none;
+            stroke: #dbdbdb;
+            stroke-width: 1px;
+        }
+
+        .handle--w {
+            width: 20px;
+            fill: transparent;
+        }
+
+        .handle--e {
+            width: 20px;
+            fill: transparent;
+        }
+
+        .tick text {
+            color: rgb(163, 163, 163);
+
+        }
+
+        .wInfo {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            border: 1px black solid;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .handleText {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chartContainer" id="ChartContainer"></div>
+    <div class="tooltip">
+        <div class="desText SQL_DateTime"></div>
+        <div class="desText SQL_Value"></div>
+    </div>
+</body>
+<script>
+    let lineInitStatus = true;//init 動畫 用閉包儲存是否經過初始化狀態 是的話不再執行動畫
+    let pointInitStatus = true;//init 動畫 用閉包儲存是否經過初始化狀態 是的話不再執行動畫
+
+    let draw = () => {
+        //////////////////////*版面配置*/////////////////////////////
+        let container = d3.select('#ChartContainer');
+        let svg = container.append('svg')
+            .attr("id", "svg")
+            .attr('width', document.querySelector("#ChartContainer").offsetWidth)
+            .attr('height', 500);
+
+        let padding = { top: 20, right: 100, bottom: 110, left: 100 },
+            padding2 = { top: 430, right: 100, bottom: 30, left: 100 },
+            width = +svg.attr("width") - padding.left - padding.right,
+            height = +svg.attr("height") - padding.top - padding.bottom,
+            height2 = +svg.attr("height") - padding2.top - padding2.bottom;
+
+        let focus = svg.append("g")
+            .attr("class", "focus")
+            .attr("transform", "translate(" + padding.left + "," + padding.top + ")"),
+
+            context = svg.append("g")
+                .attr("class", "context")
+                .attr("transform", "translate(" + padding2.left + "," + padding2.top + ")");
+
+
+        //////////////////////*定義超出範圍隱藏的邊界*/////////////////////////////
+        focus.append("defs").append("clipPath")
+            .attr("id", "clip")
+            .append("rect")
+            .attr("width", width)
+            .attr("height", height);
+
+
+
+        //////////////////////*定義全域比例尺 定義坐標軸*/////////////////////////////
+        let x = d3.scaleTime().range([0, width]),
+            x2 = d3.scaleTime().range([0, width]),
+            y = d3.scaleLinear().range([height, 0]),
+            y2 = d3.scaleLinear().range([height2, 0]);
+
+        let xAxis = d3.axisBottom(x).tickPadding(6),
+            xAxis2 = d3.axisBottom(x2).tickPadding(6),
+            yAxis = d3.axisLeft(y).tickSizeInner(- (width))
+
+        x.domain(d3.extent(JSONdata.Point, (d) => { return new Date(d.SQL_DateTime); }));
+        y.domain([
+            d3.min(JSONdata.Point, (d) => {
+                return d.SQL_Value;
+            }) * 0.99
+            ,
+
+            d3.max(JSONdata.Point, (d) => {
+                return d.SQL_Value;
+            }) * 1.01
+        ]);
+
+        x2.domain(x.domain());
+        y2.domain(y.domain());
+
+
+        focus.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+        focus.append("g")
+            .attr("class", "axis axis--y")
+            .call(yAxis);
+
+        context.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + height2 + ")")
+            .call(xAxis2);
+
+        //////////////////////*Draw Main Area & Line*/////////////////////////////
+
+        let min = d3.min(JSONdata.Point, (d) => { return d.SQL_Value; }) * 0.99;
+        let area = d3.area().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d) => { return x(new Date(d.SQL_DateTime)); })
+            .y0((d) => { return y(min); })
+            .y1((d) => { return y(d.SQL_Value); })
+
+        let area2 = d3.area().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d) => { return x2(new Date(d.SQL_DateTime)); })
+            .y0((d) => { return y2(min); })
+            .y1((d) => { return y2(d.SQL_Value); });
+        let line = d3.line().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d) => { return x(new Date(d.SQL_DateTime)); })
+            .y((d) => { return y(d.SQL_Value); })
+
+        let line2 = d3.line().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d) => { return x2(new Date(d.SQL_DateTime)); })
+            .y((d) => { return y2(d.SQL_Value); });
+        let lineInitl = d3.line().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d) => { return x(new Date(d.SQL_DateTime)); })
+            .y((d) => { return y(min); });
+        let lineInit = d3.area().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d) => { return x(new Date(d.SQL_DateTime)); })
+            .y0((d) => { return y(min); })
+            .y1((d) => { return y(min); })
+        context.append("path")
+            .datum(JSONdata.Point)
+            .attr("class", "area")
+            .attr("d", area2);
+
+        focus.append("path")
+            .datum(JSONdata.Point)
+            .attr("class", "area")
+        context.append("path")
+            .datum(JSONdata.Point)
+            .attr("class", "line")
+            .attr("d", line2);
+
+        focus.append("path")
+            .datum(JSONdata.Point)
+            .attr("class", "line")
+        focus.selectAll('line')
+            .style('stroke', '#BBB')
+            .style('stroke-width', '1px')
+            .style('shape-rendering', 'crispEdges')
+            .style('opacity', '0.3');
+
+
+
+
+        //////////////////////*VLine */////////////////////////////
+        //要在drawpoint 前 否則 vLine 會覆蓋 point
+        let vLine = focus.append("line")
+            .attr("class", "focusLine");
+
+
+        let drawVLine = () => {
+            let m = d3.mouse(d3.select('.zoom').node());
+            vLine
+                .attr("x1", m[0])
+                .attr("y1", 0)
+                .attr("y2", height)
+                .attr("x2", m[0])
+                .style("display", null);
+        },
+
+            VLineTouchPoint = () => {
+                let m = d3.mouse(d3.select('.zoom').node());
+                let mouseAt_X = m[0];
+                let p_nodeList = d3.selectAll('.point')._groups[0];//node list 
+                let p = d3.selectAll(".point");//attr need D3 methods
+                let index = 0;
+                let arr = [];
+                //取游標和所有點的距離
+                Array.from(p_nodeList).forEach((item, i) => {
+                    const pointX = Math.round(p_nodeList[i].cx.animVal.value);
+                    const closed = Math.abs(pointX - mouseAt_X);
+                    arr.push(closed);
+                })
+                //取最近點索引
+                arr.forEach((item, i) => {
+                    if (item === Math.min(...arr)) {
+                        index = i;
+                    }
+                })
+                let colsedPoint = Math.round(p_nodeList[index].cx.animVal.value);
+                let roundColsedPointY = Math.round(p_nodeList[index].cy.animVal.value);
+                let t = d3.transition()
+                    .duration(40)
+                    .ease(d3.easeLinear);
+                let t0 = d3.transition()
+                    .duration(0)
+                    .ease(d3.easeLinear);
+                //是否離此點夠近
+                if ((colsedPoint - 2) < mouseAt_X
+                    && mouseAt_X < (colsedPoint + 2)
+                ) {
+                    let tooltip = d3.select(".tooltip");
+                    let ChartContainer = document.querySelector("#ChartContainer");
+                    tooltip
+                        .style("top", (roundColsedPointY) + "px")
+                        .style("display", "block");
+                    if ((ChartContainer.offsetWidth / 2) > mouseAt_X) {
+                        tooltip.style("left", (mouseAt_X + 200) + "px");
+                    } else {
+                        tooltip.style("left", (mouseAt_X - 200) + "px");
+                    }
+
+                    p.filter(`:nth-child(${index + 1})`)
+                        .transition(t)
+                        .attr("r", 6);
+
+                    d3.select(".SQL_DateTime").text("時間 :" + p.data()[index].SQL_DateTime);
+                    d3.select(".SQL_Value").text("值 :" + p.data()[index].SQL_Value);
+                } else {
+                    p.transition(t0).attr("r", 2);
+                    d3.select(".tooltip")
+                        .style("display", null);
+                }
+            },
+            // 事件定義
+            mousemove = () => {
+                drawVLine();
+                VLineTouchPoint();
+                removeHandleText();
+            },
+            mouseleave = () => {
+                let t = d3.transition()
+                    .duration(0)
+                    .ease(d3.easeLinear);
+                let p = focus.selectAll(".point");
+                p.transition(t).attr("r", 2);
+                vLine.style("display", "none");
+                d3.select(".tooltip")
+                    .style("display", null);
+            }
+
+
+
+        //////////////////////*Draw Point*/////////////////////////////
+        focus.append("g").attr("class", "point_g");
+        let draw_point = () => {
+            if (pointInitStatus) {//防堵resize再度觸發動畫
+                pointInitStatus = false;
+                //暫時無法用Arrow function
+                function arcFunction(d, i) {
+                    d3.select(this)
+                        .transition()
+                        .duration(100)
+                        .attr("r", 2);
+                }
+                focus.select(".point_g")
+                    .selectAll(".circle")
+                    .data(JSONdata.Point)
+                    .enter()
+                    .append("circle")
+                    .attr('cx', (d) => { return x(new Date(d.SQL_DateTime)); })
+                    .attr("cy", (d) => { return y(d.SQL_Value); })
+                    .attr('r', 0)
+                    .attr("class", "point")
+                    .each(arcFunction);
+
+            } else {
+                focus.select(".point_g")
+                    .selectAll(".circle")
+                    .data(JSONdata.Point)
+                    .enter()
+                    .append("circle")
+                    .attr('cx', (d) => { return x(new Date(d.SQL_DateTime)); })
+                    .attr("cy", (d) => { return y(d.SQL_Value); })
+                    .attr('r', 2)
+                    .attr("class", "point")
+            }
+
+        }
+
+
+
+        //////////////////////*定義 Brush and Zoom 以及所需函式*/////////////////////////////
+        let reposition_point = () => {
+            focus.selectAll(".point")
+                .attr('cx', (d) => { return x(new Date(d.SQL_DateTime)); })
+                .attr('cy', (d) => { return y(d.SQL_Value); })
+        }
+        let displayHandlerInfo = () => {
+            let selection_x0 = document.querySelector(".selection").x.animVal.value;
+            let selection_x1 = document.querySelector(".selection").width.animVal.value + selection_x0;
+            let handle_w = document.querySelector(".handle--w").x.animVal.value;
+            let handle_e = document.querySelector(".handle--e").x.animVal.value;
+            let wt = x.invert(handle_w);
+            let et = x.invert(handle_e);
+            let months = "一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月".split(",");
+            let weekdays = "星期日,星期一,星期二,星期三,星期四,星期五,星期六".split(",");
+            context.append("text")
+                .text(months[wt.getMonth()])
+                .attr("x", handle_w)
+                .attr("y", height2 / 2)
+                .attr("dx", -35)
+                .attr("dy", 3)
+                .attr("class", "handleText");
+            context.append("text")
+                .text(months[et.getMonth()])
+                .attr("x", handle_e)
+                .attr("y", height2 / 2)
+                .attr("dx", 20)
+                .attr("dy", 3)
+                .attr("class", "handleText");
+        },
+            drawBrushHandler = () => {//css設定穿透
+                let handle_w = document.querySelector(".handle--w").x.animVal.value;
+                let handle_e = document.querySelector(".handle--e").x.animVal.value;
+                let selection_x0 = document.querySelector(".selection").x.animVal.value;
+                let selection_x1 = document.querySelector(".selection").width.animVal.value + selection_x0;
+                d3.select(".handle--w")
+                    .attr("x", handle_w - 2 + "px").on("mouseenter", displayHandlerInfo)
+                    .on("mouseleave",
+                        removeHandleText);
+                d3.select(".handle--e")
+                    .attr("x", handle_e - 2 + "px").on("mouseenter", displayHandlerInfo)
+                    .on("mouseleave",
+                        removeHandleText)
+                context.append("circle")
+                    .attr("class", "hcircle circle--w ")
+                    .attr("cy", height2 / 2)
+                    .attr("cx", selection_x0)
+                    .attr("r", 10)
+
+                context.append("circle")
+                    .attr("class", "hcircle circle--e ")
+                    .attr("cy", height2 / 2)
+                    .attr("cx", selection_x1)
+                    .attr("r", 10)
+            },
+            removeHandleText = () => { d3.selectAll(".handleText").remove() },
+            removeHcircle = () => { d3.selectAll(".hcircle").remove() },
+            brushHandle = () => {
+                removeHcircle();//移除上次移動生成的brush圖示
+                removeHandleText();//移除上次移動生成的brush提示字串標籤
+                drawBrushHandler();//生成brush把手
+                displayHandlerInfo();//顯示brush把手字
+            }
+
+        //zoomed
+
+        let zoomed = () => {
+            if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return;
+            let t = d3.event.transform;
+            x.domain(t.rescaleX(x2).domain());
+            if (lineInitStatus) {//防堵resize再度觸發動畫
+                focus.select(".area")
+                    .attr("d", lineInit)
+                    .transition()
+                    .duration(500)
+                    .attr("d", area)
+                focus.select(".line")
+                    .attr("d", lineInitl)
+                    .transition()
+                    .duration(500)
+                    .attr("d", line)
+                let throttle = (func, wait) => {
+                    let lastTime = null　// 為了避免每次呼叫lastTime都被清空，利用js的閉包返回一個function確保不生命全域性變數也可以
+                    return () => {
+                        let now = new Date()
+                        // 如果上次執行的時間和這次觸發的時間大於一個執行週期，則執行
+                        if (now - lastTime - wait > 0) {
+                            func()
+                            lastTime = now
+                        }
+                    }
+                }
+                // 由於閉包的存在，呼叫會不一樣
+                let throttleRun = throttle(() => {
+                    lineInitStatus = false;
+                    draw_point();
+                    setHover();
+                }, 1000);
+                setTimeout(throttleRun, 1000)
+            } else {
+                focus.select(".area").attr("d", area);//修正line
+                focus.select(".line").attr("d", line);//修正line
+                focus.select(".axis--x").call(xAxis);//修正x軸
+                reposition_point();//修正點的位置
+                removeHandleText();//移除上次移動生成的brush提示字串標籤
+                removeHcircle();//移除brush把手
+
+                context.select(".brush")
+                    .call(brush.move, x2.range().map(t.invertX, t));
+                drawBrushHandler();//生成brush把手
+            }
+        }
+
+        //brushed
+        let brushed = () => {
+            if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return;
+            let s = d3.event.selection || x2.range();
+            if (!lineInitStatus) {//防堵resize再度觸發動畫
+                x.domain(s.map(x2.invert, x2));
+                focus.select(".area").attr("d", area);;//修正line
+                focus.select(".line").attr("d", line);;//修正line
+                focus.select(".axis--x").call(xAxis);;//修正x軸
+                reposition_point();//修正點的位置
+                brushHandle();//更新把手
+                // s[0] brush 頭部座標
+                // s[1] brush 尾端座標
+                //與zoom連動
+                svg.select(".zoom")
+                    .call(zoom.transform, d3.zoomIdentity//更改zoom滾動的座標
+                        .scale(width / (s[1] - s[0]))//更改當前倍率
+                        .translate(-s[0], 0));//y軸不動 x軸跟隨brush移動
+            } else {
+                brushHandle();//更新把手
+            }
+        }
+        let brush = d3.brushX()
+            .extent([[0, 0], [width, height2]])
+            .on("brush end", brushed);
+
+        let zoom = d3.zoom()
+            .scaleExtent([1, 10])
+            .translateExtent([[0, 0], [width, height]])
+            .extent([[0, 0], [width, height]])
+            .on("zoom", zoomed);
+        context.append("g")
+            .attr("class", "brush")
+            .call(brush)
+            .call(brush.move, [0, x.range()[1] / 2]);//預設位置zoom倍率初始化
+
+        svg.append("rect")
+            .attr("class", "zoom")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+            .call(zoom)
+            .call(zoom.transform, d3.zoomIdentity.translate(0, 0).scale(2.5))//預設位置初始化
+
+
+        //////////////////////*初始化事件掛載*/////////////////////////////
+
+        let setHover = () => {
+            d3.select(".zoom")
+                .on('mousemove', mousemove)
+                .on("mouseleave", mouseleave)
+        }
+        if (!lineInitStatus) {
+            draw_point();
+            setHover();
+        }
+        d3.select(".selection")
+            .on("mouseenter", displayHandlerInfo)
+            .on("mouseleave", removeHandleText);
+        svg.on("mouseleave", removeHandleText)
+
+
+    }
+
+    //////////////////////*Window Resize*/////////////////////////////
+    window.onresize = () => {
+        d3.select("#svg").remove();//重
+        draw();//畫
+    }
+    //////////////////////*Init*/////////////////////////////
+    draw();
+</script>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="820" height="650" style="position: absolute; left: 0; top: 0; border: solid 8px #000; background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Street_intersection_diagram.svg/531px-Street_intersection_diagram.svg.png')">
+
+</body>
+<style>
+
+
+</style>
+<script>
+ canvas = document.getElementById('canvas');
+  c = canvas.getContext('2d');
+  c.clear = function() {this.clearRect(0,0,1500,1000);console.log(this)};
+  function wait(fn) {window.setTimeout(fn, 250); }
+  function repeat(fn) {
+    if (window.requestAnimationFrame) {
+      var advance = function() {fn(); requestAnimationFrame(advance);};
+      requestAnimationFrame(advance);
+    } else window.setInterval(fn, 50);
+  }
+  var dx = 0, dy = 0, mousex = 0, mousey=0, mouseclicks = 0;
+  document.onkeydown = function(e) {
+  var key = e.keyCode;
+  if (key == 37) dx=-4; else if (key == 38) dy=-4; else if (key == 39) dx=4; else if (key == 40) dy=4; else return true; 
+    return false;
+  };
+  document.onkeyup = function(e) {
+  var key = e.keyCode; if (key == 37 || key == 39) dx=0; else if (key == 38 || key == 40) dy=0;else return true; 
+    return false;
+  };
+  canvas.onmousemove = function(e) {
+   var rect = canvas.getBoundingClientRect(); mousex = e.clientX - rect.left; mousey = e.clientY - rect.top;
+  };
+  canvas.onmousedown = function(e) {mouseclicks++;};
+    a = new Image();
+	a.src = 'http://o.ooli.ca/car_top.png';
+	
+	wait(function(){
+	
+	x = 180;
+	y = 104;
+	angle = 0;
+	repeat(function() {
+		
+	angle = angle + dx;
+	x = x - dy * Math.cos(angle * Math.PI / 180);
+	y = y - dy * Math.sin(angle * Math.PI / 180);
+	
+	c.clear();
+	c.translate(x, y);
+	c.rotate(angle * Math.PI / 180);
+	c.translate(-37, -19);
+	c.drawImage(a, 0, 0);
+	
+	c.setTransform(0.8, 0, 0, 0.8, 0, 0); //reset
+	
+	});
+	});
+
+
+</script>
+</html>

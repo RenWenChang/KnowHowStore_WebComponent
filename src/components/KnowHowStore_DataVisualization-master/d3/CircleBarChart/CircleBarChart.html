@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chart test</title>
+    <script src="./d3.js"></script>
+    <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #eee;
+            font-family: "Helvetica Neue";
+            font-weight: 100;
+        }
+    </style>
+</head>
+
+<body>
+</body>
+
+<script>
+    let width = 500;
+    let height = 500;
+    let twoPi = 2 * Math.PI;
+    let formatPercent = d3.format(".0%");
+    let curvePercent = [.65, .54, .50, .33];
+
+    // Colours for curves
+    let colours = d3.scaleOrdinal(d3.schemeCategory10);
+    let colourValue = function (d, i) { return d; };
+
+    // Arc for paths surrounding the pie chart.
+    let pathArc = d3.arc()
+        .innerRadius(width / 4)//內部半徑
+        .outerRadius(width / 4 + 5)//外部半徑
+        .startAngle(0)//起始角度
+        .cornerRadius(20);//每條邊角
+
+    // Appending SVG to the body
+    let svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    // Curved paths surrounding the pie chart g (groups) container.
+    let curves = svg.append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");//放置畫布中心
+
+    // Appending the curve path endAngle to show percentage of data[curvePercent]
+    curves.selectAll("path")
+        .data(curvePercent)
+        .enter().append("path")
+        .each(arcFunction)
+        .style("fill", function (d) { return colours(colourValue(d)); });
+
+    // Function called for each path appended to increase scale and iterate.
+    function arcFunction(d, i) {
+        return d3.select(this)
+            .transition()
+            .ease(d3.easeBounce)
+            .duration(1200)
+            .attr("d", pathArc.endAngle(twoPi * curvePercent[i]))
+            .attr("transform", "scale(1." + i + ")");
+    }
+</script>
+
+</html>

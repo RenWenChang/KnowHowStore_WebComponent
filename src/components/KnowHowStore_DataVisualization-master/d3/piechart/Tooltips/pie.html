@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scatter test</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <style>
+        * {
+            color: #333;
+        }
+
+        body {
+            background: #fefefe;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+        }
+
+        h3 {
+            font-family: 'Monoton';
+            word-spacing: 10px;
+            color: #666;
+            font-weight: 300;
+            font-size: 27px;
+            margin: 30px auto 50px auto;
+            line-height: 1.3;
+            border-bottom: solid 1px #999;
+        }
+
+        span {
+            font-weight: 500;
+        }
+
+        p,
+        span {
+            color: #666;
+            font-family: 'Source Sans Pro';
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .filter {
+            width: 0;
+            height: 0;
+        }
+
+        #chart {
+            width: 100%;
+        }
+
+        .colorBox {
+            width: 30px;
+            height: 20px;
+            vertical-align: bottom;
+            border: none;
+            border-radius: 3px;
+            display: inline-block;
+            margin-right: 10px;
+            background: #eee;
+            border: solid 1px #fff;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2);
+        }
+
+
+
+        .canabinoids {
+            background: #51adcf;
+        }
+
+        .omega {
+            background: #0278ae;
+        }
+
+        .vitamin {
+            background: #f8e71c;
+        }
+
+        .fatty-acids {
+            background: #dcfea1;
+        }
+
+        .chlorophyll {
+            background: #a5ecd7;
+        }
+
+        .others {
+            background: #f9723e;
+        }
+
+        path {
+            stroke: #fefefe;
+            /* 白邊 */
+            stroke-width: 2px;
+        }
+
+        .col-xs-5,
+        .col-xs-12,
+        .col-xs-7 {
+            padding: 0;
+            margin-bottom: 15px;
+        }
+
+        .myTooltip {
+            -webkit-transition: 100ms all ease;
+            -moz-transition: 100ms all ease;
+            -o-transition: 100ms all ease;
+            -ms-transition: 100ms all ease;
+            transition: 100ms all ease;
+            visibility: hidden;
+            z-index: 9999;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .tooltipContent {
+            text-align: center;
+            display: block;
+            width: 125px;
+            background: #555;
+            color: #fff;
+            padding: 10px;
+            line-height: 1;
+            font-size: 14px;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .tooltipContent::after {
+            content: '';
+            border-right: solid 0px transparent;
+            border-left: solid 10px transparent;
+            border-top: solid 10px #555;
+            position: absolute;
+            bottom: -6px;
+            right: 0;
+        }
+
+        @media screen and (max-width: 500px) {
+
+            p,
+            span {
+                font-size: 13px;
+            }
+
+            .colorIcon {
+                vertical-align: bottom;
+            }
+
+            .col-xs-5,
+            .col-xs-12,
+            .col-xs-7 {
+                padding: 0;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-size: 20px;
+                margin-top: 50px;
+                margin-bottom: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="container">
+        <h3 class="text-center">基富通投資總覽貨幣分類</h3>
+        <div class="myTooltip"><span class="tooltipContent"></span></div>
+        <div class="info col-xs-5">
+            <div class="col-xs-12">
+                <p><span class="colorBox canabinoids"></span><span class="name">台幣</span></p>
+            </div>
+            <div class="col-xs-12">
+                <p><span class="colorBox omega"></span><span class="name">歐元</span></p>
+            </div>
+            <div class="col-xs-12">
+                <p><span class="colorBox vitamin"></span><span class="name">美金</span></p>
+            </div>
+            <div class="col-xs-12">
+                <p><span class="colorBox fatty-acids"></span><span class="name">日幣</span></p>
+            </div>
+            <div class="col-xs-12">
+                <p><span class="colorBox chlorophyll"></span><span class="name">泰銖</span></p>
+            </div>
+            <div class="col-xs-12">
+                <p><span class="colorBox others"></span><span class="name">其他</span></p>
+            </div>
+        </div>
+
+        <div class="wrapper col-xs-7 text-center">
+            <div id="chart">
+                <svg class="filter">
+                    <defs xmlns="http://www.w3.org/2000/svg">
+                        <filter id="filter" height="140%">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                            <feOffset dx="0" dy="0" result="offsetblur" />
+                            <feComponentTransfer>
+                                <feFuncA type="linear" slope="0.5" />
+                            </feComponentTransfer>
+                            <feMerge>
+                                <feMergeNode />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+
+
+<script>
+    let customData = [{
+        name: "台幣",
+        value: "30"
+    },
+    {
+        name: "美金",
+        value: "16.3"
+    },
+    {
+        name: "人民幣",
+        value: "12"
+    },
+    {
+        name: "日幣",
+        value: "20.3"
+    },
+    {
+        name: "歐元",
+        value: "6.7"
+    },
+    {
+        name: "其他",
+        value: "5.2"
+    }
+    ];
+
+    let colors = ["#51adcf", "#0278ae", "#f8e71c", "#dcfea1", "#a5ecd7", "#f9723e"];
+
+    function draw() {
+
+        let parElemWidth = document.querySelector("#chart")
+            .parentElement.offsetWidth;
+
+        // parElemWidth = parElemWidth > 350 ? 350 : parElemWidth;//寬度大於350就用350否則按照外框比例縮
+
+        let width = parElemWidth;
+
+        let height = width;
+
+        let radius = width / 2;//半徑
+
+        let colorScale = d3.scaleOrdinal()
+            .range(colors);
+
+        let tooltip = d3.select(".myTooltip");
+
+        let arc = d3.arc()//圓弧初始
+            .innerRadius(radius / 2)//小圈半徑
+            .outerRadius(radius - 20);//大圈半徑
+        let arcHover = d3.arc()//圓弧被觸發
+            .innerRadius(radius / 2)
+            .outerRadius(radius - 5);
+        let pie = d3.pie()
+            .sort(null)
+            .value(function (d) {
+                return d.value;
+            });
+        let svg = d3.select("#chart").append("svg")
+            .attr("id", "svg")
+            .attr("width", width)
+            .attr("height", height)
+            .style("filter", "url('#filter')")
+            .append("g")
+            .attr("class", "group")
+            .attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+
+        let g = svg.selectAll(".arc")
+            .data(pie(customData))
+            .enter().append("g")
+            .attr("class", "arc");
+
+        g.append("path")
+            .attr("d", arc)
+            .style("fill", function (d) {
+                return colorScale(d.data.value)
+            })
+            .on("mouseenter", function (d) {
+                var t = d3.transition()
+                    .duration(250)
+                    .ease(d3.easeBounce);
+                d3.select(this).attr("d", arc).transition(t).attr("d", arcHover);
+                d3.select(this).attr("fill", d3.select(this).style("opacity", "0.6"));
+
+                tooltip.html("<span class='tooltipContent'>" + d.data.name + ": " + d.data.value + "mg</span>");
+                return tooltip.style("visibility", "visible").style("opacity", "1");
+            })
+            .on("mousemove", function () {
+                let m = d3.mouse(d3.select('.group').node());
+                console.log(m, [d3.event.pageX, d3.event.pageY]);
+                return tooltip.style("top", (d3.event.pageY - 35) + "px").style("left", (d3.event.pageX) - 125 + "px");
+            })
+            .on("mouseleave", function () {
+                var t = d3.transition()
+                    .duration(0)
+                    .ease(d3.easeLinear);
+                d3.select(this).attr("d", arcHover).transition(t).attr("d", arc);
+                d3.select(this).attr("fill", d3.select(this).style("opacity", "1"));
+                return tooltip.style("visibility", "hidden").style("opacity", "0");
+            });
+    }
+
+
+    window.onresize = () => {
+        d3.select("#svg").remove();
+        draw();
+    };
+    draw();
+</script>
+
+</html>

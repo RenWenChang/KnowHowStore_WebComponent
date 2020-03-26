@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chart test</title>
+    <script src="./d3.js"></script>
+    <script src="./data.js"></script>
+    <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <style>
+        #chart {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .line {
+            /* 超出範圍隱藏 */
+            clip-path: url(#clip);
+            opacity: 0.5;
+        }
+
+        .theline {
+            fill: transparent;
+            stroke-width: 1px;
+            /* 超出範圍隱藏 */
+            clip-path: url(#clip);
+            stroke: rgb(71, 4, 255);
+            /* opacity: 0.5; */
+        }
+
+        .theVline {
+            fill: transparent;
+            stroke-width: 1px;
+            /* 超出範圍隱藏 */
+            clip-path: url(#clip);
+            stroke: #e8e8e8;
+            /* opacity: 0.5; */
+        }
+
+        .firstLayer {
+            fill: transparent;
+            stroke-width: 1px;
+            /* 超出範圍隱藏 */
+            clip-path: url(#clip);
+            stroke: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+    <animateTransform dur="2s" attributeName="transform" repeatCount="indefinite" type="rotate" from="0,80,80"
+        to="360,80,80" />
+</body>
+
+
+
+
+<script>
+    let draw = () => {
+        /////////////////////*堆疊數據整理*//////////////////////
+        let readyGetMax = [];
+        theData.forEach((item, i) => {
+            readyGetMax.push(item["p025"]);
+        })
+
+        let yAxisMax = d3.max(readyGetMax, (d, i) => {
+            return d
+        });
+        /////////////////////*主畫布空間定義*//////////////////////
+
+
+        //使svg大小與外部容器同寬高，可用css控制外部容器以調整大小
+        let svg = d3.select("#chart").append("svg")
+            .attr("class", "chart")
+            .attr('width', document.querySelector("#chart").offsetWidth)
+            .attr('height', document.querySelector("#chart").offsetHeight);
+        //svg內部邊界 多半是預留給顯示座標軸空間使用
+        let padding = {
+            top: 10,
+            left: 50,
+            bottom: 50,
+            right: 10
+        }
+        //包含坐標軸和內部區塊的總長寬
+        let width = +svg.attr("width") - padding.left - padding.right;
+        let height = +svg.attr("height") - padding.top - padding.bottom;
+
+        //包含坐標軸和內部區塊，設置左上角為起點 height 值為底部邊界 width值為右側邊界
+        let focus = svg.append("g")
+            .attr("class", "focus")
+            .attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+        //定義主要展示繪製區超出範圍區隱藏的邊界，將data元素在css套用此id即可 (clip-path: url(#clip);)
+        focus.append("defs").append("clipPath")
+            .attr("id", "clip")
+            .append("rect")
+            .attr("width", width)
+            .attr("height", height);
+
+        //////////////////////*元素顏色*//////////////////////   
+        let colors = ["#51adcf", "#0278ae", "#f8e71c", "#dcfea1", "#a5ecd7", "#f9723e"];
+        let colorScale = d3.scaleOrdinal().range(colors);
+        //////////////////////*座標比例尺*//////////////////////
+
+
+        /*y scale*/
+        // let max = d3.max(
+        //     series[series.length - 1], (d, i) => {
+        //         return d[1]
+        //     });
+        let y = d3
+            .scaleLinear()
+            .domain([0, yAxisMax])
+            .range([height, 0]);
+
+
+
+        /*y axis*/
+        let yAxis = d3.axisLeft(y);
+        /*append y axis*/
+        focus
+            .append("g")
+            .attr("class", "yaxis")
+            .attr("transform", "translate(0,0)")
+            .call(yAxis);
+
+        focus.select(".yaxis")
+            .selectAll(".tick")
+            .select("text")
+            .attr("class", "yTickText");
+
+        /*x scale*/
+        let x = d3
+            .scaleTime()
+            .domain([d3.min(theData, (d) => { return d.month }), new Date(2015, 3, 15)])
+            .range([0, width]);
+
+        /*x axis*/
+        let YtickLength = 12;
+        if (document.querySelector("#chart").offsetWidth < 768) {
+            YtickLength = 3;
+        }
+        let xAxis = d3.axisBottom(x).ticks(YtickLength);
+
+        /*append x axis*/
+        focus.append("g")
+            .attr("class", "xaxis")
+            .attr("transform", "translate(0," + height + ")")
+        focus.select(".xaxis").call(xAxis);
+
+
+        //////////////////////*數據繪圖*//////////////////////
+        /*area*/
+        let area = d3.area().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d, i) => { return x(d.month) })
+            .y0((d, i) => { return y(d["p10"]) })
+            .y1((d, i) => { return (y(d["p90"])) })
+
+        let areaL = d3.area().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d, i) => { return x(d.month) })
+            .y0((d, i) => { return y(d["p025"]) })
+            .y1((d, i) => { return (y(d["p97"])) })
+        let line = d3.line().curve(d3.curveCatmullRom.alpha(0.1))
+            .x((d, i) => { return x(d.month) })
+            .y((d, i) => { return y(d["p50"]) })
+
+        let linkVertical = d3.linkVertical()
+            .x((d, i) => { return x(d.month); })
+            .y((d, i) => { return yAxisMax; });
+        /*append area*/
+        focus.append("path")
+            .datum(theData)
+            .attr("class", "line")
+            .attr("d", areaL)
+            .style("fill", function (d) {
+                return colorScale(0)
+            });
+        focus.append("path")
+            .datum(theData)
+            .attr("class", "line")
+            .attr("d", area)
+            .style("fill", function (d) {
+                return colorScale(1)
+            });
+
+        focus.append("path")
+            .attr("class", "theline")
+            .attr("d", line(theData));
+
+
+
+        focus.selectAll(".theVline")
+            .data(theData)
+            .enter()
+            .append("line").attr("class", "theVline")
+            .each(
+                function theVlineFunction(d, i) {
+                d3.select(this)
+                    .attr("x1", x(d.month))
+                    .attr("y1", 0)
+                    .attr("x2", x(d.month))
+                    .attr("y2", yAxisMax)
+            })
+
+
+
+
+
+
+
+    }
+
+
+    window.onresize = () => {
+        d3.select(".chart").remove();//重
+        draw();//畫
+    }
+    draw();
+</script>
+
+</html>

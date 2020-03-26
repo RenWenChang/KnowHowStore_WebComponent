@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chart test</title>
+    <script src="./d3.js"></script>
+    <script src="./data.js"></script>
+    <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <style>
+        #chart {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+</body>
+
+
+
+
+<script>
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+
+    let draw = () => {
+        //使svg大小與外部容器同寬高，可用css控制外部容器以調整大小
+        let svg = d3.select("#chart").append("svg")
+            .attr("class", "chart")
+            .attr('width', document.querySelector("#chart").offsetWidth)
+            .attr('height', document.querySelector("#chart").offsetHeight);
+        //svg內部邊界 多半是預留給顯示座標軸空間使用
+        let padding = {
+            top: 1,
+            left: 50,
+            bottom: 50,
+            right: 1
+        }
+        //包含坐標軸和內部區塊的總長寬
+        let width = +svg.attr("width") - padding.left - padding.right;
+        let height = +svg.attr("height") - padding.top - padding.bottom;
+
+        //包含坐標軸和內部區塊，設置左上角為起點 height 值為底部邊界 width值為右側邊界
+        let focus = svg.append("g")
+            .attr("class", "focus")
+            .attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+        //定義主要展示繪製區超出範圍區隱藏的邊界，將data元素在css套用此id即可 (clip-path: url(#clip);)
+        focus.append("defs").append("clipPath")
+            .attr("id", "clip")
+            .append("rect")
+            .attr("width", width)
+            .attr("height", height);
+
+
+
+        /*x scale*/
+        let x = d3
+            .scaleTime()
+            .range([0, width]);
+        x.domain(d3.extent(JSONdata.Point, (d) => { return new Date(d.cx); }));
+        /*x axis*/
+        let xAxis = d3.axisBottom(x);
+        /*append x axis*/
+        focus
+            .append("g")
+            .attr("class", "xaxis")
+            .attr("transform", "translate(0," + height + ")")
+
+        /*座標可以加背景*/
+
+        // .append("rect")
+        // .attr("x", 0)
+        // .attr("y", 0)
+        // .attr("width", width)
+        // .attr("height", "10")
+        // .attr("fill", "red")
+
+        focus.select(".xaxis").call(xAxis);
+
+        /*y scale*/
+        let y = d3
+            .scaleLinear()
+            .domain(d3.extent(JSONdata.Point, function (d) { return d.cy; }))
+            .range([height, 0]);
+        /*y axis*/
+        let yAxis = d3.axisLeft(y)
+
+        /*append y axis*/
+
+        focus
+            .append("g")
+            .attr("class", "yaxis")
+            .attr("transform", "translate(0,0)")
+            .call(yAxis);
+        focus.append("g")
+            .attr("class", "point_g");
+        function pointFunction(d, i) {
+            let r = getRandomInt(1, 6);
+            return d3.select(this)
+                .transition()
+                .ease(d3.easeBounce)
+                .duration(1200)
+                .attr('r', r)
+        }
+        function draw_point() {
+            focus.select(".point_g")
+                .selectAll(".circle")
+                .data(JSONdata.Point)
+                .enter()
+                .append("circle")
+                .attr('cx', (d) => { return x(new Date(d.cx)); })
+                .attr('cy', (d) => { return y(d.cy); })
+                .each(pointFunction)
+                .attr("class", "point");
+        }
+        draw_point(pointFunction);
+    }
+    window.onresize = () => {
+        d3.select(".chart").remove();//重
+        draw();//畫
+    }
+    draw();
+</script>
+
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scatter test</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <style>
+        * {
+            color: #333;
+        }
+
+        body {
+            background: #fefefe;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 100%;
+        }
+        .text-center{
+            display: block;
+            width:100%;
+        }
+        .wrapper{
+            width: 80%;
+        }
+        h3 {
+            font-family: 'Monoton';
+            word-spacing: 10px;
+            color: #666;
+            font-weight: 300;
+            font-size: 27px;
+            margin: 30px auto 0px auto;
+            line-height: 1.3;
+            border-bottom: solid 1px #999;
+        }
+
+        span {
+            font-weight: 500;
+        }
+        p{
+            margin: 0.5em 0;
+        }
+        p,
+        span {
+            color: #666;
+            font-family: 'Source Sans Pro';
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .filter {
+            width: 0;
+            height: 0;
+        }
+
+        #chart {
+            width: 100%;
+        }
+
+        .colorBox {
+            width: 30px;
+            height: 20px;
+            vertical-align: bottom;
+            border: none;
+            border-radius: 3px;
+            display: inline-block;
+            margin-right: 10px;
+            background: #eee;
+            border: solid 1px #fff;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2);
+        }
+
+
+        path {
+            stroke: #fefefe;
+            /* 白邊 */
+            stroke-width: 2px;
+        }
+
+        .col-xs-5 {
+            width: 20%;
+        }
+
+        .col-xs-5,
+        .col-xs-12,
+        .col-xs-7 {
+            padding: 0;
+        }
+        .info{
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+        }
+
+
+        .brief_info {
+            font-size: 16px;
+        }
+
+        .dd {
+            width: 100px;
+            height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="container">
+        <h3 class="text-center">基富通投資總覽貨幣分類</h3>
+        <div class="info col-xs-5"></div>
+
+        <div class="wrapper col-xs-7">
+            <div id="chart">
+                <svg class="filter">
+                    <defs xmlns="http://www.w3.org/2000/svg">
+                        <filter id="filter" height="140%">
+                            <!-- result 屬性等同 filter 世界裡的 id -->
+                            <!-- 設定模糊 Alpha通道模式只有黑白，沒有元素色彩 偏移度3 數字越大擴散越大也越模糊 可以輸入2個值 分別 上下/左右-->
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur2" />
+                            <!-- 設定偏移角度-->
+                            <feOffset dx="0" dy="0" result="blur2" />
+                            <!-- 遮罩元素顏色設定 SourceGraphic 模式下較為明顯 SourceAlpha 模式就設定陰影顏色深度-->
+                            <feComponentTransfer result="blur2">
+                                <feFuncA type="linear" slope="0.5"></feFuncA>
+                            </feComponentTransfer>
+                            <!-- 分離調用的遮罩的元素和陰影樣式-->
+                            <feMerge>
+                                <!-- 陰影套用哪些 result(blur2) 指定的效果 -->
+                                <feMergeNode in="blur2" />
+                                <!-- 調用元素本體 -->
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+<script>
+    let Data = [{
+        name: "台幣",
+        value: 30
+    },
+    {
+        name: "美金",
+        value: 16.3
+    },
+    {
+        name: "人民幣",
+        value: 12
+    },
+    {
+        name: "日幣",
+        value: 20.3
+    },
+    {
+        name: "歐元",
+        value: 6.7
+    },
+    {
+        name: "其他",
+        value: 5.2
+    }
+    ];
+
+    let colors = ["#51adcf", "#0278ae", "#f8e71c", "#dcfea1", "#a5ecd7", "#f9723e"];
+    let initStatus = true;//進場狀態 已經執行過進場動畫resize就無需再執行
+    let animation_sec = 550;//進場動畫持續時間 結束後掛載事件的延遲時間
+    function draw() {
+        // parElemWidth = parElemWidth > 350 ? 350 : parElemWidth;//寬度大於350就用350否則按照外框比例縮
+        let width = document.querySelector("#chart").offsetWidth;
+        let height = width;
+        let radius = width / 3;//半徑
+        let colorScale = d3.scaleOrdinal()
+            .range(colors);
+        let arc = d3.arc()//圓弧初始
+            .innerRadius(0)//小圈半徑
+            .outerRadius(radius - 20);//大圈半徑
+        let arcHover = d3.arc()//圓弧被觸發
+            .innerRadius(0)
+            .outerRadius(radius - 5);
+        let pie = d3.pie()
+            .sort(null)
+            .value(function (d) {
+                return d.value;
+            })
+            // .startAngle(0).endAngle(-360);//設定pie總弧度 逆時針
+            .startAngle(0).endAngle(360);//設定pie總弧度 順時針
+        let svg = d3.select("#chart").append("svg")
+            .attr("id", "svg")
+            .attr("width", width)
+            .attr("height", height)
+            .style("filter", "url('#filter')")
+            .append("g")
+            .attr("class", "group")
+            .attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+        let g = svg.selectAll(".arc")
+            .data(pie(Data))
+            .enter().append("g")
+            .attr("class", "arc");
+
+        g.append("path")
+            .attr("d", arc)
+            .style("fill", function (d) {
+                return colorScale(d.data.value)
+            })
+            .each(function () {
+                if (initStatus) {
+                    d3.select(this)
+                        .transition()
+                        .duration(animation_sec)
+                        .attrTween('d', function (d) {
+                            let interpolate = d3.interpolate({ startAngle: 0, endAngle: 0 }, d);
+                            return function (t) {
+                                return arc(interpolate(t));
+                            };
+                        })
+                }
+            })
+
+
+        //////////////////////////// *顯示百分比*//////////////////////////// 
+        let _f1 = d3.format(".2f");
+        g.append("text")
+            .text(function (d) {
+                return _f1(d.value / d3.sum(Data, function (d) { return d.value }) * 100) + "%"
+            })
+            .each(function () {
+                if (initStatus) {
+                    d3.select(this)
+                        .style("opacity", "0")
+                        .transition()
+                        .delay(animation_sec)
+                        .duration(350)
+                        .ease(d3.easeLinear)
+                        .attr("transform", function (d) {
+                            let x = arc.centroid(d)[0] * 1.5 - 20;
+                            let y = arc.centroid(d)[1] * 1.5;
+                            return `translate(${x},${y})`
+                        })
+                        .style("opacity", "1")
+                } else {
+                    d3.select(this)
+                        .attr("transform", function (d) {
+                            let x = arc.centroid(d)[0] * 1.5 - 20;
+                            let y = arc.centroid(d)[1] * 1.5;
+                            return `translate(${x},${y})`
+                        })
+                        .style("opacity", "1")
+                }
+            })
+
+
+        //////////////////////////// *顯示額外標示*//////////////////////////// 
+        let polyline_H = 50;//標示線水平長度
+        g.append("polyline")
+            .attr("stroke", "black").attr("fill", "transparent")
+            .each(function () {
+                let polyline_Ponint_fn = (d) => {
+                    let x1 = arc.centroid(d)[0] * 2;
+                    let y1 = arc.centroid(d)[1] * 2;
+                    let x2 = arc.centroid(d)[0] * 2.2;
+                    let y2 = arc.centroid(d)[1] * 2.2;
+                    if (arc.centroid(d)[0] < 0) {
+                        return `${x1},${y1} ${x2},${y2} ${x2 - polyline_H},${y2}`
+                    } else {
+                        return `${x1},${y1} ${x2},${y2} ${x2 + polyline_H},${y2}`
+                    }
+                }
+                if (initStatus) {
+                    d3.select(this)
+                        .attr("points", (d) => { return `${0},${0} ${0},${0} ${0},${0}` })
+                        .style("opacity", "0")
+                        .transition()
+                        .delay(animation_sec)
+                        .duration(350)
+                        .ease(d3.easeLinear)
+                        .attr("points", polyline_Ponint_fn)
+                        .style("opacity", "1")
+                } else {
+                    d3.select(this)
+                        .attr("points", polyline_Ponint_fn)
+
+                }
+            })
+
+        g.append("text")
+            .text(function (d) { return d.data.name })
+            .attr("class", "brief_info")
+            .each(function () {
+                if (initStatus) {
+                    d3.select(this)
+                        .style("opacity", "0")
+                        .transition()
+                        .delay(animation_sec)
+                        .duration(350)
+                        .ease(d3.easeLinear)
+                        .attr("transform", function (d) {
+                            let words = d.data.name.length;
+                            let x = arc.centroid(d)[0] * 2.2;
+                            let y = arc.centroid(d)[1] * 2.2;
+                            if (arc.centroid(d)[0] < 0) {
+                                x = (x - polyline_H) - words * 16 - 10;
+                            } else { x = (x + polyline_H) + 10; }
+                            return `translate(${x},${y})`
+                        })
+                        .style("opacity", "1")
+
+                } else {
+                    d3.select(this)
+                        .attr("transform", function (d) {
+                            let words = d.data.name.length;
+                            let x = arc.centroid(d)[0] * 2.2;
+                            let y = arc.centroid(d)[1] * 2.2;
+                            if (arc.centroid(d)[0] < 0) {
+                                x = (x - polyline_H) - words * 16 - 10;
+                            } else { x = (x + polyline_H) + 10; }
+                            return `translate(${x},${y})`
+                        })
+                }
+
+
+            })
+
+
+
+        //////////////////////////// *進場結束 事件掛載*////////////////////////////
+        setTimeout(() => {
+            d3.selectAll("path").on("mouseenter", function (d) {
+                var t = d3.transition()
+                    .duration(250)
+                    .ease(d3.easeBounce);
+                d3.select(this).attr("d", arc).transition(t).attr("d", arcHover);
+                d3.select(this).attr("fill", d3.select(this).style("opacity", "0.6"));
+
+            })
+
+            d3.selectAll("path").on("mouseleave", function () {
+                var t = d3.transition()
+                    .duration(0)
+                    .ease(d3.easeLinear);
+                d3.select(this).attr("d", arcHover).transition(t).attr("d", arc);
+                d3.select(this).attr("fill", d3.select(this).style("opacity", "1"));
+            });
+            initStatus = false;//resize 不執行進場動畫
+        }, animation_sec);
+
+        //////////////////////////// *Label 綁定 Data*////////////////////////////
+
+
+
+
+        d3.select(".info")
+            .selectAll(".col-xs-12")
+            .data(pie(Data))
+            .enter()
+            .append("div")
+            .attr("class", "col-xs-12")
+            .append("p")
+            .append("span")
+            .attr("class", "colorBox")
+            .style("background-color", function (d) {
+                return colorScale(d.data.value)
+            })
+        d3.selectAll("p")
+            .append("span")
+            .attr("class", "name")
+            .text((d) => { return d.data.name })
+
+        let dispatch = d3.dispatch("events");
+        dispatch.on("events", (a, b) => {
+            let arc = document.querySelectorAll(".arc")[a];
+            d3.select(arc).style("opacity", "1")
+                .transition()
+                .duration(350)
+                .ease(d3.easeLinear)
+                .style("opacity", "0")
+                .transition()
+                .duration(350)
+                .ease(d3.easeLinear)
+                .style("opacity", "1")
+
+        });
+        d3.selectAll(".col-xs-12").on("click", function (d) {
+            dispatch.apply("events", this, [d.index, d]);
+        });
+
+    }
+
+
+    window.onresize = () => {
+        d3.select("#svg").remove();
+        d3.selectAll(".col-xs-12").remove();
+        draw();
+    };
+    draw();
+
+
+</script>
+
+</html>
