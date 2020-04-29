@@ -62,7 +62,7 @@ aside {
         text-align: center;
     }
     .menu {
-        height: 100%;
+        height: calc(100% - 120px);
         overflow-y: auto;
     }
     .searchBox {
