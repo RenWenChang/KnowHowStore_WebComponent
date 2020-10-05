@@ -5,20 +5,28 @@
         </div>
         <div class="boxWrap">
             <div id="boxTab">
-                <div :class="[tabs?'active':'']" @click="tabsSwitch(true)">
+                <div :class="[tabs ? 'active' : '']" @click="tabsSwitch(true)">
                     <img id="icon__LINE" src="@/assets/img/icon/LINE.svg" alt />
                     <span>LINE</span>
                 </div>
-                <div :class="[!tabs?'active':'']" @click="tabsSwitch(false)">
+                <div
+                    :class="[!tabs ? 'active' : '']"
+                    @click="tabsSwitch(false)"
+                >
                     <span>電子郵件</span>
                 </div>
             </div>
             <div id="byLINE" v-if="tabs">
                 <div>
-                    <span>請依以下步驟加入第一銀行 LINE 官方帳號並綁定個人化服務，我們將傳送試算結果連結給您喔！</span>
+                    <span
+                        >請依以下步驟加入第一銀行 LINE
+                        官方帳號並綁定個人化服務，我們將傳送試算結果連結給您喔！</span
+                    >
                 </div>
                 <div>
-                    <span class="lineStepWord">Step1:加入好友(若已加入且已綁定可省略此步驟)</span>
+                    <span class="lineStepWord"
+                        >Step1:加入好友(若已加入且已綁定可省略此步驟)</span
+                    >
                     <button class="pc-none" @click="addFriend">加入好友</button>
                     <div class="group__img lineStepWord">
                         <img src="@/assets/img/QRcode/mobileToqrcode.svg" />
@@ -34,15 +42,27 @@
                     <button @click="LINE_Login">LINE 登入</button>
                 </div>
                 <div class="promotionMessage">
-                    <span>★ 本行將傳送本次試算結果至您的line帳號！於行銷活動期間還可以參加「三重好禮大方送」之好康活動！活動詳情及個資蒐集告知事項請參閱：</span>
-                    <span class="fakeA" @click="getIntoPromotion">{{PROMOTION_URL_1}}</span>
+                    <span
+                        >★
+                        本行將傳送本次試算結果至您的line帳號！於行銷活動期間還可以參加「三重好禮大方送」之好康活動！活動詳情及個資蒐集告知事項請參閱：</span
+                    >
+                    <span class="fakeA" @click="getIntoPromotion">{{
+                        PROMOTION_URL_1
+                    }}</span>
                 </div>
                 <div class="promotionMessage">
-                    <span>★ 注意：獲得折扣碼之客戶本行將以line傳送訊息；若獲得一卡通贈品之客戶須至line填寫領取分行，本行將核對證件為本人方可領取。</span>
+                    <span
+                        >★
+                        注意：獲得折扣碼之客戶本行將以line傳送訊息；若獲得一卡通贈品之客戶須至line填寫領取分行，本行將核對證件為本人方可領取。</span
+                    >
                 </div>
             </div>
             <div v-else id="byEmail">
-                <label :style="{'border-bottom':!nameOK?'#FF0000 2px solid':''}">
+                <label
+                    :style="{
+                        'border-bottom': !nameOK ? '#FF0000 2px solid' : '',
+                    }"
+                >
                     <span>*</span>
                     <span>您的姓名</span>
                     <input
@@ -50,14 +70,22 @@
                         ref="name"
                         v-model="info.CusName"
                         type="text"
-                        @blur="nameCheck($event,true)"
-                        @focus="nameOK=true"
+                        @blur="nameCheck($event, true)"
+                        @focus="nameOK = true"
                         @keypress="ifPressReturn($event)"
                     />
-                    <span v-if="!nameOK&&(info.CusName==='')" class="errMsg">請輸入 姓名</span>
-                    <span v-if="!nameOK&&(info.CusName!=='')" class="errMsg">姓名 格式錯誤</span>
+                    <span v-if="!nameOK && info.CusName === ''" class="errMsg"
+                        >請輸入 姓名</span
+                    >
+                    <span v-if="!nameOK && info.CusName !== ''" class="errMsg"
+                        >姓名 格式錯誤</span
+                    >
                 </label>
-                <label :style="{'border-bottom':!emailOK?'#FF0000 2px solid':''}">
+                <label
+                    :style="{
+                        'border-bottom': !emailOK ? '#FF0000 2px solid' : '',
+                    }"
+                >
                     <span>*</span>
                     <span>電子郵件</span>
                     <input
@@ -65,15 +93,24 @@
                         type="email"
                         ref="email"
                         v-model="info.MailAddr"
-                        @blur="emailCheck($event,true)"
-                        @focus="emailOK=true"
+                        @blur="emailCheck($event, true)"
+                        @focus="emailOK = true"
                         @keypress="ifPressReturn($event)"
                     />
-                    <span v-if="!emailOK&&(info.MailAddr==='')" class="errMsg">請輸入 Email</span>
-                    <span v-if="!emailOK&&(info.MailAddr!=='')" class="errMsg">Email 格式錯誤</span>
+                    <span v-if="!emailOK && info.MailAddr === ''" class="errMsg"
+                        >請輸入 Email</span
+                    >
+                    <span v-if="!emailOK && info.MailAddr !== ''" class="errMsg"
+                        >Email 格式錯誤</span
+                    >
                 </label>
                 <label
-                    :style="{'border-bottom':!phoneOK&&info.PhoneNo!==''?'#FF0000 2px solid':''}"
+                    :style="{
+                        'border-bottom':
+                            !phoneOK && info.PhoneNo !== ''
+                                ? '#FF0000 2px solid'
+                                : '',
+                    }"
                 >
                     <span>*</span>
                     <span>手機電話</span>
@@ -83,11 +120,13 @@
                         v-model="info.PhoneNo"
                         maxlength="20"
                         type="number"
-                        @blur="phoneCheck($event,false)"
-                        @focus="phoneOK=true"
+                        @blur="phoneCheck($event, false)"
+                        @focus="phoneOK = true"
                         @keypress="checkIsNumber"
                     />
-                    <span v-if="!phoneOK&&(info.PhoneNo!=='')" class="errMsg">手機 格式錯誤</span>
+                    <span v-if="!phoneOK && info.PhoneNo !== ''" class="errMsg"
+                        >手機 格式錯誤</span
+                    >
                 </label>
                 <div class="buttonWrap">
                     <button v-if="couldSend" @click="send">傳送</button>
@@ -95,11 +134,19 @@
                 </div>
 
                 <div class="promotionMessage">
-                    <span>★ 請留下電子郵件，本行將寄送本次試算結果至您的信箱喔！於行銷活動期間還可以參加「三重好禮大方送」之好康活動！活動詳情及個資蒐集告知事項請參閱：</span>
-                    <span class="fakeA" @click="getIntoPromotion">{{PROMOTION_URL_1}}</span>
+                    <span
+                        >★
+                        請留下電子郵件，本行將寄送本次試算結果至您的信箱喔！於行銷活動期間還可以參加「三重好禮大方送」之好康活動！活動詳情及個資蒐集告知事項請參閱：</span
+                    >
+                    <span class="fakeA" @click="getIntoPromotion">{{
+                        PROMOTION_URL_1
+                    }}</span>
                 </div>
                 <div class="promotionMessage">
-                    <span>★ 注意：請提供正確姓名及電子郵件，本行將以此電子郵件寄送折扣碼、贈品等獲獎訊息；若獲得一卡通贈品之客戶須核對證件為本人方可領取。</span>
+                    <span
+                        >★
+                        注意：請提供正確姓名及電子郵件，本行將以此電子郵件寄送折扣碼、贈品等獲獎訊息；若獲得一卡通贈品之客戶須核對證件為本人方可領取。</span
+                    >
                 </div>
             </div>
         </div>
@@ -116,7 +163,7 @@ import { mapActions } from "vuex";
 export default {
     watch: {
         DataToRequestAPI__reCale: {
-            handler: function(newValue) {},
+            handler: function(newValue) { },
             deep: true
         },
         info: {
@@ -156,8 +203,8 @@ export default {
             phoneOK: true,
             couldSend: false,
             PROMOTION_URL_1: "",
-            VUE_APP_LINE_ADD_FRIEND_URL:"",
-            VUE_APP_LINE_ADD_FRIEND_QR_CODE:""
+            VUE_APP_LINE_ADD_FRIEND_URL: "",
+            VUE_APP_LINE_ADD_FRIEND_QR_CODE: ""
 
         };
     },
@@ -290,7 +337,7 @@ export default {
             let URL = `https://access.line.me/oauth2/v2.1/authorize?`;
             URL += "response_type=code";
             URL += `&client_id=${client_id}`;
-            URL += `&redirect_uri=${window.location.origin}/efirstWeb/LINE_Login_Landing`;
+            URL += `&redirect_uri=${window.location.origin}/elements/LINE_Login_Landing`;
             URL += "&scope=openid%20profile";
             URL += "&state=abcde";
             window.open(`${URL}`, "_blank");
@@ -300,7 +347,7 @@ export default {
         },
         send: async function() {
             this.closed();
-            let URL = `${window.location.origin}/efirstWeb/Email_Landing`;
+            let URL = `${window.location.origin}/elements/Email_Landing`;
             window.open(`${URL}`, "_blank");
         },
         getIntoPromotion: function() {
@@ -318,7 +365,7 @@ export default {
         let InvTarget = JSON.parse(sessionStorage.getItem("expDatas")).target;
         this.info.InvTarget = String(InvTarget);
     },
-    destroyed() {}
+    destroyed() { }
 };
 </script>
 <style lang="scss" scoped>

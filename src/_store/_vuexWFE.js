@@ -57,7 +57,7 @@ export default async function requestSync(store, type, options) {
     //         titleClass: "",
     //         isNormalBox:true,
     //         fn1: () => {
-    //             window.location = encodeURI('/efirstWeb/')
+    //             window.location = encodeURI('/elements/')
     //         }
     //     });
     // }
@@ -145,7 +145,7 @@ export default async function requestSync(store, type, options) {
                     title: '親愛的投資人，您好：',
 
                     fn1: () => {
-                        window.location = encodeURI('/efirstWeb/')
+                        window.location = encodeURI('/elements/')
                     }
                 });
                 break;
@@ -162,7 +162,7 @@ export default async function requestSync(store, type, options) {
         //         isNormalBox:true,
                 
         //         fn1: () => {
-        //             window.location = encodeURI('/efirstWeb/')
+        //             window.location = encodeURI('/elements/')
         //             console.log(config);
         //         }
         //     });
@@ -186,7 +186,7 @@ export default async function requestSync(store, type, options) {
                 titleClass: "",
                 isNormalBox:true,
                 fn1: () => {
-                    window.location = encodeURI('/efirstWeb/')
+                    window.location = encodeURI('/elements/')
                     // console.log(config);
                 }
             });

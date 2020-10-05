@@ -33,7 +33,7 @@ const {  NODE_ENV } = process.env
 
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'? '/efirstWeb/': '/efirstWeb/',
+    publicPath: process.env.NODE_ENV === 'production'? '/elements/': '/elements/',
     configureWebpack: config => {
             config.externals = {
                 'vue': 'Vue',

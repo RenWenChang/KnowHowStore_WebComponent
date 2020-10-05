@@ -18,7 +18,7 @@ let showMsgBox = function (response) {
             titleClass: "",
             isNormalBox:true,
             fn1: () => {
-                window.location = '/efirstWeb/'
+                window.location = '/elements/'
             }
         });
     }

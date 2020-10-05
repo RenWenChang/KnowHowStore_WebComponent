@@ -26,7 +26,7 @@ const actions = {
             data: qs.stringify({
                 grant_type: 'authorization_code',
                 code: datas,
-                redirect_uri:`${window.location.origin}/efirstWeb/LINE_Login_Landing`,
+                redirect_uri:`${window.location.origin}/elements/LINE_Login_Landing`,
                 client_id: `${client_id}`,
                 client_secret: `${client_secret}`
             }),

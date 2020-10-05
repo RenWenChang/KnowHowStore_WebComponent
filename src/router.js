@@ -9,7 +9,7 @@ let elementsLandingChildrenTree = getRouterTree__elementsLanding();
 Vue.use(Router)
 const router = new Router({
   mode: process.env.NODE_ENV === 'production' ? 'history' : 'history',
-  base: process.env.NODE_ENV === 'production' ? '/efirstWeb/' : '/efirstWeb/',
+  base: process.env.NODE_ENV === 'production' ? '/elements/' : '/elements/',
   linkActiveClass: "activeClass",
   scrollBehavior: (to) => {
     switch (to.name) {
