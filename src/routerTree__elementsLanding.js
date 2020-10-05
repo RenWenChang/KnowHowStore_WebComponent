@@ -1,10 +1,7 @@
 // './views/elementsPages/view' is root folder path . 
 // 'index.vue' is the name of target files in the root folder './views/elementsPages/view'
 
-const getRouterTree = function ({
-    name__NeedPathID = [],
-} = {}
-) {
+const getRouterTree = function() {
     // const requireModule = require.context('./views/elementsPages/view', true,/folder$/)
     let newRouter = [];
     const requireModulefolder = require.context('./views/elementsPages/view', true, /\/$/);
@@ -22,7 +19,7 @@ const getRouterTree = function ({
 
         let route = {
             name: name,
-            path: name__NeedPathID.indexOf(name) !== (-1) ? ':id' : name,
+            path: name,
             component: () => import(/* webpackChunkName: "landingPage" */ `${'./views/elementsPages/view'}/${folderPath}/${'index.vue'}`),
             children: [],
             meta: {
@@ -36,7 +33,7 @@ const getRouterTree = function ({
         if (parentFolder === '') {
             newRouter.push(route)
         } else {
-            let findFolder = function (arr) {
+            let findFolder = function(arr) {
                 if (arr) {
                     let parentIndex = arr.findIndex(x => x.name === parentFolder);
                     if (parentIndex !== (-1)) {
